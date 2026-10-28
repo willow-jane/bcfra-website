@@ -18,7 +18,7 @@ supporters=block('  <section class="supporters"')
 nominate=block('  <section id="nominate"')
 give=block('  <section class="give"')
 footer=s[s.index('<footer id="contact">'):s.index('</footer>')+len('</footer>')]
-script=s[s.index('<script>'):s.index('</script>')+len('</script>')]
+_si=s.index('<script>'); script=s[_si:s.index('</script>',_si)+len('</script>')]
 
 # split history out of events; agencies out of help
 h_a=events.index('      <div class="history">'); h_b=events.index('      </div>\n    </div>\n  </section>',h_a)
