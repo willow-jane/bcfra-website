@@ -515,3 +515,8 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
 .home-story h2{color:#fff;font-size:clamp(1.6rem,3.4vw,2.2rem);margin:0 0 10px}
 .home-story p{color:#c9d4e6;margin:0;max-width:62ch}
 @media (max-width:900px){.story-feature{grid-template-columns:1fr;gap:32px}.story-side{position:static}.stories-grid{grid-template-columns:1fr}.home-story{grid-template-columns:1fr}}
+.sch{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.sch li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:10px 0;border-bottom:1px solid var(--line);color:var(--muted)}
+.sch time{font:700 .8rem/1.6 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+.sch b{color:var(--ink)}
+@media (max-width:520px){.sch li{grid-template-columns:1fr;gap:2px}}
