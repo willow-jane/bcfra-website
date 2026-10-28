@@ -545,6 +545,21 @@ const DONATE_URL = "";
   // --- easter eggs ---
   try{console.log('%cCode 4. All clear.','font:700 16px Georgia;color:#e9ae2f;background:#0d2141;padding:6px 10px','\nSite built and maintained by Jane Doe, webmaster. Identity still unknown.');}catch(e){}
   function lights(ms){const b=document.createElement('div');b.className='lightbar';const w=document.createElement('div');w.className='lightwash';document.body.append(w,b);setTimeout(()=>{b.remove();w.remove();},ms||4000);}
+  const RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let raining=false;
+  function rain(items,n,ms){
+    if(RM||raining) return; raining=true;
+    const c=document.createElement('canvas'); c.style.cssText='position:fixed;inset:0;z-index:102;pointer-events:none';
+    const dpr=Math.min(window.devicePixelRatio||1,2), W=innerWidth, H=innerHeight; c.width=W*dpr; c.height=H*dpr; c.style.width=W+'px'; c.style.height=H+'px';
+    document.body.appendChild(c); const g=c.getContext('2d'); g.scale(dpr,dpr); g.textAlign='center'; g.textBaseline='middle';
+    const P=Array.from({length:n},()=>({x:Math.random()*W,y:-40-Math.random()*H*0.9,v:2.4+Math.random()*3.6,r:Math.random()*6.28,vr:(Math.random()-.5)*0.18,s:26+Math.random()*26,e:items[Math.floor(Math.random()*items.length)],w:Math.random()*6.28}));
+    const t0=performance.now();
+    (function f(t){const el=t-t0; g.clearRect(0,0,W,H); let alive=0;
+      for(const q of P){ q.y+=q.v; q.v+=0.04; q.r+=q.vr; q.w+=0.05; const x=q.x+Math.sin(q.w)*14;
+        if(q.y<H+60){alive++; g.save(); g.globalAlpha=el>ms-600?Math.max(0,(ms-el)/600):1; g.translate(x,q.y); g.rotate(q.r); g.font=q.s+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; g.fillText(q.e,0,0); g.restore();}
+        else if(el<ms-1500){q.y=-40; q.v=2.4+Math.random()*3.6; q.x=Math.random()*W;} }
+      if(alive&&el<ms) requestAnimationFrame(f); else {c.remove(); raining=false;} })(t0);
+  }
   function toast(msg,ms){const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),ms||3500);}
   const jd=document.getElementById('jane-doe'), jn=document.getElementById('jd-note');
   const JD=['Webmaster identity: unknown. Case still open. Last seen near the brisket.',
@@ -569,7 +584,10 @@ const DONATE_URL = "";
   document.addEventListener('keydown',e=>{k=(e.key===seq[k]||e.key.toLowerCase()===seq[k])?k+1:(e.key===seq[0]?1:0); if(k===seq.length){k=0;toast('10-4, good buddy. All units report to the steak line.',4000);}});
   let typed='';
   const WORDS={
-    'brisket':()=>toast('Brisket detected. Dispatching a judge to your location.'),
+    'brisket':()=>{rain(['🥩','🍖','🥩','🔥'],70,6000);toast('Brisket detected. Dispatching a judge to your location.');},
+    'steak':()=>{rain(['🥩','🥩','🔪','🍽️'],60,5500);toast('Steak Dinner: January 22, 2027. Bring your appetite.');},
+    'chili':()=>{rain(['🌶️','🌶️','🫕','🔥'],65,5500);toast('Chili Cookoff: January 23, 2027. Mild is not a category.');},
+    'bbq':()=>{rain(['🍖','🔥','🌭','🥩'],65,5500);toast('Smoke detected. This one is on purpose.');},
     'code3':()=>{lights(4000);toast('Lights and sirens. Please pull to the right.');},
     'tones':()=>toast('Tones dropped. Half the room is already walking to the truck.'),
     'donut':()=>toast('The donut joke has been retired. Brisket is the new donut.'),
@@ -582,6 +600,9 @@ const DONATE_URL = "";
   // countdown in shifts (24 on / 48 off)
   const cnt=document.querySelector('.ticket .count');
   if(cnt){ let flip=false; cnt.addEventListener('click',ev=>{ev.preventDefault(); const d=document.getElementById('days-left'); const n=parseInt(d.dataset.days||d.textContent,10); if(isNaN(n))return; d.dataset.days=n; flip=!flip; if(flip){d.textContent=Math.ceil(n/3); d.nextElementSibling.textContent='fire shifts to go';} else {d.textContent=n; d.nextElementSibling.textContent='days to go';}}); }
+  // mobile: tap the gold ticket date 3 times for steak rain
+  const tdate=document.querySelector('.ticket .date'); let tdc=0, tdt;
+  if(tdate) tdate.addEventListener('click',ev=>{ev.preventDefault(); tdc++; clearTimeout(tdt); tdt=setTimeout(()=>tdc=0,1200); if(tdc>=3){tdc=0; rain(['🥩','🍖','🌶️','🔥'],70,6000); toast('Order up. See you January 22 and 23.');}});
   // report in triplicate
   const yr2=document.getElementById('yr'); let yc=0;
   if(yr2) yr2.addEventListener('click',()=>{ if(++yc===3){yc=0;toast('Report filed in triplicate. Supervisor will review in 6 to 8 weeks.');} });
