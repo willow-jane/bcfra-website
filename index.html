@@ -478,7 +478,7 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
         </ul>
       </div>
     </div>
-    <div class="legal"><span>© <span id="yr">2026</span> Brazos County First Responders Association</span><span>Webmaster: <button type="button" class="jd" id="jane-doe">Jane Doe</button></span></div>
+    <div class="legal"><span>© <span id="yr" style="cursor:default">2026</span> Brazos County First Responders Association</span><span>Webmaster: <button type="button" class="jd" id="jane-doe">Jane Doe</button></span></div>
     <p class="jd-note" id="jd-note" role="status" hidden>Webmaster identity: unknown. Case still open. Last seen near the brisket.</p>
   </div>
 </footer>
@@ -563,7 +563,27 @@ const DONATE_URL = "";
   const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a']; let k=0;
   document.addEventListener('keydown',e=>{k=(e.key===seq[k]||e.key.toLowerCase()===seq[k])?k+1:(e.key===seq[0]?1:0); if(k===seq.length){k=0;toast('10-4, good buddy. All units report to the steak line.',4000);}});
   let typed='';
-  document.addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('input,textarea'))return; typed=(typed+e.key.toLowerCase()).slice(-7); if(typed.endsWith('brisket')) toast('Brisket detected. Dispatching a judge to your location.');});
+  function lights(ms){const b=document.createElement('div');b.className='lightbar';document.body.appendChild(b);setTimeout(()=>b.remove(),ms||3500);}
+  const WORDS={
+    'brisket':()=>toast('Brisket detected. Dispatching a judge to your location.'),
+    'code3':()=>{lights(4000);toast('Lights and sirens. Please pull to the right.');},
+    'tones':()=>toast('Tones dropped. Half the room is already walking to the truck.'),
+    'donut':()=>toast('The donut joke has been retired. Brisket is the new donut.'),
+    '10-8':()=>toast('10-8. Back in service. Coffee refilled.'),
+    'coffee':()=>toast('Coffee located. Morale restored to acceptable levels.'),
+    'overtime':()=>toast('Overtime approved. Just kidding. Talk to your sergeant.'),
+    'quiet':()=>toast('We do not say the Q word. Now look what you did.')
+  };
+  document.addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('input,textarea'))return; if(e.key.length!==1)return; typed=(typed+e.key.toLowerCase()).slice(-10); for(const w in WORDS){ if(typed.endsWith(w)){ WORDS[w](); typed=''; break; } }});
+  // countdown in shifts (24 on / 48 off)
+  const cnt=document.querySelector('.ticket .count');
+  if(cnt){ let flip=false; cnt.addEventListener('click',ev=>{ev.preventDefault(); const d=document.getElementById('days-left'); const n=parseInt(d.dataset.days||d.textContent,10); if(isNaN(n))return; d.dataset.days=n; flip=!flip; if(flip){d.textContent=Math.ceil(n/3); d.nextElementSibling.textContent='fire shifts to go';} else {d.textContent=n; d.nextElementSibling.textContent='days to go';}}); }
+  // report in triplicate
+  const yr2=document.getElementById('yr'); let yc=0;
+  if(yr2) yr2.addEventListener('click',()=>{ if(++yc===3){yc=0;toast('Report filed in triplicate. Supervisor will review in 6 to 8 weeks.');} });
+  // night shift note (not on the nomination or memorial pages)
+  const pg=location.pathname.split('/').pop();
+  if(!/nominate|about/.test(pg)){ const h=new Date().getHours(); if(h>=1&&h<5){ setTimeout(()=>toast('Working the night shift? Thank you. Go drink some water.',5000),2500); } }
   wire('remind-form','remind-msg','You\'re on the list. We\'ll let you know when tickets and registration open.',FORMS.remind);
   wire('nom-form','nom-msg','Thank you. Your nomination was sent to the board, and someone will follow up with you.',FORMS.nominate);
 })();
