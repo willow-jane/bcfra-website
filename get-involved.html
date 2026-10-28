@@ -212,7 +212,13 @@ section{padding-block:clamp(64px,9vw,112px)}
 /* supporters */
 .supporters{background:var(--surface);border-top:1px solid var(--line)}
 .supporters ul{list-style:none;margin:0;padding:0;columns:3 240px;column-gap:40px}
-.supporters li{break-inside:avoid;padding:10px 0;border-bottom:1px solid var(--line);font-weight:500}
+.supporters li{break-inside:avoid;padding:10px 0;border-bottom:1px solid var(--line);font-weight:500;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.supporters .sn{color:var(--ink);text-decoration:none}
+a.sn:hover{color:var(--link);text-decoration:underline}
+.supporters .sl{display:flex;gap:6px;flex:none}
+.supporters .sl a{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;color:var(--muted);border:1px solid var(--line)}
+.supporters .sl a:hover{color:#fff;background:var(--blue);border-color:var(--blue)}
+.supporters .sl svg{width:15px;height:15px}
 
 /* reminders */
 .remind{background:var(--band);color:var(--band-ink)}
@@ -387,24 +393,24 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
         <p class="lede">These neighbors and businesses made the 3rd Annual Steak Dinner possible.</p>
       </div>
       <ul>
-        <li>A &amp; L Hot Oil Service</li>
-        <li>Bentley Nettles</li>
-        <li>Brazos County District Attorney's Office</li>
-        <li>Bubba Moore Foundation</li>
-        <li>City of Kurten</li>
-        <li>College Station Professional Firefighters Association</li>
-        <li>El Rey Chorizo &amp; Sausage Co.</li>
-        <li>Grimes County True Blue Foundation</li>
-        <li>James &amp; Cheryl Fickey, Twin F Ranch</li>
-        <li>Jason &amp; Mandie James</li>
-        <li>Joe's Place</li>
-        <li>Mary Jo Prince, in honor of Laura Dean Mooney</li>
-        <li>Paul Dyson</li>
-        <li>Pro-Fit Outfitters</li>
-        <li>Ronald Arnold</li>
-        <li>The Tool Guys</li>
-        <li>Trey Oldham &amp; Kail Fickey</li>
-        <li>Willow &amp; Watch</li>
+        <li><span class="sn">A &amp; L Hot Oil Service</span></li>
+        <li><span class="sn">Bentley Nettles</span></li>
+        <li><a class="sn" href="https://brazoscountytx.gov/134/District-Attorney" target="_blank" rel="noopener">Brazos County District Attorney's Office</a><span class="sl"><a href="https://brazoscountytx.gov/134/District-Attorney" target="_blank" rel="noopener" aria-label="Brazos County District Attorney's Office website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.facebook.com/BrazosCountyDA/" target="_blank" rel="noopener" aria-label="Brazos County District Attorney's Office on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></span></li>
+        <li><a class="sn" href="https://www.facebook.com/65549082297" target="_blank" rel="noopener">Bubba Moore Foundation</a><span class="sl"><a href="https://www.facebook.com/65549082297" target="_blank" rel="noopener" aria-label="Bubba Moore Foundation on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></span></li>
+        <li><a class="sn" href="https://www.kurtentexas.com/" target="_blank" rel="noopener">City of Kurten</a><span class="sl"><a href="https://www.kurtentexas.com/" target="_blank" rel="noopener" aria-label="City of Kurten website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.facebook.com/kurtentexas/" target="_blank" rel="noopener" aria-label="City of Kurten on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></span></li>
+        <li><a class="sn" href="https://www.collegestationfirefighters.org/" target="_blank" rel="noopener">College Station Professional Firefighters Association</a><span class="sl"><a href="https://www.collegestationfirefighters.org/" target="_blank" rel="noopener" aria-label="College Station Professional Firefighters Association website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.facebook.com/CollegeStationFirefighters" target="_blank" rel="noopener" aria-label="College Station Professional Firefighters Association on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a><a href="https://www.instagram.com/collegestationfirefighters" target="_blank" rel="noopener" aria-label="College Station Professional Firefighters Association on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a></span></li>
+        <li><a class="sn" href="https://www.elreychorizo.com/" target="_blank" rel="noopener">El Rey Chorizo &amp; Sausage Co.</a><span class="sl"><a href="https://www.elreychorizo.com/" target="_blank" rel="noopener" aria-label="El Rey Chorizo and Sausage Co. website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.instagram.com/elreychorizo/" target="_blank" rel="noopener" aria-label="El Rey Chorizo and Sausage Co. on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a></span></li>
+        <li><a class="sn" href="https://www.grimescountytrueblue.org/" target="_blank" rel="noopener">Grimes County True Blue Foundation</a><span class="sl"><a href="https://www.grimescountytrueblue.org/" target="_blank" rel="noopener" aria-label="Grimes County True Blue Foundation website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.facebook.com/grimescountytrueblue/" target="_blank" rel="noopener" aria-label="Grimes County True Blue Foundation on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></span></li>
+        <li><span class="sn">James &amp; Cheryl Fickey, Twin F Ranch</span></li>
+        <li><span class="sn">Jason &amp; Mandie James</span></li>
+        <li><a class="sn" href="https://www.facebook.com/Joesplaceburgers/" target="_blank" rel="noopener">Joe's Place</a><span class="sl"><a href="https://www.facebook.com/Joesplaceburgers/" target="_blank" rel="noopener" aria-label="Joe's Place on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a><a href="https://www.instagram.com/joesplaceburgers/" target="_blank" rel="noopener" aria-label="Joe's Place on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a></span></li>
+        <li><span class="sn">Mary Jo Prince, in honor of Laura Dean Mooney</span></li>
+        <li><span class="sn">Paul Dyson</span></li>
+        <li><a class="sn" href="https://www.profitoutfitters.com/" target="_blank" rel="noopener">Pro-Fit Outfitters</a><span class="sl"><a href="https://www.profitoutfitters.com/" target="_blank" rel="noopener" aria-label="Pro-Fit Outfitters website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.facebook.com/profile.php?id=61560089109706" target="_blank" rel="noopener" aria-label="Pro-Fit Outfitters on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></span></li>
+        <li><span class="sn">Ronald Arnold</span></li>
+        <li><a class="sn" href="https://toolguysbcs.com/" target="_blank" rel="noopener">The Tool Guys</a><span class="sl"><a href="https://toolguysbcs.com/" target="_blank" rel="noopener" aria-label="The Tool Guys website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.facebook.com/toolguysbcs/" target="_blank" rel="noopener" aria-label="The Tool Guys on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></span></li>
+        <li><span class="sn">Trey Oldham &amp; Kail Fickey</span></li>
+        <li><a class="sn" href="https://www.willowandwatch.com/" target="_blank" rel="noopener">Willow &amp; Watch</a><span class="sl"><a href="https://www.willowandwatch.com/" target="_blank" rel="noopener" aria-label="Willow and Watch website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a></span></li>
       </ul>
     </div>
   </section>

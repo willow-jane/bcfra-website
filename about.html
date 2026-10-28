@@ -212,7 +212,13 @@ section{padding-block:clamp(64px,9vw,112px)}
 /* supporters */
 .supporters{background:var(--surface);border-top:1px solid var(--line)}
 .supporters ul{list-style:none;margin:0;padding:0;columns:3 240px;column-gap:40px}
-.supporters li{break-inside:avoid;padding:10px 0;border-bottom:1px solid var(--line);font-weight:500}
+.supporters li{break-inside:avoid;padding:10px 0;border-bottom:1px solid var(--line);font-weight:500;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.supporters .sn{color:var(--ink);text-decoration:none}
+a.sn:hover{color:var(--link);text-decoration:underline}
+.supporters .sl{display:flex;gap:6px;flex:none}
+.supporters .sl a{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;color:var(--muted);border:1px solid var(--line)}
+.supporters .sl a:hover{color:#fff;background:var(--blue);border-color:var(--blue)}
+.supporters .sl svg{width:15px;height:15px}
 
 /* reminders */
 .remind{background:var(--band);color:var(--band-ink)}
