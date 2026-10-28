@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//BCFRA//bcfra.com//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:chili-cookoff-2027@bcfra.com
+DTSTAMP:20261028T190000Z
+DTSTART;VALUE=DATE:20270123
+DTEND;VALUE=DATE:20270124
+SUMMARY:BCFRA 3rd Annual Chili Cookoff
+LOCATION:Kurten Community Center\, 13055 E State Hwy 21\, Kurten\, TX 77862
+DESCRIPTION:First responder chili teams compete. Benefits the Brazos County First Responders Association. Details: https://bcfra.com/events
+URL:https://bcfra.com/events
+END:VEVENT
+END:VCALENDAR

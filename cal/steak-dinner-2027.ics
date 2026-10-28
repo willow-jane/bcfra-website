@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//BCFRA//bcfra.com//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:steak-dinner-2027@bcfra.com
+DTSTAMP:20261028T190000Z
+DTSTART;VALUE=DATE:20270122
+DTEND;VALUE=DATE:20270123
+SUMMARY:BCFRA 4th Annual Steak Dinner Fundraiser
+LOCATION:Kurten Community Center\, 13055 E State Hwy 21\, Kurten\, TX 77862
+DESCRIPTION:Dinner\, drinks\, live music\, live and silent auction\, and raffles. All proceeds benefit the Brazos County First Responders Association. Details and tickets: https://bcfra.com/events
+URL:https://bcfra.com/events
+END:VEVENT
+END:VCALENDAR

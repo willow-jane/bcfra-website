@@ -334,6 +334,14 @@ body.lb-open{overflow:hidden}
 .crumb{display:inline-flex;align-items:center;gap:8px}
 .crumb a{display:inline-flex;align-items:center;gap:6px;color:var(--band-ink);text-decoration:none;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 14px;font-weight:600}
 .crumb a:hover{background:rgba(255,255,255,.1)}
+.cal{position:relative}
+.cal summary{list-style:none;cursor:pointer}
+.cal summary::-webkit-details-marker{display:none}
+.cal summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);margin-left:4px}
+.cal[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
+.cal-menu{position:absolute;left:0;top:calc(100% + 6px);z-index:20;min-width:230px;display:grid;padding:6px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 30px rgba(8,18,36,.18)}
+.cal-menu a{padding:10px 12px;border-radius:6px;color:var(--ink);text-decoration:none;font-size:.95rem}
+.cal-menu a:hover,.cal-menu a:focus-visible{background:var(--bg);color:var(--link)}
 /* footer */
 footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-ink);padding-block:56px 40px}
 .foot{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(2,minmax(0,1fr));gap:40px}
@@ -600,6 +608,7 @@ const DONATE_URL = "";
       }catch(_){m.hidden=false;m.textContent='That didn\'t go through. Please email brazoscountyfirstresponders@gmail.com instead.';}
     });
   }
+  document.addEventListener('click',e=>{document.querySelectorAll('details.cal[open]').forEach(d=>{if(!d.contains(e.target))d.removeAttribute('open');});});
   // mobile menu
   const mb=document.getElementById('menu-btn'), nv=document.getElementById('main-nav');
   if(mb&&nv){ mb.addEventListener('click',()=>{const o=nv.classList.toggle('open'); mb.setAttribute('aria-expanded',o); mb.querySelector('.ml').textContent=o?'Close':'Menu';});
