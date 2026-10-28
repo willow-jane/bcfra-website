@@ -216,7 +216,7 @@ section{padding-block:clamp(64px,9vw,112px)}
 @media (max-width:860px){.remind-grid{grid-template-columns:1fr;gap:32px}}
 
 /* forms */
-.form{display:grid;gap:16px;background:var(--surface);color:var(--ink);border-radius:12px;padding:28px;border:1px solid var(--line)}
+.form{position:relative;display:grid;gap:16px;background:var(--surface);color:var(--ink);border-radius:12px;padding:28px;border:1px solid var(--line)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:560px){.row2{grid-template-columns:1fr}}
 .field{display:grid;gap:6px;min-width:0}
@@ -275,21 +275,54 @@ footer{background:var(--band);color:var(--band-ink);padding-block:56px 40px}
 .copy button{font:inherit;font-size:.8rem;padding:3px 9px;border-radius:4px;border:1px solid rgba(255,255,255,.3);background:transparent;color:var(--band-ink);cursor:pointer}
 .legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font-size:.85rem;color:var(--band-muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media (max-width:820px){.foot{grid-template-columns:1fr}}
+
+/* multi-page additions */
+.nav a[aria-current="page"]{background:rgba(255,255,255,.12)}
+.page-head{background:var(--band);color:var(--band-ink);padding-block:clamp(48px,7vw,84px) clamp(40px,6vw,64px);position:relative;overflow:hidden}
+.page-head::before{content:"";position:absolute;inset:0;background:var(--ph) center/cover no-repeat;opacity:.22;filter:saturate(.5)}
+.page-head::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--band) 35%,rgba(13,33,65,.6))}
+.page-head .wrap{position:relative;z-index:1;display:grid;gap:14px}
+.page-head h1{font-size:clamp(2.4rem,5.4vw,4rem);color:#fff}
+.page-head p{color:#c9d4e6;font-size:1.15rem;max-width:58ch}
+.crumb{font-size:.9rem;color:var(--band-muted)}
+.crumb a{color:var(--band-muted)}
+.teasers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.teaser{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start;padding:22px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);text-decoration:none;transition:border-color .15s ease, transform .15s ease}
+.teaser:hover{border-color:var(--blue);transform:translateY(-2px)}
+.teaser .d{width:64px;text-align:center;border-radius:8px;padding:8px 4px;color:#fff;font:700 .8rem/1.1 var(--display)}
+.teaser .d b{display:block;font-size:1.5rem;line-height:1}
+.t-steak .d{background:#7a2416}.t-chili .d{background:var(--red)}.t-bbq .d{background:var(--blue)}
+.teaser h3{font-size:1.2rem}
+.teaser p{color:var(--muted);font-size:.93rem;margin-top:4px}
+.teaser .go{color:var(--link);font-weight:600;font-size:.9rem;margin-top:10px;display:block}
+.more{margin-top:28px}
+@media (max-width:900px){.teasers{grid-template-columns:1fr}}
+.cta-band{background:var(--surface);border-top:1px solid var(--line)}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cta{display:grid;gap:12px;align-content:start;padding:30px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+.cta.dark{background:var(--navy);border-color:var(--navy);color:#fff}
+.cta.dark p{color:#c9d4e6}
+.cta p{color:var(--muted)}
+.cta .btn{justify-self:start;margin-top:4px}
+@media (max-width:760px){.cta-grid{grid-template-columns:1fr}}
+.about-extra{background:var(--surface);border-block:1px solid var(--line)}
+.about-extra .agencies{margin-top:0}
+.history-sec .history{margin-top:0;border-top:0;padding-top:0}
 </style>
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Brazos County First Responders Association, home">
+    <a class="brand" href="index.html" aria-label="Brazos County First Responders Association, home">
       <img src="img/badge.png" alt="" width="44" height="48">
       <span><b>Brazos County First Responders</b><small>Association, est. 2014</small></span>
     </a>
     <nav class="nav" aria-label="Main">
-      <a href="#story">Our story</a>
-      <a href="#events">Events</a>
-      <a href="#nominate">Nominate</a>
-      <a href="#give">Give</a>
+      <a href="about.html">About</a>
+      <a href="events.html">Events</a>
+      <a href="nominate-someone.html">Nominate</a>
+      <a href="get-involved.html">Get involved</a>
       <a href="#contact">Contact</a>
-      <a class="btn btn-gold" href="#reminders">Get event reminders</a>
+      <a class="btn btn-gold" href="events.html#reminders">Get event reminders</a>
     </nav>
   </div>
 </header>
@@ -302,41 +335,22 @@ footer{background:var(--band);color:var(--band-ink);padding-block:56px 40px}
         <h1 id="hero-title">They run toward the call. <span>We run toward them.</span></h1>
         <p class="lede">Since 2014, the Brazos County First Responders Association has given financial support to local first responders who are ill or injured in the line of duty, and funded scholarships for their children.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="#events">See upcoming events</a>
-          <a class="btn btn-ghost" href="#nominate">Nominate a first responder</a>
+          <a class="btn btn-gold" href="events.html">See upcoming events</a>
+          <a class="btn btn-ghost" href="nominate-someone.html">Nominate a first responder</a>
         </div>
       </div>
       <img class="hero-badge" src="img/badge.png" alt="Brazos County First Responders Association emblem: a Constable Precinct 1 star, established 2014, in memory of Brian Bachmann, End of Watch 8.13.12" width="643" height="700">
     </div>
   </section>
-
   <div class="ticket-row">
     <div class="wrap">
-      <a class="ticket" href="#steak-dinner" style="text-decoration:none">
+      <a class="ticket" href="events.html#steak-dinner" style="text-decoration:none">
         <div class="date"><span>JAN</span><b>22</b><span>2027</span></div>
         <div class="what"><strong>4th Annual Steak Dinner Fundraiser</strong><span>Kurten Community Center. Tickets and sponsorships coming soon.</span></div>
         <div class="count" aria-live="polite"><b id="days-left">86</b><span>days to go</span></div>
       </a>
     </div>
   </div>
-
-  <section id="story" aria-labelledby="story-title">
-    <div class="wrap story">
-      <div class="story-text">
-        <h2 id="story-title">Founded after we lost one of our own</h2>
-        <p>In 2012, Brazos County lost Constable Brian Bachmann in the line of duty. His fellow officers saw firsthand the immediate needs his family faced in the days that followed, and resolved that no first responder's family here would face that alone again.</p>
-        <p>The Brazos County First Responders Association was created in 2014. Our board is made up of members of Brazos County law enforcement agencies and the Bryan and College Station Fire Departments.</p>
-        <div class="eow">
-          <img src="img/badge.png" alt="" width="64" height="70">
-          <div><strong>Constable Brian Bachmann</strong><span>Brazos County Precinct 1. End of Watch: August 13, 2012.</span></div>
-        </div>
-      </div>
-      <figure class="story-photo">
-        <img src="img/hall.jpg" alt="A full house at the Kurten Community Center for the 3rd Annual Steak Dinner" loading="lazy" width="1400" height="895">
-        <figcaption>A full house at the Kurten Community Center, 3rd Annual Steak Dinner, January 2026.</figcaption>
-      </figure>
-    </div>
-  </section>
 
   <section class="help" aria-labelledby="help-title">
     <div class="wrap">
@@ -361,164 +375,21 @@ footer{background:var(--band);color:var(--band-ink);padding-block:56px 40px}
           <p>Our Steak Dinner, Chili Cookoff and BBQ Cookoff bring officers, firefighters, families and neighbors to the same table.</p>
         </div>
       </div>
-      <div class="agencies">
-        <h3>Standing with the agencies that serve Brazos County</h3>
-        <ul>
-          <li>Brazos County Sheriff's Office</li>
-          <li>Brazos County Constables</li>
-          <li>Bryan Police Department</li>
-          <li>College Station Police Department</li>
-          <li>Texas A&amp;M University Police</li>
-          <li>Texas Highway Patrol</li>
-          <li>Bryan Fire Department</li>
-          <li>College Station Fire Department</li>
-        </ul>
-      </div>
     </div>
   </section>
 
-  <section id="events" aria-labelledby="events-title">
+  <section aria-labelledby="up-title">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="events-title">Upcoming events</h2>
-        <p class="lede">Three fundraisers a year pay for everything we do. Come eat, bid, compete, and meet the people who keep this county safe.</p>
+        <h2 id="up-title">Upcoming events</h2>
+        <p class="lede">Our three fundraisers pay for everything we do.</p>
       </div>
-
-      <div class="posters">
-        <article class="poster p-steak feature" id="steak-dinner" aria-labelledby="steak-title">
-          <div class="poster-art">
-            <div class="poster-top">
-              <span class="kicker">SAVE THE DATE</span>
-              <img src="img/badge.png" alt="" width="62" height="68">
-            </div>
-            <div>
-              <h3 class="poster-title" id="steak-title"><small>4th Annual</small>Steak Dinner Fundraiser</h3>
-              <div class="poster-date">
-                <div><b>Jan 22</b><span>Friday, 2027</span></div>
-                <div><b>Kurten</b><span>Community Center</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="poster-body">
-            <ul class="facts">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 10h16M4 10v9h16v-9M4 10l2-5h12l2 5"/></svg><span>Steak dinner and drinks</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg><span>Live music and dancing</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m14 4 6 6M11 7l6 6M5 19l7-7M3 21h8"/></svg><span>Live and silent auction, gun raffles</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Kurten Community Center, 13055 E State Hwy 21, Kurten, TX</span></li>
-            </ul>
-            <div class="tiers">
-              <p class="tiers-head">2027 tickets and tables <span>On sale soon</span></p>
-              <table>
-                <tbody>
-                  <tr><th scope="row">Three Alarm Table</th><td>8 guests</td><td>$1,400</td></tr>
-                  <tr><th scope="row">Two Alarm Table</th><td>8 guests</td><td>$1,000</td></tr>
-                  <tr><th scope="row">Steak dinner ticket</th><td>1 guest</td><td>$100</td></tr>
-                </tbody>
-              </table>
-              <p class="fine">Headliner and Event sponsorships are also available. <a href="#contact">Contact us</a> for details.</p>
-            </div>
-            <div class="poster-actions">
-              <a class="btn btn-navy" href="#reminders" data-pick="steak">Tell me when tickets open</a>
-              <a class="btn btn-line" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=BCFRA%204th%20Annual%20Steak%20Dinner%20Fundraiser&amp;dates=20270122/20270123&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;details=Dinner%2C%20drinks%2C%20live%20music%2C%20live%20%26%20silent%20auction%2C%20and%20raffles.%20All%20proceeds%20benefit%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com">Add to Google Calendar</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="poster p-chili" id="chili-cookoff" aria-labelledby="chili-title">
-          <div class="poster-art">
-            <div class="poster-top">
-              <span class="kicker">BEING RESCHEDULED</span>
-              <img src="img/badge.png" alt="" width="62" height="68">
-            </div>
-            <div>
-              <h3 class="poster-title" id="chili-title"><small>3rd Annual</small>Chili Cookoff</h3>
-              <div class="poster-date">
-                <div class="tba"><b>Date TBA</b><span>Watch for it</span></div>
-                <div><b>Kurten</b><span>Community Center</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="poster-body">
-            <ul class="facts">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4ZM17 6h3a3 3 0 0 1-3 4M7 6H4a3 3 0 0 0 3 4"/></svg><span>Prizes for the top chili teams</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h18v4a2 2 0 0 0 0 4v4H3v-4a2 2 0 0 0 0-4V7Z"/></svg><span>Last year: team entry $30, adults $5, vendor booth $25</span></li>
-            </ul>
-            <p class="note">The January 24, 2026 cookoff was called off for icy roads. A new date is coming.</p>
-            <div class="poster-actions">
-              <a class="btn btn-navy" href="#reminders" data-pick="chili">Remind me</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="poster p-bbq" id="bbq-cookoff" aria-labelledby="bbq-title">
-          <div class="poster-art">
-            <div class="poster-top">
-              <span class="kicker">LAW ENFORCEMENT VS. FIRE</span>
-              <img src="img/badge.png" alt="" width="62" height="68">
-            </div>
-            <div>
-              <h3 class="poster-title" id="bbq-title"><small>Annual</small>BBQ Cookoff</h3>
-              <div class="poster-date">
-                <div class="tba"><b>Spring</b><span>2027, date TBA</span></div>
-                <div><b>St. Nick's</b><span>Green</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="poster-body">
-            <ul class="facts">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 3c0 2 2 2 2 4s-2 2-2 4M12 3c0 2 2 2 2 4s-2 2-2 4M16 3c0 2 2 2 2 4s-2 2-2 4M4 14h16l-2 7H6l-2-7Z"/></svg><span>Area firefighter and law enforcement teams compete</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 13s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg><span>BBQ sampling, kids' activities, 50/50 raffle, cornhole</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span><a href="https://www.stnicksgreen.com/" target="_blank" rel="noopener">St. Nick's Green RV Campground</a>, College Station</span></li>
-            </ul>
-            <p class="note">Our longest-running fundraiser, held every year since 2014. Team entry forms come out in early spring.</p>
-            <div class="poster-actions">
-              <a class="btn btn-navy" href="#reminders" data-pick="bbq">Remind me</a>
-            </div>
-          </div>
-        </article>
+      <div class="teasers">
+        <a class="teaser t-steak" href="events.html#steak-dinner"><div class="d">JAN<b>22</b>2027</div><div><h3>4th Annual Steak Dinner</h3><p>Kurten Community Center. Dinner, live music, auctions and raffles.</p><span class="go">Details and tickets</span></div></a>
+        <a class="teaser t-chili" href="events.html#chili-cookoff"><div class="d">NEW<b>TBA</b>DATE</div><div><h3>3rd Annual Chili Cookoff</h3><p>Kurten Community Center. Being rescheduled after January's ice.</p><span class="go">Details</span></div></a>
+        <a class="teaser t-bbq" href="events.html#bbq-cookoff"><div class="d">SPRING<b>TBA</b>2027</div><div><h3>Annual BBQ Cookoff</h3><p>St. Nick's Green. Law enforcement and fire teams compete.</p><span class="go">Details</span></div></a>
       </div>
-
-      <div class="history">
-        <h3>Since 2014</h3>
-        <ol>
-          <li><time>2026</time><span>3rd Annual Steak Dinner, Kurten (Jan 23). BBQ Cookoff, St. Nick's Green (May 16). Chili Cookoff postponed for ice.</span></li>
-          <li><time>2025</time><span>2nd Annual Steak Dinner (Jan 24) and 2nd Annual Chili Cookoff (Jan 25), Kurten. BBQ Cookoff, St. Nick's Green (Jun 28).</span></li>
-          <li><time>2024</time><span>1st Annual Chili Cookoff and Steak Dinner, Kurten (Jan 27).</span></li>
-          <li><time>2023</time><span>10th BBQ Cookoff, St. Nick's Green (Jun 3).</span></li>
-          <li><time>2015–22</time><span>Annual BBQ cookoffs in College Station, plus a Kreuz Market profit share night (2018).</span></li>
-          <li><time>2014</time><span>First Brazos County Law Enforcement Cookoff, hosted with Santa's Wonderland. Proceeds presented June 25.</span></li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <section class="remind" id="reminders" aria-labelledby="remind-title">
-    <div class="wrap remind-grid">
-      <div>
-        <h2 id="remind-title">Never miss an event</h2>
-        <p class="lede" style="margin-top:16px">Get a heads-up when Steak Dinner tickets go on sale, when cookoff teams can register, and a reminder the week of each event.</p>
-        <ul class="why">
-          <li>A few messages a year, only about events</li>
-          <li>Unsubscribe anytime</li>
-          <li>We never share your information</li>
-        </ul>
-      </div>
-      <form class="form" id="remind-form" novalidate>
-        <div class="row2">
-          <div class="field"><label for="r-name">Name</label><input id="r-name" name="name" type="text" autocomplete="name" required></div>
-          <div class="field"><label for="r-email">Email</label><input id="r-email" name="email" type="email" autocomplete="email" required></div>
-        </div>
-        <div class="field"><label for="r-phone">Mobile number <span class="hint">(optional, for text reminders)</span></label><input id="r-phone" name="phone" type="tel" autocomplete="tel"></div>
-        <fieldset>
-          <span class="legend">Remind me about</span>
-          <label class="check"><input type="checkbox" id="r-steak" name="events" value="Steak Dinner" checked> 4th Annual Steak Dinner, January 22, 2027</label>
-          <label class="check"><input type="checkbox" id="r-chili" name="events" value="Chili Cookoff" checked> 3rd Annual Chili Cookoff, new date coming</label>
-          <label class="check"><input type="checkbox" id="r-bbq" name="events" value="BBQ Cookoff" checked> Annual BBQ Cookoff, spring 2027</label>
-          <label class="check"><input type="checkbox" id="r-sponsor" name="events" value="Sponsorship"> Sponsorship opportunities</label>
-        </fieldset>
-        <button class="btn btn-navy" type="submit">Sign me up</button>
-        <div class="form-msg" id="remind-msg" role="status" hidden></div>
-      </form>
+      <div class="more"><a class="btn btn-navy" href="events.html#reminders">Get event reminders</a></div>
     </div>
   </section>
 
@@ -543,93 +414,21 @@ footer{background:var(--band);color:var(--band-ink);padding-block:56px 40px}
     </div>
   </section>
 
-  <section class="supporters" aria-labelledby="sup-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="sup-title">Thank you to our supporters</h2>
-        <p class="lede">These neighbors and businesses made the 3rd Annual Steak Dinner possible.</p>
+  <section class="cta-band" aria-label="Get involved">
+    <div class="wrap cta-grid">
+      <div class="cta dark">
+        <h2 style="font-size:2rem">Know someone who needs help?</h2>
+        <p>If a local first responder is facing illness, injury or crisis, tell us. Self-nominations are welcome and every request is confidential.</p>
+        <a class="btn btn-gold" href="nominate-someone.html">Nominate a first responder</a>
       </div>
-      <ul>
-        <li>A &amp; L Hot Oil Service</li>
-        <li>Bentley Nettles</li>
-        <li>Brazos County District Attorney's Office</li>
-        <li>Bubba Moore Foundation</li>
-        <li>City of Kurten</li>
-        <li>College Station Professional Firefighters Association</li>
-        <li>El Rey Chorizo &amp; Sausage Co.</li>
-        <li>Grimes County True Blue Foundation</li>
-        <li>James &amp; Cheryl Fickey, Twin F Ranch</li>
-        <li>Jason &amp; Mandie James</li>
-        <li>Joe's Place</li>
-        <li>Mary Jo Prince, in honor of Laura Dean Mooney</li>
-        <li>Paul Dyson</li>
-        <li>Pro-Fit Outfitters</li>
-        <li>Ronald Arnold</li>
-        <li>The Tool Guys</li>
-        <li>Trey Oldham &amp; Kail Fickey</li>
-        <li>Willow &amp; Watch</li>
-      </ul>
+      <div class="cta">
+        <h2 style="font-size:2rem">Stand behind them</h2>
+        <p>Donate, sponsor a table, or give an auction item. Every dollar stays in Brazos County.</p>
+        <a class="btn btn-navy" href="get-involved.html">Ways to give</a>
+      </div>
     </div>
   </section>
 
-  <section id="nominate" aria-labelledby="nom-title">
-    <div class="wrap nominate-grid">
-      <div>
-        <h2 id="nom-title">Nominate a first responder</h2>
-        <p class="lede" style="margin-top:16px">Know a local first responder facing hardship, illness, injury or crisis? Tell us. Self-nominations are welcome.</p>
-        <ol class="steps">
-          <li><div><b>Submit the form</b><span>Share who they are, where they serve, and what's going on.</span></div></li>
-          <li><div><b>We verify</b><span>We confirm the nominee's connection to an active first responder agency. This keeps help going where it's meant to.</span></div></li>
-          <li><div><b>The board reviews</b><span>Every request is reviewed by our board and handled confidentially.</span></div></li>
-        </ol>
-        <p class="fine" style="margin-top:22px">Submitting a nomination does not guarantee assistance.</p>
-      </div>
-      <form class="form" id="nom-form" novalidate>
-        <div class="row2">
-          <div class="field"><label for="n-requestor">Your name</label><input id="n-requestor" name="requestor" type="text" autocomplete="name" required></div>
-          <div class="field"><label for="n-nominee">Nominee's name</label><input id="n-nominee" name="nominee" type="text" required></div>
-        </div>
-        <div class="row2">
-          <div class="field"><label for="n-email">Your email</label><input id="n-email" name="email" type="email" autocomplete="email" required></div>
-          <div class="field"><label for="n-phone">Your phone</label><input id="n-phone" name="phone" type="tel" autocomplete="tel" required></div>
-        </div>
-        <div class="row2">
-          <div class="field"><label for="n-agency">Nominee's agency or department</label><input id="n-agency" name="agency" type="text" required></div>
-          <div class="field"><label for="n-role">Nominee's position or role</label><input id="n-role" name="role" type="text" required></div>
-        </div>
-        <div class="field"><label for="n-details">What's going on? <span class="hint">Share as much as you're comfortable with.</span></label><textarea id="n-details" name="details" required></textarea></div>
-        <label class="check"><input type="checkbox" id="n-self" name="self"> This is a self-nomination</label>
-        <button class="btn btn-navy" type="submit">Submit nomination</button>
-        <div class="form-msg" id="nom-msg" role="status" hidden></div>
-      </form>
-    </div>
-  </section>
-
-  <section class="give" id="give" aria-labelledby="give-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="give-title">Ways to give</h2>
-        <p class="lede">Donations are tax-deductible, and 100% go to Brazos County first responders and their families.</p>
-      </div>
-      <div class="ways">
-        <div class="way primary">
-          <h3>Donate</h3>
-          <p>A gift of any size helps us respond quickly when a first responder is hurt or sick.</p>
-          <a class="btn btn-gold" href="#contact" id="donate-btn">Donate</a>
-        </div>
-        <div class="way">
-          <h3>Sponsor an event</h3>
-          <p>Put your business behind local heroes with a Steak Dinner table or a Cookoff sponsorship. Packages are posted with tickets.</p>
-          <a class="btn btn-line" href="#reminders" data-pick="sponsor">Get sponsorship info</a>
-        </div>
-        <div class="way">
-          <h3>Donate an auction item</h3>
-          <p>Hats, hunts, getaways, gift cards. Auction and raffle items raise a big share of every Steak Dinner.</p>
-          <a class="btn btn-line" href="#contact">Offer an item</a>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer id="contact">
@@ -654,8 +453,8 @@ footer{background:var(--band);color:var(--band-ink);padding-block:56px 40px}
         <h4>Follow along</h4>
         <ul>
           <li><a href="https://www.facebook.com/BrazosCountyFirstResponders" target="_blank" rel="noopener">Facebook</a></li>
-          <li><a href="#events">Upcoming events</a></li>
-          <li><a href="#nominate">Nominate a first responder</a></li>
+          <li><a href="events.html">Upcoming events</a></li>
+          <li><a href="nominate-someone.html">Nominate a first responder</a></li>
         </ul>
       </div>
     </div>
@@ -664,8 +463,8 @@ footer{background:var(--band);color:var(--band-ink);padding-block:56px 40px}
 </footer>
 
 <script>
-// Set FORM_ENDPOINT to the live form service URL once the site is deployed.
-const FORM_ENDPOINT = "";
+// Formspree endpoints (deliver to brazoscountyfirstresponders@gmail.com)
+const FORMS = { remind: "https://formspree.io/f/mwllbzak", nominate: "https://formspree.io/f/mppprnog" };
 const DONATE_URL = "";
 
 (function(){
@@ -686,7 +485,7 @@ const DONATE_URL = "";
   document.querySelectorAll('[data-pick]').forEach(a=>a.addEventListener('click',()=>{
     const map={steak:'r-steak',chili:'r-chili',bbq:'r-bbq',sponsor:'r-sponsor'};
     const el=document.getElementById(map[a.dataset.pick]); if(el) el.checked=true;
-    setTimeout(()=>document.getElementById('r-name').focus({preventScroll:true}),450);
+    const rn=document.getElementById('r-name'); if(rn) setTimeout(()=>rn.focus({preventScroll:true}),450);
   }));
 
   // copy buttons
@@ -697,8 +496,8 @@ const DONATE_URL = "";
   }));
   function sel(b){const r=document.createRange();r.selectNodeContents(document.getElementById(b.dataset.copy));const s=getSelection();s.removeAllRanges();s.addRange(r);}
 
-  function wire(formId,msgId,okText){
-    const f=document.getElementById(formId), m=document.getElementById(msgId);
+  function wire(formId,msgId,okText,FORM_ENDPOINT){
+    const f=document.getElementById(formId), m=document.getElementById(msgId); if(!f) return;
     f.addEventListener('submit',async e=>{
       e.preventDefault();
       const missing=[...f.querySelectorAll('[required]')].filter(i=>!i.value.trim());
@@ -716,7 +515,7 @@ const DONATE_URL = "";
       }catch(_){m.hidden=false;m.textContent='That didn\'t go through. Please email brazoscountyfirstresponders@gmail.com instead.';}
     });
   }
-  wire('remind-form','remind-msg','You\'re on the list. We\'ll let you know when tickets and registration open.');
-  wire('nom-form','nom-msg','Thank you. Your nomination was sent to the board, and someone will follow up with you.');
+  wire('remind-form','remind-msg','You\'re on the list. We\'ll let you know when tickets and registration open.',FORMS.remind);
+  wire('nom-form','nom-msg','Thank you. Your nomination was sent to the board, and someone will follow up with you.',FORMS.nominate);
 })();
 </script>
