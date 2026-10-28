@@ -1,2 +1,2 @@
-var m={"/about":"/about.html","/events":"/events.html","/get-involved":"/get-involved.html","/nominate-someone":"/nominate-someone.html","/sponsors":"/get-involved.html#supporters"};
-var p=location.pathname.replace(/\/$/,"");if(m[p])location.replace(m[p]);
+var m={"/about.html":"/about","/events.html":"/events","/get-involved.html":"/get-involved","/nominate-someone.html":"/nominate-someone","/contact.html":"/contact","/sponsors":"/get-involved#supporters","/home":"/","/index.html":"/"};
+var p=location.pathname.replace(/\/$/,"");if(m[p])location.replace(m[p]+location.search+location.hash);else if(p&&location.pathname!==p)location.replace(p+location.search+location.hash);
