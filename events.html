@@ -296,7 +296,7 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
 .page-head p{color:#c9d4e6;font-size:1.15rem;max-width:58ch}
 .crumb{font-size:.9rem;color:var(--band-muted)}
 .crumb a{color:var(--band-muted)}
-.teasers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.teasers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .teaser{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start;padding:22px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);text-decoration:none;transition:border-color .15s ease, transform .15s ease}
 .teaser:hover{border-color:var(--blue);transform:translateY(-2px)}
 .teaser .d{width:64px;text-align:center;border-radius:8px;padding:8px 4px;color:#fff;font:700 .8rem/1.1 var(--display)}
@@ -390,33 +390,7 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
           </div>
         </article>
 
-        <article class="poster p-chili" id="chili-cookoff" aria-labelledby="chili-title">
-          <div class="poster-art">
-            <div class="poster-top">
-              <span class="kicker">BEING RESCHEDULED</span>
-              <img src="img/badge-sm.png" alt="" width="62" height="68">
-            </div>
-            <div>
-              <h2 class="poster-title" id="chili-title"><small>3rd Annual</small>Chili Cookoff</h2>
-              <div class="poster-date">
-                <div class="tba"><b>Date TBA</b><span>Rescheduling</span></div>
-                <div><b>Kurten</b><span>Community Center</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="poster-body">
-            <ul class="facts">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4ZM17 6h3a3 3 0 0 1-3 4M7 6H4a3 3 0 0 0 3 4"/></svg><span>Prizes for the top chili teams</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h18v4a2 2 0 0 0 0 4v4H3v-4a2 2 0 0 0 0-4V7Z"/></svg><span>2026 fees: team $30, adults $5, vendor booth $25</span></li>
-            </ul>
-            <p class="note">The January 24, 2026 cookoff was called off for icy roads. A new date is coming.</p>
-            <div class="poster-actions">
-              <a class="btn btn-navy" href="#reminders" data-pick="chili">Remind me</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="poster p-bbq" id="bbq-cookoff" aria-labelledby="bbq-title">
+        <article class="poster p-bbq feature" id="bbq-cookoff" aria-labelledby="bbq-title">
           <div class="poster-art">
             <div class="poster-top">
               <span class="kicker">FIRST RESPONDER TEAMS</span>
@@ -466,7 +440,6 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
         <fieldset>
           <span class="legend">Remind me about</span>
           <label class="check"><input type="checkbox" id="r-steak" name="events" value="Steak Dinner" checked> 4th Annual Steak Dinner, January 22, 2027</label>
-          <label class="check"><input type="checkbox" id="r-chili" name="events" value="Chili Cookoff" checked> 3rd Annual Chili Cookoff, new date coming</label>
           <label class="check"><input type="checkbox" id="r-bbq" name="events" value="BBQ Cookoff" checked> Annual BBQ Cookoff, 2027</label>
           <label class="check"><input type="checkbox" id="r-sponsor" name="events" value="Sponsorship"> Sponsorship opportunities</label>
         </fieldset>
