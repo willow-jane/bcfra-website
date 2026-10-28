@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formspree.io; form-action https://formspree.io; base-uri 'self'; object-src 'none'; frame-src 'none'; manifest-src 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formspree.io https://challenges.cloudflare.com; form-action https://formspree.io; base-uri 'self'; object-src 'none'; frame-src https://challenges.cloudflare.com; manifest-src 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="format-detection" content="telephone=no">
@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="css/site.css">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -198,6 +199,7 @@
           <label class="check"><input type="checkbox" id="r-bbq" name="events" value="BBQ Cookoff" checked> Annual BBQ Cookoff, 2027</label>
           <label class="check"><input type="checkbox" id="r-sponsor" name="events" value="Sponsorship"> Sponsorship opportunities</label>
         </fieldset>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAFqAYsAjF7eMCc8U" data-theme="auto" data-size="flexible"></div>
         <button class="btn btn-navy" type="submit">Put me on the list</button>
         <div class="form-msg" id="remind-msg" role="status" hidden></div>
       </form>

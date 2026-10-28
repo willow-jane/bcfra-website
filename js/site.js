@@ -46,11 +46,12 @@ const DONATE_URL = "";
         m.textContent=missing.length?'Missing a few things: '+missing.map(i=>f.querySelector('label[for="'+i.id+'"]').firstChild.textContent.trim().replace(/[?.]$/,'')).join(', ')+'.':'Please check the email address.';
         (missing[0]||badEmail[0]).focus(); return;
       }
+      const ts=f.querySelector('[name="cf-turnstile-response"]'); if(f.querySelector('.cf-turnstile') && /(^|\.)bcfra\.com$/.test(location.hostname) && (!ts||!ts.value)){m.hidden=false;m.textContent='One sec. Finish the quick security check above the button, then try again.';return;}
       if(!FORM_ENDPOINT){m.hidden=false;m.textContent=okText+' (Preview: once the site is live, this goes straight to the association\'s inbox.)';f.reset();return;}
       try{
         const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)});
         if(!r.ok) throw 0;
-        m.hidden=false;m.textContent=okText;f.reset();
+        m.hidden=false;m.textContent=okText;f.reset(); try{ if(window.turnstile) turnstile.reset(f.querySelector('.cf-turnstile')); }catch(_){}
       }catch(_){m.hidden=false;m.textContent='That didn\'t go through. Please email brazoscountyfirstresponders@gmail.com instead.';}
     });
   }
