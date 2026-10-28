@@ -581,7 +581,21 @@ const DONATE_URL = "";
   try{console.log('%cCode 4. All clear.','font:700 16px Georgia;color:#e9ae2f;background:#0d2141;padding:6px 10px','\nSite built and maintained by Jane Doe, webmaster. Identity still unknown.');}catch(e){}
   function toast(msg,ms){const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),ms||3500);}
   const jd=document.getElementById('jane-doe'), jn=document.getElementById('jd-note');
-  if(jd&&jn) jd.addEventListener('click',()=>{jn.hidden=!jn.hidden;});
+  const JD=['Webmaster identity: unknown. Case still open. Last seen near the brisket.',
+    'Jane Doe was last seen leaving the chili tent with a ladle. If found, do not approach.',
+    'Witnesses describe the webmaster as "average height, suspiciously good at CSS."',
+    'Jane Doe has been placed on administrative leave for excessive use of the color gold.',
+    'BOLO: one webmaster, answers to Jane, may be carrying a smoked sausage.',
+    'Jane Doe declined to comment, citing an ongoing cookoff.',
+    'Fingerprints lifted from this page belong to Jane Doe. Prints also found on the dessert table.',
+    'Jane Doe is not available. Please leave a message after the siren.',
+    'Last known location: the auction table, bidding on her own donation.',
+    'Jane Doe responded to this call in 4 minutes. Average response time for a website is 3 seconds.',
+    'Jane Doe has requested backup. Backup is at the steak line.',
+    'Case file 10-4-JD: still no leads. The steak was excellent, though.'];
+  let jdi=Math.floor(Math.random()*JD.length);
+  if(jn) jn.textContent=JD[jdi];
+  if(jd&&jn) jd.addEventListener('click',()=>{ if(!jn.hidden){ jdi=(jdi+1+Math.floor(Math.random()*(JD.length-1)))%JD.length; jn.textContent=JD[jdi]; } jn.hidden=false; });
   const fb=document.getElementById('foot-badge'); let taps=0, tt;
   if(fb) fb.addEventListener('click',()=>{taps++;clearTimeout(tt);tt=setTimeout(()=>taps=0,1500);
     if(taps>=5){taps=0;const b=document.createElement('div');b.className='lightbar';document.body.appendChild(b);toast('Lights on. Thank you for backing the blue and the red.');setTimeout(()=>b.remove(),3500);}});
