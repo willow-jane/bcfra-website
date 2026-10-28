@@ -276,10 +276,12 @@ fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
 .jd{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:help;text-decoration:underline dotted;text-underline-offset:3px}
 .jd-note{margin:10px 0 0;font-size:.85rem;color:var(--gold)}
 #foot-badge{cursor:pointer}
-.lightbar{position:fixed;inset:0 0 auto;height:6px;z-index:100;pointer-events:none;background:linear-gradient(90deg,#d62828 0 50%,#1d5ea8 50% 100%);background-size:200% 100%;animation:bar .35s steps(2) infinite}
+.lightbar{position:fixed;inset:0 0 auto;height:calc(16px + env(safe-area-inset-top,0px));z-index:101;pointer-events:none;background:linear-gradient(90deg,#ff1f1f 0 25%,#fff 25% 27%,#1f6bff 27% 50%,#ff1f1f 50% 75%,#fff 75% 77%,#1f6bff 77% 100%);background-size:200% 100%;animation:bar .3s steps(2) infinite;box-shadow:0 0 28px 10px rgba(255,31,31,.55),0 0 40px 18px rgba(31,107,255,.45)}
+.lightwash{position:fixed;inset:0;z-index:100;pointer-events:none;animation:wash .5s steps(1) infinite}
 @keyframes bar{to{background-position:100% 0}}
+@keyframes wash{0%{box-shadow:inset 90px 0 120px -40px rgba(255,31,31,.75),inset -90px 0 120px -40px rgba(31,107,255,0)}50%{box-shadow:inset 90px 0 120px -40px rgba(255,31,31,0),inset -90px 0 120px -40px rgba(31,107,255,.8)}}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:100;background:var(--navy);color:#fff;border:2px solid var(--gold);border-radius:8px;padding:12px 18px;font-weight:600;max-width:calc(100% - 32px);text-align:center}
-@media (prefers-reduced-motion: reduce){.lightbar{animation:none}}
+@media (prefers-reduced-motion: reduce){.lightbar,.lightwash{animation:none}.lightwash{box-shadow:inset 60px 0 80px -40px rgba(255,31,31,.5),inset -60px 0 80px -40px rgba(31,107,255,.5)}}
 /* footer */
 footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-ink);padding-block:56px 40px}
 .foot{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(2,minmax(0,1fr));gap:40px}
@@ -341,7 +343,7 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
       <a href="events.html" aria-current="page">Events</a>
       <a href="nominate-someone.html">Nominate</a>
       <a href="get-involved.html">Get involved</a>
-      <a href="#contact">Contact</a>
+      <a href="contact.html">Contact</a>
       <a class="btn btn-gold" href="events.html#reminders">Get event reminders</a>
     </nav>
   </div>
@@ -390,7 +392,7 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
                   <tr><th scope="row">Steak dinner ticket</th><td>1 guest</td><td>$100</td></tr>
                 </tbody>
               </table>
-              <p class="fine">Headliner and Event sponsorships are also available. <a href="#contact">Contact us</a> for details.</p>
+              <p class="fine">Headliner and Event sponsorships are also available. <a href="contact.html?topic=sponsorship">Contact us</a> for details.</p>
             </div>
             <div class="poster-actions">
               <a class="btn btn-navy" href="#reminders" data-pick="steak">Tell me when tickets open</a>
@@ -451,7 +453,7 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
             <p class="note">Our longest-running fundraiser. Last held May 16, 2026; past cookoffs ran 10:30 AM to 3 PM. Team entry forms go out before each cookoff.</p>
             <div class="poster-actions">
               <a class="btn btn-navy" href="#reminders" data-pick="bbq">Remind me</a>
-              <a class="btn btn-line" href="mailto:brazoscountyfirstresponders@gmail.com?subject=BBQ%20Cookoff%20team%20entry">Ask about entering a team</a>
+              <a class="btn btn-line" href="contact.html?topic=team">Ask about entering a team</a>
             </div>
           </div>
         </article>
@@ -524,7 +526,7 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
 
 <script>
 // Formspree endpoints (deliver to brazoscountyfirstresponders@gmail.com)
-const FORMS = { remind: "https://formspree.io/f/mwllbzak", nominate: "https://formspree.io/f/mppprnog" };
+const FORMS = { remind: "https://formspree.io/f/mwllbzak", nominate: "https://formspree.io/f/mppprnog", contact: "https://formspree.io/f/xeaakwop" };
 const DONATE_URL = "";
 
 (function(){
@@ -579,6 +581,7 @@ const DONATE_URL = "";
   }
   // --- easter eggs ---
   try{console.log('%cCode 4. All clear.','font:700 16px Georgia;color:#e9ae2f;background:#0d2141;padding:6px 10px','\nSite built and maintained by Jane Doe, webmaster. Identity still unknown.');}catch(e){}
+  function lights(ms){const b=document.createElement('div');b.className='lightbar';const w=document.createElement('div');w.className='lightwash';document.body.append(w,b);setTimeout(()=>{b.remove();w.remove();},ms||4000);}
   function toast(msg,ms){const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),ms||3500);}
   const jd=document.getElementById('jane-doe'), jn=document.getElementById('jd-note');
   const JD=['Webmaster identity: unknown. Case still open. Last seen near the brisket.',
@@ -598,11 +601,10 @@ const DONATE_URL = "";
   if(jd&&jn) jd.addEventListener('click',()=>{ if(!jn.hidden){ jdi=(jdi+1+Math.floor(Math.random()*(JD.length-1)))%JD.length; jn.textContent=JD[jdi]; } jn.hidden=false; });
   const fb=document.getElementById('foot-badge'); let taps=0, tt;
   if(fb) fb.addEventListener('click',()=>{taps++;clearTimeout(tt);tt=setTimeout(()=>taps=0,1500);
-    if(taps>=5){taps=0;const b=document.createElement('div');b.className='lightbar';document.body.appendChild(b);toast('Lights on. Thank you for backing the blue and the red.');setTimeout(()=>b.remove(),3500);}});
+    if(taps>=5){taps=0;lights(4000);toast('Lights on. Thank you for backing the blue and the red.');}});
   const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a']; let k=0;
   document.addEventListener('keydown',e=>{k=(e.key===seq[k]||e.key.toLowerCase()===seq[k])?k+1:(e.key===seq[0]?1:0); if(k===seq.length){k=0;toast('10-4, good buddy. All units report to the steak line.',4000);}});
   let typed='';
-  function lights(ms){const b=document.createElement('div');b.className='lightbar';document.body.appendChild(b);setTimeout(()=>b.remove(),ms||3500);}
   const WORDS={
     'brisket':()=>toast('Brisket detected. Dispatching a judge to your location.'),
     'code3':()=>{lights(4000);toast('Lights and sirens. Please pull to the right.');},
@@ -624,6 +626,8 @@ const DONATE_URL = "";
   const pg=location.pathname.split('/').pop();
   if(!/nominate|about/.test(pg)){ const h=new Date().getHours(); if(h>=1&&h<5){ setTimeout(()=>toast('Working the night shift? Thank you. Go drink some water.',5000),2500); } }
   wire('remind-form','remind-msg','You\'re on the list. We\'ll let you know when tickets and registration open.',FORMS.remind);
+  try{const tp=new URLSearchParams(location.search).get('topic'); const sel=document.getElementById('c-topic'); if(tp&&sel&&sel.querySelector('option[value="'+tp+'"]')) sel.value=tp;}catch(e){}
+  wire('contact-form','contact-msg','Thanks. Your message is on its way to the board, and we\'ll reply by email.',FORMS.contact);
   wire('nom-form','nom-msg','Thank you. Your nomination was sent to the board, and someone will follow up with you.',FORMS.nominate);
 })();
 </script>
