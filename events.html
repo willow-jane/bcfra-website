@@ -339,8 +339,10 @@ body.lb-open{overflow:hidden}
 .cal summary::-webkit-details-marker{display:none}
 .cal summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);margin-left:4px}
 .cal[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
-.cal-menu{position:absolute;left:0;top:calc(100% + 6px);z-index:20;min-width:230px;display:grid;padding:6px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 30px rgba(8,18,36,.18)}
-.cal-menu a{padding:10px 12px;border-radius:6px;color:var(--ink);text-decoration:none;font-size:.95rem}
+.cal[open]{flex-basis:100%}
+.cal[open] summary{margin-bottom:8px}
+.cal-menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:6px;padding:8px;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.cal-menu a{padding:13px 14px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:1rem;font-weight:600;background:var(--surface);border:1px solid var(--line);text-align:center}
 .cal-menu a:hover,.cal-menu a:focus-visible{background:var(--bg);color:var(--link)}
 .eow-banner{background:#0a0f1a;color:#e9ddb8;text-align:center;font:600 .95rem/1.4 var(--body);padding:12px max(16px, env(safe-area-inset-right,0px)) 12px max(16px, env(safe-area-inset-left,0px));border-bottom:2px solid var(--gold)}
 /* footer */
@@ -461,11 +463,11 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
               <details class="cal">
                 <summary class="btn btn-line">Add to calendar</summary>
                 <div class="cal-menu">
-                  <a href="cal/steak-dinner-2027.ics" download>Apple Calendar</a>
+                  <a href="cal/steak-dinner-2027.ics">Apple Calendar</a>
                   <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=BCFRA%204th%20Annual%20Steak%20Dinner%20Fundraiser&amp;dates=20270122/20270123&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;details=Dinner%2C%20drinks%2C%20live%20music%2C%20live%20and%20silent%20auction%2C%20and%20raffles.%20All%20proceeds%20benefit%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com/events" target="_blank" rel="noopener">Google Calendar</a>
                   <a href="https://outlook.live.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent&amp;subject=BCFRA%204th%20Annual%20Steak%20Dinner%20Fundraiser&amp;startdt=2027-01-22&amp;enddt=2027-01-23&amp;allday=true&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;body=Dinner%2C%20drinks%2C%20live%20music%2C%20live%20and%20silent%20auction%2C%20and%20raffles.%20All%20proceeds%20benefit%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com/events" target="_blank" rel="noopener">Outlook.com</a>
                   <a href="https://outlook.office.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent&amp;subject=BCFRA%204th%20Annual%20Steak%20Dinner%20Fundraiser&amp;startdt=2027-01-22&amp;enddt=2027-01-23&amp;allday=true&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;body=Dinner%2C%20drinks%2C%20live%20music%2C%20live%20and%20silent%20auction%2C%20and%20raffles.%20All%20proceeds%20benefit%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com/events" target="_blank" rel="noopener">Outlook (work or school)</a>
-                  <a href="cal/steak-dinner-2027.ics" download>Outlook desktop (.ics)</a>
+                  <a href="cal/steak-dinner-2027.ics">Outlook desktop (.ics)</a>
                 </div>
               </details>
             </div>
@@ -499,11 +501,11 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
               <details class="cal">
                 <summary class="btn btn-line">Add to calendar</summary>
                 <div class="cal-menu">
-                  <a href="cal/chili-cookoff-2027.ics" download>Apple Calendar</a>
+                  <a href="cal/chili-cookoff-2027.ics">Apple Calendar</a>
                   <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=BCFRA%203rd%20Annual%20Chili%20Cookoff&amp;dates=20270123/20270124&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;details=First%20responder%20chili%20teams%20compete.%20Benefits%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com/events" target="_blank" rel="noopener">Google Calendar</a>
                   <a href="https://outlook.live.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent&amp;subject=BCFRA%203rd%20Annual%20Chili%20Cookoff&amp;startdt=2027-01-23&amp;enddt=2027-01-24&amp;allday=true&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;body=First%20responder%20chili%20teams%20compete.%20Benefits%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com/events" target="_blank" rel="noopener">Outlook.com</a>
                   <a href="https://outlook.office.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent&amp;subject=BCFRA%203rd%20Annual%20Chili%20Cookoff&amp;startdt=2027-01-23&amp;enddt=2027-01-24&amp;allday=true&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;body=First%20responder%20chili%20teams%20compete.%20Benefits%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com/events" target="_blank" rel="noopener">Outlook (work or school)</a>
-                  <a href="cal/chili-cookoff-2027.ics" download>Outlook desktop (.ics)</a>
+                  <a href="cal/chili-cookoff-2027.ics">Outlook desktop (.ics)</a>
                 </div>
               </details>
             </div>
