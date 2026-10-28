@@ -116,16 +116,17 @@ const DONATE_URL = "";
 
   // ---------- challenge coin ----------
   const TOP='M23,100 a77,77 0 0,1 154,0', BOT='M15,100 a85,85 0 0,0 170,0';
-  const ring=(id,top,bot)=>'<defs><path id="'+id+'t" d="'+TOP+'"/><path id="'+id+'b" d="'+BOT+'"/></defs><text class="coin-ring"><textPath href="#'+id+'t" startOffset="50%" text-anchor="middle">'+top+'</textPath></text><text class="coin-ring"><textPath href="#'+id+'b" startOffset="50%" text-anchor="middle">'+bot+'</textPath></text><text class="coin-ring" x="15" y="103.5" text-anchor="middle">★</text><text class="coin-ring" x="185" y="103.5" text-anchor="middle">★</text>';
+  const ring=(id,top,bot)=>{ const t=(c,dx)=>'<g transform="translate('+dx+')"><text class="'+c+'"><textPath href="#'+id+'t" startOffset="50%" text-anchor="middle">'+top+'</textPath></text><text class="'+c+'"><textPath href="#'+id+'b" startOffset="50%" text-anchor="middle">'+bot+'</textPath></text><text class="'+c+'" x="15" y="103.5" text-anchor="middle">★</text><text class="'+c+'" x="185" y="103.5" text-anchor="middle">★</text></g>'; return '<defs><path id="'+id+'t" d="'+TOP+'"/><path id="'+id+'b" d="'+BOT+'"/></defs>'+t('coin-ring-hi','.55 .75')+t('coin-ring','0 0'); };
   function coin(){
     if(busy())return; const n=found('coin');
     const {o,close}=overlay('coin-ov','Challenge coin');
     o.innerHTML='<div class="coin-wrap">'+
-      '<div class="coin-stage"><div class="coin" tabindex="0" role="button" aria-label="Flip the coin">'+
-        '<div class="coin-face coin-front"><svg viewBox="0 0 200 200" aria-hidden="true">'+ring('cf','BRAZOS COUNTY FIRST RESPONDERS','ASSOCIATION · EST. 2014')+'<circle cx="100" cy="100" r="66" fill="none" stroke="#7a520c" stroke-width="1.2" opacity=".7"/></svg><img src="img/badge.png" alt=""></div>'+
-        '<div class="coin-face coin-back"><div class="coin-enamel"></div><svg viewBox="0 0 200 200" aria-hidden="true">'+ring('cb','DEPUTIES · OFFICERS · TROOPERS','FIRE · EMS · DISPATCH')+''+
-          '<text x="100" y="74" class="coin-sm" text-anchor="middle">BRAZOS COUNTY</text><text x="100" y="98" class="coin-lg" text-anchor="middle">TAKES CARE</text><text x="100" y="120" class="coin-lg" text-anchor="middle">OF ITS OWN</text>'+
-          '<rect x="68" y="130" width="32" height="3" rx="1.5" fill="#3d8bff"/><rect x="100" y="130" width="32" height="3" rx="1.5" fill="#ff4747"/><text x="100" y="152" class="coin-sm" text-anchor="middle">★ ★ ★</text></svg></div>'+
+      '<div class="coin-stage"><div class="coin-shadow"></div><div class="coin" tabindex="0" role="button" aria-label="Flip the coin">'+
+        '<div class="coin-face coin-front"><div class="coin-rim"></div><svg viewBox="0 0 200 200" aria-hidden="true">'+ring('cf','BRAZOS COUNTY FIRST RESPONDERS','ASSOCIATION · EST. 2014')+'<circle cx="100" cy="100" r="67.5" fill="none" stroke="rgba(255,244,210,.7)" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="0.01 3.53" transform="translate(.5 .7)"/><circle cx="100" cy="100" r="67.5" fill="none" stroke="#5a3a05" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="0.01 3.53"/></svg><img src="img/badge.png" alt=""><div class="coin-spec"></div></div>'+
+        '<div class="coin-face coin-back"><div class="coin-rim"></div><div class="coin-enamel"></div><svg viewBox="0 0 200 200" aria-hidden="true">'+ring('cb','DEPUTIES · OFFICERS · TROOPERS','FIRE · EMS · DISPATCH')+''+
+          '<g fill="#05102a" transform="translate(0 1.2)" opacity=".8"><text x="100" y="74" class="coin-sm" text-anchor="middle">BRAZOS COUNTY</text><text x="100" y="98" class="coin-lg" text-anchor="middle">TAKES CARE</text><text x="100" y="120" class="coin-lg" text-anchor="middle">OF ITS OWN</text><text x="100" y="152" class="coin-sm" text-anchor="middle">★ ★ ★</text></g>'+
+          '<g fill="#f5cd6a"><text x="100" y="74" class="coin-sm" text-anchor="middle">BRAZOS COUNTY</text><text x="100" y="98" class="coin-lg" text-anchor="middle">TAKES CARE</text><text x="100" y="120" class="coin-lg" text-anchor="middle">OF ITS OWN</text><text x="100" y="152" class="coin-sm" text-anchor="middle">★ ★ ★</text></g>'+
+          '<rect x="68" y="130" width="32" height="3.2" rx="1.6" fill="#3d8bff" stroke="#f0c25a" stroke-width=".6"/><rect x="100" y="130" width="32" height="3.2" rx="1.6" fill="#ff4747" stroke="#f0c25a" stroke-width=".6"/></svg><div class="coin-spec"></div></div>'+
       '</div></div>'+
       '<p class="coin-k">Challenge coin · Drag or tap to flip</p>'+
       '<h2 class="coin-t">You’ve been coined.</h2>'+
@@ -133,8 +134,12 @@ const DONATE_URL = "";
       '<p class="coin-n"></p><button class="coin-x" type="button">Pocket it</button></div>';
     o.querySelector('.coin-n').textContent=n>=EGGS.length?'Field notes: all '+EGGS.length+' found':'Field notes: '+n+' of '+EGGS.length+' found';
     const stage=o.querySelector('.coin-stage'), c=o.querySelector('.coin');
+    const D=stage.getBoundingClientRect().width||280, T=Math.max(7,Math.round(D*0.036)), NL=Math.max(10,T*2);
+    const fr=o.querySelector('.coin-front'), bk=o.querySelector('.coin-back'), sh=o.querySelector('.coin-shadow');
+    fr.style.transform='translateZ('+(T/2)+'px)'; bk.style.transform='rotateY(180deg) translateZ('+(T/2)+'px)';
+    const edges=[]; for(let i=0;i<NL;i++){ const e=document.createElement('div'); e.className='coin-edge'; e.style.transform='translateZ('+(-T/2+0.4+i*(T-0.8)/(NL-1)).toFixed(2)+'px)'; c.insertBefore(e,fr); edges.push(e); }
     let ry=RM?0:-1080, rx=RM?0:18, target=0, drag=null, raf=0;
-    const render=()=>{ c.style.transform='rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg)'; const a=((ry%360)+360)%360; c.style.setProperty('--sx',(a/3.6).toFixed(1)); c.setAttribute('aria-label',(a>90&&a<270)?'Coin, back side. Flip the coin':'Coin, front side. Flip the coin'); };
+    const render=()=>{ c.style.transform='rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg)'; const a=((ry%360)+360)%360, rad=ry*Math.PI/180, cs=Math.cos(rad), sn=Math.sin(rad); c.style.setProperty('--sx',(a/3.6).toFixed(1)); c.style.setProperty('--hx',(38-sn*55).toFixed(1)); c.style.setProperty('--hy',(26-rx*1.2).toFixed(1)); fr.style.setProperty('--lit',(0.62+0.5*Math.max(0,cs)).toFixed(3)); bk.style.setProperty('--lit',(0.62+0.5*Math.max(0,-cs)).toFixed(3)); c.style.setProperty('--le',(0.55+0.6*Math.abs(sn)).toFixed(3)); sh.style.transform='scaleX('+Math.max(0.1,Math.abs(cs)).toFixed(3)+')'; c.setAttribute('aria-label',(a>90&&a<270)?'Coin, back side. Flip the coin':'Coin, front side. Flip the coin'); };
     const loop=()=>{ if(!drag){ ry+=(target-ry)*0.065; rx+=(Math.sin(performance.now()/900)*4-rx)*0.05; } render(); raf=requestAnimationFrame(loop); };
     const flip=()=>{ target=Math.round(ry/180)*180+180; if(RM){ry=target;render();} };
     if(RM)render(); else raf=requestAnimationFrame(loop);
@@ -285,7 +290,7 @@ const DONATE_URL = "";
   if(yr2) yr2.addEventListener('click',()=>{ if(++yc===3){yc=0;cad('yr');} });
   // night shift note (not on the nomination or memorial pages)
   const pg=location.pathname.split('/').pop();
-  if(!/nominate|about/.test(pg)){ const h=new Date().getHours(); if(h>=1&&h<5){ setTimeout(()=>toast('Working nights? The county sleeps because you don\'t. Thank you. Now go drink some water.',6500,{egg:'night',from:'Night Shift'}),2500); } }
+  if(!/nominate|about/.test(pg)){ let h=new Date().getHours(); try{h=parseInt(new Intl.DateTimeFormat('en-US',{hour:'numeric',hourCycle:'h23',timeZone:'America/Chicago'}).format(new Date()),10)%24;}catch(e){} const night=(h>=18||h<6); let seen=false; try{seen=sessionStorage.getItem('bcfra-night')==='1'; if(night) sessionStorage.setItem('bcfra-night','1');}catch(e){} if(night&&!seen){ setTimeout(()=>toast('Working nights? The county sleeps because you don\'t. Thank you. Now go drink some water.',6500,{egg:'night',from:'Night Shift'}),2500); } }
   // photo viewer
   const gal=[...document.querySelectorAll('.gallery figure img')];
   if(gal.length){
