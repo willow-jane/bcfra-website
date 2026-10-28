@@ -6,7 +6,7 @@
 <title>Nominate a first responder | Brazos County First Responders Association</title>
 <meta name="description" content="Nominate a Brazos County first responder facing illness, injury or hardship for assistance from the BCFRA.">
 <meta property="og:title" content="Nominate a first responder | Brazos County First Responders Association">
-<meta property="og:description" content="Nominate a Brazos County first responder facing illness, injury or hardship for assistance from the BCFRA.">
+<meta property="og:description" content="Brazos County takes care of its own. Nominate a Brazos County first responder facing illness, injury or hardship for assistance from the BCFRA.">
 <meta property="og:site_name" content="Brazos County First Responders Association">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:image" content="https://bcfra.com/img/stage.jpg">
@@ -342,6 +342,7 @@ body.lb-open{overflow:hidden}
 .cal-menu{position:absolute;left:0;top:calc(100% + 6px);z-index:20;min-width:230px;display:grid;padding:6px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 30px rgba(8,18,36,.18)}
 .cal-menu a{padding:10px 12px;border-radius:6px;color:var(--ink);text-decoration:none;font-size:.95rem}
 .cal-menu a:hover,.cal-menu a:focus-visible{background:var(--bg);color:var(--link)}
+.eow-banner{background:#0a0f1a;color:#e9ddb8;text-align:center;font:600 .95rem/1.4 var(--body);padding:12px max(16px, env(safe-area-inset-right,0px)) 12px max(16px, env(safe-area-inset-left,0px));border-bottom:2px solid var(--gold)}
 /* footer */
 footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-ink);padding-block:56px 40px}
 .foot{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(2,minmax(0,1fr));gap:40px}
@@ -405,7 +406,7 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
       <a href="nominate-someone.html" aria-current="page">Nominate</a>
       <a href="get-involved.html">Get involved</a>
       <a href="contact.html">Contact</a>
-      <a class="btn btn-gold" href="events.html#reminders">Get event reminders</a>
+      <a class="btn btn-gold" href="events.html#reminders">Remind me</a>
     </nav>
   </div>
 </header>
@@ -415,7 +416,7 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
     <div class="wrap">
       <span class="crumb"><a href="index.html"><span aria-hidden="true">←</span> Back to home</a></span>
       <h1>Nominate a first responder</h1>
-      <p>Every request is reviewed by our board and handled confidentially.</p>
+      <p>Tell us who needs help. The board reviews every request in confidence.</p>
     </div>
   </section>
   <section id="nominate" aria-labelledby="nom-title">
@@ -426,9 +427,9 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
         <ol class="steps">
           <li><div><b>Submit the form</b><span>Share who they are, where they serve, and what's going on.</span></div></li>
           <li><div><b>We verify</b><span>We confirm the nominee's connection to a first responder agency.</span></div></li>
-          <li><div><b>The board reviews</b><span>Every request is reviewed by our board and handled confidentially.</span></div></li>
+          <li><div><b>The board reviews</b><span>The board decides how we can help.</span></div></li>
         </ol>
-        <p class="fine" style="margin-top:22px">Submitting a nomination does not guarantee assistance.</p>
+        <p class="fine" style="margin-top:22px">We can't fund every request, but we read every one and follow up. If someone is in immediate danger, call 911.</p>
       </div>
       <form class="form" id="nom-form" novalidate>
         <input type="hidden" name="_subject" value="New first responder nomination (bcfra.com)"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
@@ -446,7 +447,7 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
         </div>
         <div class="field"><label for="n-details">What's going on? <span class="hint">Share as much as you're comfortable with.</span></label><textarea id="n-details" name="details" required></textarea></div>
         <label class="check"><input type="checkbox" id="n-self" name="self"> This is a self-nomination</label>
-        <button class="btn btn-navy" type="submit">Submit nomination</button>
+        <button class="btn btn-navy" type="submit">Send to the board</button>
         <div class="form-msg" id="nom-msg" role="status" hidden></div>
       </form>
     </div>
@@ -460,7 +461,7 @@ footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-
         <img src="img/badge-sm.png" alt="" width="72" height="78" id="foot-badge">
         <div>
           <h4>Brazos County First Responders Association</h4>
-          <p>Supporting the law enforcement officers and firefighters of Brazos County since 2014. In memory of Constable Brian Bachmann.</p>
+          <p>Brazos County takes care of its own. Since 2014, in memory of Constable Brian Bachmann, EOW 8.13.12.</p>
         </div>
       </div>
       <div>
@@ -529,7 +530,7 @@ const DONATE_URL = "";
       const evs=f.querySelectorAll('input[name=events]'); if(evs.length && ![...evs].some(c=>c.checked)){m.hidden=false;m.textContent='Pick at least one event.';evs[0].focus();return;}
       if(missing.length||badEmail.length){
         m.hidden=false;
-        m.textContent=missing.length?'Please fill in: '+missing.map(i=>f.querySelector('label[for="'+i.id+'"]').firstChild.textContent.trim().replace(/[?.]$/,'')).join(', ')+'.':'Please check the email address.';
+        m.textContent=missing.length?'Missing a few things: '+missing.map(i=>f.querySelector('label[for="'+i.id+'"]').firstChild.textContent.trim().replace(/[?.]$/,'')).join(', ')+'.':'Please check the email address.';
         (missing[0]||badEmail[0]).focus(); return;
       }
       if(!FORM_ENDPOINT){m.hidden=false;m.textContent=okText+' (Preview: once the site is live, this goes straight to the association\'s inbox.)';f.reset();return;}
@@ -547,11 +548,14 @@ const DONATE_URL = "";
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nv.classList.contains('open')){nv.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.querySelector('.ml').textContent='Menu';mb.focus();}}); }
   // --- easter eggs ---
   try{console.log('%cCode 4. All clear.','font:700 16px Georgia;color:#e9ae2f;background:#0d2141;padding:6px 10px','\nSite built and maintained by Jane Doe, webmaster. Identity still unknown.');}catch(e){}
-  function lights(ms){const b=document.createElement('div');b.className='lightbar';const w=document.createElement('div');w.className='lightwash';document.body.append(w,b);setTimeout(()=>{b.remove();w.remove();},ms||4000);}
+  const now=new Date(), EOW=(now.getMonth()===7&&now.getDate()===13);
+  const QUIET=/nominate|about/.test(location.pathname)||EOW;
+  if(EOW){ const b=document.createElement('div'); b.className='eow-banner'; b.setAttribute('role','note'); b.textContent='Today we remember Constable Brian Bachmann, Brazos County Pct. 1. End of Watch: August 13, 2012.'; const h=document.querySelector('.top'); if(h) h.after(b); }
+  function lights(ms){if(QUIET)return;const b=document.createElement('div');b.className='lightbar';const w=document.createElement('div');w.className='lightwash';document.body.append(w,b);setTimeout(()=>{b.remove();w.remove();},ms||4000);}
   const RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   let raining=false;
   function rain(items,n,ms){
-    if(RM||raining) return; raining=true;
+    if(RM||raining||QUIET) return; raining=true;
     const c=document.createElement('canvas'); c.style.cssText='position:fixed;inset:0;z-index:102;pointer-events:none';
     const dpr=Math.min(window.devicePixelRatio||1,2), W=innerWidth, H=innerHeight; c.width=W*dpr; c.height=H*dpr; c.style.width=W+'px'; c.style.height=H+'px';
     document.body.appendChild(c); const g=c.getContext('2d'); g.scale(dpr,dpr); g.textAlign='center'; g.textBaseline='middle';
@@ -563,7 +567,7 @@ const DONATE_URL = "";
         else if(el<ms-1500){q.y=-40; q.v=2.4+Math.random()*3.6; q.x=Math.random()*W;} }
       if(alive&&el<ms) requestAnimationFrame(f); else {c.remove(); raining=false;} })(t0);
   }
-  function toast(msg,ms){const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),ms||3500);}
+  function toast(msg,ms){if(QUIET)return;const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),ms||3500);}
   const jd=document.getElementById('jane-doe'), jn=document.getElementById('jd-note');
   const JD=['Webmaster identity: unknown. Case still open. Last seen near the brisket.',
     'Jane Doe was last seen leaving the chili tent with a ladle. If found, do not approach.',
@@ -576,13 +580,16 @@ const DONATE_URL = "";
     'Last known location: the auction table, bidding on her own donation.',
     'Jane Doe responded to this call in 4 minutes. Average response time for a website is 3 seconds.',
     'Jane Doe has requested backup. Backup is at the steak line.',
-    'Case file 10-4-JD: still no leads. The steak was excellent, though.'];
+    'Case file 10-4-JD: still no leads. The steak was excellent, though.',
+    'Jane Doe was spotted at St. Nick\'s Green asking for "just a taste" at every pit.',
+    'Jane Doe has been written up for parking in the fire lane. Again.',
+    'Jane Doe\'s alibi: "I was at the chili table." Seven witnesses confirm.'];
   let jdi=Math.floor(Math.random()*JD.length);
   if(jn) jn.textContent=JD[jdi];
   if(jd&&jn) jd.addEventListener('click',()=>{ if(!jn.hidden){ jdi=(jdi+1+Math.floor(Math.random()*(JD.length-1)))%JD.length; jn.textContent=JD[jdi]; } jn.hidden=false; });
   const fb=document.getElementById('foot-badge'); let taps=0, tt;
   if(fb) fb.addEventListener('click',()=>{taps++;clearTimeout(tt);tt=setTimeout(()=>taps=0,1500);
-    if(taps>=5){taps=0;lights(4000);toast('Lights on. Thank you for backing the blue and the red.');}});
+    if(taps>=5){taps=0;lights(4000);toast('Lights on. Backing the blue and the red since 2014.');}});
   const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a']; let k=0;
   document.addEventListener('keydown',e=>{k=(e.key===seq[k]||e.key.toLowerCase()===seq[k])?k+1:(e.key===seq[0]?1:0); if(k===seq.length){k=0;toast('10-4, good buddy. All units report to the steak line.',4000);}});
   let typed='';
@@ -597,12 +604,17 @@ const DONATE_URL = "";
     '10-8':()=>toast('10-8. Back in service. Coffee refilled.'),
     'coffee':()=>toast('Coffee located. Morale restored to acceptable levels.'),
     'overtime':()=>toast('Overtime approved. Just kidding. Talk to your sergeant.'),
-    'quiet':()=>toast('We do not say the Q word. Now look what you did.')
+    'quiet':()=>toast('We do not say the Q word. Now look what you did.'),
+    'beans':()=>toast('Beans in chili? Take it up with the judges.'),
+    'dispatch':()=>toast('Dispatch has entered the chat. Dispatch was always here.'),
+    'gigem':()=>toast('Gig \'em. Now go buy a table.'),
+    'kurten':()=>toast('See you in Kurten, January 22.'),
+    'turnout':()=>toast('Turnout gear optional. Boots required.')
   };
   document.addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('input,textarea'))return; if(e.key.length!==1)return; typed=(typed+e.key.toLowerCase()).slice(-10); for(const w in WORDS){ if(typed.endsWith(w)){ WORDS[w](); typed=''; break; } }});
   // countdown in shifts (24 on / 48 off)
   const cnt=document.querySelector('.ticket .count');
-  if(cnt){ let flip=false; cnt.addEventListener('click',ev=>{ev.preventDefault(); const d=document.getElementById('days-left'); const n=parseInt(d.dataset.days||d.textContent,10); if(isNaN(n))return; d.dataset.days=n; flip=!flip; if(flip){d.textContent=Math.ceil(n/3); d.nextElementSibling.textContent='fire shifts to go';} else {d.textContent=n; d.nextElementSibling.textContent='days to go';}}); }
+  if(cnt){ let st=0; cnt.addEventListener('click',ev=>{ev.preventDefault(); const d=document.getElementById('days-left'); const n=parseInt(d.dataset.days||d.textContent,10); if(isNaN(n))return; d.dataset.days=n; st=(st+1)%3; if(st===1){d.textContent=Math.ceil(n/3); d.nextElementSibling.textContent='fire shifts to go';} else if(st===2){d.textContent=n*2; d.nextElementSibling.textContent='patrol shifts to go';} else {d.textContent=n; d.nextElementSibling.textContent='days to go';}}); }
   // mobile: tap the gold ticket date 3 times for steak rain
   const tdate=document.querySelector('.ticket .date'); let tdc=0, tdt;
   if(tdate) tdate.addEventListener('click',ev=>{ev.preventDefault(); tdc++; clearTimeout(tdt); tdt=setTimeout(()=>tdc=0,1200); if(tdc>=3){tdc=0; rain(['🥩','🍖','🌶️','🔥'],70,6000); toast('Order up. See you January 22 and 23.');}});
@@ -630,10 +642,10 @@ const DONATE_URL = "";
     };
     gal.forEach((im,i)=>{const f=im.parentElement; f.tabIndex=0; f.setAttribute('role','button'); f.setAttribute('aria-label','Expand photo: '+im.alt); f.addEventListener('click',()=>open(i)); f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(i);}});});
   }
-  wire('remind-form','remind-msg','You\'re on the list. We\'ll let you know when tickets and registration open.',FORMS.remind);
+  wire('remind-form','remind-msg','You\'re on the list. We\'ll holler when tickets and team entry open.',FORMS.remind);
   try{const tp=new URLSearchParams(location.search).get('topic'); const sel=document.getElementById('c-topic'); if(tp&&sel&&sel.querySelector('option[value="'+tp+'"]')) sel.value=tp;}catch(e){}
-  wire('contact-form','contact-msg','Thanks. Your message is on its way to the board, and we\'ll reply by email.',FORMS.contact);
-  wire('nom-form','nom-msg','Thank you. Your nomination was sent to the board, and someone will follow up with you.',FORMS.nominate);
+  wire('contact-form','contact-msg','Copy that. A board member will reply by email.',FORMS.contact);
+  wire('nom-form','nom-msg','Received. A board member will reach out to you directly. Thank you for looking out for them.',FORMS.nominate);
 })();
 </script>
 </body>
