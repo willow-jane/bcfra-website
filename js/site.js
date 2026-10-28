@@ -61,27 +61,162 @@ const DONATE_URL = "";
   if(mb&&nv){ mb.addEventListener('click',()=>{const o=nv.classList.toggle('open'); mb.setAttribute('aria-expanded',o); mb.querySelector('.ml').textContent=o?'Close':'Menu';});
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nv.classList.contains('open')){nv.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.querySelector('.ml').textContent='Menu';mb.focus();}}); }
   // --- easter eggs ---
-  try{console.log('%cCode 4. All clear.','font:700 16px Georgia;color:#e9ae2f;background:#0d2141;padding:6px 10px','\nSite built and maintained by Jane Doe, webmaster. Identity still unknown.');}catch(e){}
+  try{console.log('%c★ BCFRA ★%c\n%cCode 4. All clear.','font:800 22px Georgia;color:#0d2141;background:#e9ae2f;padding:8px 14px;border-radius:6px','','font:700 15px Georgia;color:#e9ae2f;background:#0d2141;padding:6px 10px','\nSite built and maintained by Jane Doe, webmaster. Identity still unknown.\nYou opened the dev tools, so you are clearly the curious type. Nine things are hidden on this site. Field notes are kept in your browser.\nHint: the old cheat codes still work. So does holding down the badge.');}catch(e){}
   const now=new Date(), EOW=(now.getMonth()===7&&now.getDate()===13);
   const QUIET=/nominate|about/.test(location.pathname)||EOW;
   if(EOW){ const b=document.createElement('div'); b.className='eow-banner'; b.setAttribute('role','note'); b.textContent='Today we remember Constable Brian Bachmann, Brazos County Pct. 1. End of Watch: August 13, 2012.'; const h=document.querySelector('.top'); if(h) h.after(b); }
-  function lights(ms){if(QUIET)return;const b=document.createElement('div');b.className='lightbar';const w=document.createElement('div');w.className='lightwash';document.body.append(w,b);setTimeout(()=>{b.remove();w.remove();},ms||4000);}
+  // ---------- eggs: shared helpers ----------
   const RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const EGGS=['coin','dispatch','lights','thanks','food','radio','jane','shifts','night'];
+  function found(id){ let s=[]; try{s=JSON.parse(localStorage.getItem('bcfra-field-notes')||'[]');}catch(e){} if(!Array.isArray(s))s=[]; if(!s.includes(id)){s.push(id); try{localStorage.setItem('bcfra-field-notes',JSON.stringify(s));}catch(e){}} return s.filter(x=>EGGS.includes(x)).length; }
+  const hhmm=()=>{const d=new Date();return String(d.getHours()).padStart(2,'0')+String(d.getMinutes()).padStart(2,'0');};
+  const hms=()=>{const d=new Date();return [d.getHours(),d.getMinutes(),d.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');};
+  let lastToast=null;
+  function toast(msg,ms,opt){ if(QUIET)return; opt=opt||{}; if(lastToast)lastToast.remove();
+    const t=document.createElement('div'); t.className='radio'; t.setAttribute('role','status');
+    const h=document.createElement('div'); h.className='radio-h'; h.innerHTML='<span class="radio-sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+    const lab=document.createElement('span'); lab.textContent=(opt.from||'BCFRA Dispatch')+' · '+hhmm()+' hrs'; h.appendChild(lab);
+    const m=document.createElement('p'); m.className='radio-m'; m.textContent=msg; t.append(h,m);
+    if(opt.egg){ const n=found(opt.egg); const f=document.createElement('div'); f.className='radio-f'; f.textContent=n>=EGGS.length?'Field notes: all '+EGGS.length+' found. Jane Doe is impressed.':'Field notes: '+n+' of '+EGGS.length+' found'; t.appendChild(f); }
+    document.body.appendChild(t); lastToast=t; requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('in')));
+    setTimeout(()=>{t.classList.remove('in'); setTimeout(()=>{t.remove(); if(lastToast===t)lastToast=null;},400);},ms||4600);
+  }
+  function overlay(cls,label){
+    const o=document.createElement('div'); o.className='egg-ov '+cls; o.setAttribute('role','dialog'); o.setAttribute('aria-modal','true'); o.setAttribute('aria-label',label);
+    const prev=document.activeElement; let done=false;
+    const esc=e=>{ if(e.key==='Escape')close(); else if(e.key==='Tab'){ const f=[...o.querySelectorAll('button,[tabindex="0"]')]; if(!f.length)return; const a=f[0], z=f[f.length-1]; if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();} else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();} } };
+    function close(){ if(done)return; done=true; o.classList.remove('in'); document.removeEventListener('keydown',esc); document.body.classList.remove('lb-open'); o.dispatchEvent(new Event('egg-close')); setTimeout(()=>o.remove(),320); if(prev&&prev.focus)try{prev.focus({preventScroll:true});}catch(e){} }
+    document.addEventListener('keydown',esc);
+    o.addEventListener('click',e=>{ if(e.target===o)close(); });
+    document.body.appendChild(o); document.body.classList.add('lb-open'); requestAnimationFrame(()=>requestAnimationFrame(()=>o.classList.add('in')));
+    return {o,close};
+  }
+  const busy=()=>QUIET||!!document.querySelector('.egg-ov,.thanks');
+
+  // ---------- lights ----------
+  function lights(ms){if(QUIET)return;const b=document.createElement('div');b.className='lightbar';const w=document.createElement('div');w.className='lightwash';document.body.append(w,b);setTimeout(()=>{b.remove();w.remove();},ms||4000);}
+
+  // ---------- food rain: falls, bounces, piles up, clears ----------
   let raining=false;
   function rain(items,n,ms){
     if(RM||raining||QUIET) return; raining=true;
     const c=document.createElement('canvas'); c.style.cssText='position:fixed;inset:0;z-index:102;pointer-events:none';
     const dpr=Math.min(window.devicePixelRatio||1,2), W=innerWidth, H=innerHeight; c.width=W*dpr; c.height=H*dpr; c.style.width=W+'px'; c.style.height=H+'px';
     document.body.appendChild(c); const g=c.getContext('2d'); g.scale(dpr,dpr); g.textAlign='center'; g.textBaseline='middle';
-    const P=Array.from({length:n},()=>({x:Math.random()*W,y:-40-Math.random()*H*0.9,v:2.4+Math.random()*3.6,r:Math.random()*6.28,vr:(Math.random()-.5)*0.18,s:26+Math.random()*26,e:items[Math.floor(Math.random()*items.length)],w:Math.random()*6.28}));
+    const P=Array.from({length:n},()=>{const s=26+Math.random()*24; return {x:s+Math.random()*(W-2*s),y:-s-Math.random()*H*1.5,v:1.5+Math.random()*2.5,vx:(Math.random()-.5)*1.2,r:Math.random()*6.28,vr:(Math.random()-.5)*0.16,s,e:items[Math.floor(Math.random()*items.length)],floor:H-s*0.42-Math.random()*s*0.9,rest:false};});
     const t0=performance.now();
-    (function f(t){const el=t-t0; g.clearRect(0,0,W,H); let alive=0;
-      for(const q of P){ q.y+=q.v; q.v+=0.04; q.r+=q.vr; q.w+=0.05; const x=q.x+Math.sin(q.w)*14;
-        if(q.y<H+60){alive++; g.save(); g.globalAlpha=el>ms-600?Math.max(0,(ms-el)/600):1; g.translate(x,q.y); g.rotate(q.r); g.font=q.s+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; g.fillText(q.e,0,0); g.restore();}
-        else if(el<ms-1500){q.y=-40; q.v=2.4+Math.random()*3.6; q.x=Math.random()*W;} }
-      if(alive&&el<ms) requestAnimationFrame(f); else {c.remove(); raining=false;} })(t0);
+    (function f(t){const el=t-t0; g.clearRect(0,0,W,H); const a=el>ms-900?Math.max(0,(ms-el)/900):1;
+      for(const q of P){
+        if(!q.rest){ q.v+=0.12; q.y+=q.v; q.x+=q.vx; q.r+=q.vr;
+          if(q.y>=q.floor){ q.y=q.floor; if(q.v>2.2){ q.v=-q.v*0.38; q.vr*=0.6; q.vx*=0.7; } else { q.rest=true; q.vr=0; q.r=Math.round(q.r/1.5708)*1.5708*0.08+q.r*0.92; } } }
+        if(q.y<-q.s)continue;
+        g.save(); g.globalAlpha=a; g.translate(q.x,q.y); g.rotate(q.r); g.font=q.s+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; g.fillText(q.e,0,0); g.restore(); }
+      if(el<ms) requestAnimationFrame(f); else {c.remove(); raining=false;} })(t0);
   }
-  function toast(msg,ms){if(QUIET)return;const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),ms||3500);}
+
+  // ---------- challenge coin ----------
+  const TOP='M23,100 a77,77 0 0,1 154,0', BOT='M15,100 a85,85 0 0,0 170,0';
+  const ring=(id,top,bot)=>'<defs><path id="'+id+'t" d="'+TOP+'"/><path id="'+id+'b" d="'+BOT+'"/></defs><text class="coin-ring"><textPath href="#'+id+'t" startOffset="50%" text-anchor="middle">'+top+'</textPath></text><text class="coin-ring"><textPath href="#'+id+'b" startOffset="50%" text-anchor="middle">'+bot+'</textPath></text><text class="coin-ring" x="15" y="103.5" text-anchor="middle">★</text><text class="coin-ring" x="185" y="103.5" text-anchor="middle">★</text>';
+  function coin(){
+    if(busy())return; const n=found('coin');
+    const {o,close}=overlay('coin-ov','Challenge coin');
+    o.innerHTML='<div class="coin-wrap">'+
+      '<div class="coin-stage"><div class="coin" tabindex="0" role="button" aria-label="Flip the coin">'+
+        '<div class="coin-face coin-front"><svg viewBox="0 0 200 200" aria-hidden="true">'+ring('cf','BRAZOS COUNTY FIRST RESPONDERS','ASSOCIATION · EST. 2014')+'<circle cx="100" cy="100" r="66" fill="none" stroke="#7a520c" stroke-width="1.2" opacity=".7"/></svg><img src="img/badge.png" alt=""></div>'+
+        '<div class="coin-face coin-back"><div class="coin-enamel"></div><svg viewBox="0 0 200 200" aria-hidden="true">'+ring('cb','DEPUTIES · OFFICERS · TROOPERS','FIRE · EMS · DISPATCH')+''+
+          '<text x="100" y="74" class="coin-sm" text-anchor="middle">BRAZOS COUNTY</text><text x="100" y="98" class="coin-lg" text-anchor="middle">TAKES CARE</text><text x="100" y="120" class="coin-lg" text-anchor="middle">OF ITS OWN</text>'+
+          '<rect x="68" y="130" width="32" height="3" rx="1.5" fill="#3d8bff"/><rect x="100" y="130" width="32" height="3" rx="1.5" fill="#ff4747"/><text x="100" y="152" class="coin-sm" text-anchor="middle">★ ★ ★</text></svg></div>'+
+      '</div></div>'+
+      '<p class="coin-k">Challenge coin · Drag or tap to flip</p>'+
+      '<h2 class="coin-t">You’ve been coined.</h2>'+
+      '<p class="coin-c">Challenge coins pass palm to palm in a handshake, a quiet thank-you for a job done right. This one is for backing the people who back Brazos County.</p>'+
+      '<p class="coin-n"></p><button class="coin-x" type="button">Pocket it</button></div>';
+    o.querySelector('.coin-n').textContent=n>=EGGS.length?'Field notes: all '+EGGS.length+' found':'Field notes: '+n+' of '+EGGS.length+' found';
+    const stage=o.querySelector('.coin-stage'), c=o.querySelector('.coin');
+    let ry=RM?0:-1080, rx=RM?0:18, target=0, drag=null, raf=0;
+    const render=()=>{ c.style.transform='rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg)'; const a=((ry%360)+360)%360; c.style.setProperty('--sx',(a/3.6).toFixed(1)); c.setAttribute('aria-label',(a>90&&a<270)?'Coin, back side. Flip the coin':'Coin, front side. Flip the coin'); };
+    const loop=()=>{ if(!drag){ ry+=(target-ry)*0.065; rx+=(Math.sin(performance.now()/900)*4-rx)*0.05; } render(); raf=requestAnimationFrame(loop); };
+    const flip=()=>{ target=Math.round(ry/180)*180+180; if(RM){ry=target;render();} };
+    if(RM)render(); else raf=requestAnimationFrame(loop);
+    stage.addEventListener('pointerdown',e=>{ if(RM)return; drag={x:e.clientX,y:e.clientY,ry,t:performance.now(),last:e.clientX,v:0,moved:0}; stage.setPointerCapture(e.pointerId); stage.classList.add('grab'); });
+    stage.addEventListener('pointermove',e=>{ if(!drag)return; const dx=e.clientX-drag.x; drag.moved=Math.max(drag.moved,Math.abs(dx)); drag.v=e.clientX-drag.last; drag.last=e.clientX; ry=drag.ry+dx*0.7; rx=Math.max(-25,Math.min(25,-(e.clientY-drag.y)*0.2)); });
+    const up=()=>{ if(!drag)return; const d=drag; drag=null; stage.classList.remove('grab'); if(d.moved<6){flip();return;} target=Math.round((ry+d.v*14)/180)*180; };
+    stage.addEventListener('pointerup',up); stage.addEventListener('pointercancel',up);
+    if(RM) stage.addEventListener('click',flip);
+    c.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '||e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault(); if(e.key==='ArrowLeft'){target=Math.round(ry/180)*180-180; if(RM){ry=target;render();}} else flip();} });
+    o.querySelector('.coin-x').addEventListener('click',close);
+    o.addEventListener('egg-close',()=>cancelAnimationFrame(raf));
+    setTimeout(()=>c.focus({preventScroll:true}),60);
+  }
+
+  // ---------- dispatch / CAD log ----------
+  let actx=null;
+  function tones(){ try{ actx=actx||new (window.AudioContext||window.webkitAudioContext)(); const t=actx.currentTime, gn=actx.createGain(); gn.connect(actx.destination); gn.gain.setValueAtTime(0,t); gn.gain.linearRampToValueAtTime(0.045,t+0.03);
+      [[853,0,.45],[960,.45,.9]].forEach(([fr,a,b])=>{ const os=actx.createOscillator(); os.type='sine'; os.frequency.value=fr; os.connect(gn); os.start(t+a); os.stop(t+b); });
+      gn.gain.setValueAtTime(0.045,t+0.86); gn.gain.linearRampToValueAtTime(0,t+0.9); }catch(e){} }
+  function cad(from){
+    if(busy())return; found('dispatch');
+    const {o,close}=overlay('cad-ov','Dispatch log');
+    o.innerHTML='<div class="cad"><div class="cad-h"><span class="cad-dot" aria-hidden="true"></span><span>Brazos Co. CAD · Ch 1</span><span class="cad-clock"></span><button class="cad-x" type="button" aria-label="Close dispatch log">CLR</button></div><ol class="cad-log"></ol><div class="cad-units" aria-hidden="true"></div><p class="cad-sr" aria-live="polite"></p></div>';
+    const log=o.querySelector('.cad-log'), units=o.querySelector('.cad-units'), clock=o.querySelector('.cad-clock'), sr=o.querySelector('.cad-sr');
+    const U=['Sheriff','Police','Fire','EMS','Dispatch','Constable','Troopers','Volunteer FD'];
+    const tiles=U.map(u=>{const d=document.createElement('div'); d.className='cad-u'; d.innerHTML='<b></b><span>DISP</span>'; d.firstChild.textContent=u.toUpperCase(); units.appendChild(d); return d;});
+    const L=[
+      ['tone','TONE ALERT · ALL STATIONS, ALL AGENCIES'],
+      ['','CALL TYPE: COMMUNITY APPRECIATION · PRIORITY 1'],
+      ['','LOCATION: BRAZOS COUNTY, TX · EVERY BEAT, EVERY DISTRICT'],
+      ['','RP: YOUR NEIGHBORS. ALL OF THEM.'],
+      ['','NARRATIVE: RP ADVISES THE COUNTY SEES YOU. THE NIGHTS, THE HOLIDAYS, THE CALLS YOU CARRY HOME.'],
+      ['','RP REQUESTS ALL UNITS EAT SOMETHING, SLEEP WHEN YOU CAN, AND GO HOME SAFE.'],
+      ['ok','DISPO: THANKED. NO FURTHER ACTION REQUIRED.'],
+      ['ok',from==='yr'?'REPORT FILED IN TRIPLICATE. SUPERVISOR REVIEW IN 6 TO 8 WEEKS.':'ALL UNITS 10-8. CODE 4.'],
+      ['sig','DISPATCH: THE FIRST FIRST RESPONDERS. THANK YOU, TOO.']];
+    let alive=true, timers=[]; const later=(fn,ms)=>timers.push(setTimeout(()=>{if(alive)fn();},ms));
+    const tick=()=>{ if(!alive)return; clock.textContent=hms(); timers.push(setTimeout(tick,1000)); }; tick();
+    const status=(i,s)=>{ const tl=tiles[i]; if(!tl)return; tl.lastChild.textContent=s; tl.classList.toggle('av',s==='AVAIL'); };
+    let li=0;
+    function next(){
+      if(li>=L.length){ sr.textContent='All units available. Code 4.'; return; }
+      const [cls,txt]=L[li]; const row=document.createElement('li'); if(cls)row.className=cls;
+      const tm=document.createElement('time'); tm.textContent=hms(); const sp=document.createElement('span'); row.append(tm,sp); log.appendChild(row);
+      const step=li; li++;
+      if(step===1) tiles.forEach((_,i)=>later(()=>status(i,'ENRT'),i*90));
+      if(step===4) tiles.forEach((_,i)=>later(()=>status(i,'ON SCN'),i*110));
+      if(step===7) tiles.forEach((_,i)=>later(()=>status(i,'AVAIL'),i*140));
+      if(RM){ sp.textContent=txt; next(); return; }
+      sp.classList.add('cur'); let k=0;
+      (function type(){ if(!alive)return; k=Math.min(txt.length,k+2); sp.textContent=txt.slice(0,k); if(k<txt.length) later(type,22); else { sp.classList.remove('cur'); later(next,step===0?900:340); } })();
+    }
+    if(!RM) tones();
+    later(next,RM?0:250);
+    o.querySelector('.cad-x').addEventListener('click',close);
+    o.addEventListener('egg-close',()=>{alive=false; timers.forEach(clearTimeout);});
+    setTimeout(()=>o.querySelector('.cad-x').focus({preventScroll:true}),60);
+  }
+
+  // ---------- thank-you moment (thin blue + thin red line, rising embers) ----------
+  function thanks(){
+    if(busy())return; found('thanks');
+    const o=document.createElement('div'); o.className='thanks'; o.setAttribute('role','dialog'); o.setAttribute('aria-modal','true'); o.setAttribute('aria-label','Thank you');
+    o.innerHTML='<canvas aria-hidden="true"></canvas><div class="thanks-c"><p class="thanks-k">From Brazos County</p><p class="thanks-t">To the ones who run toward&nbsp;it.<br><em>Thank you.</em></p><div class="thanks-line" aria-hidden="true"></div><p class="thanks-r"><span>Deputies</span><span>Officers</span><span>Firefighters</span><span>Medics</span><span>Dispatchers</span><span>Troopers</span><span>Constables</span><span>Volunteers</span></p><button type="button" class="thanks-s">Return to duty</button></div>';
+    document.body.appendChild(o); document.body.classList.add('lb-open');
+    let alive=true, raf=0; const prev=document.activeElement;
+    const close=()=>{ if(!alive)return; alive=false; cancelAnimationFrame(raf); o.classList.remove('in'); document.body.classList.remove('lb-open'); document.removeEventListener('keydown',key); setTimeout(()=>o.remove(),800); if(prev&&prev.focus)try{prev.focus({preventScroll:true});}catch(e){} };
+    const key=e=>{ if(e.key==='Escape'||e.key==='Tab'){ if(e.key==='Escape')close(); else e.preventDefault(); } };
+    document.addEventListener('keydown',key); o.addEventListener('click',close);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>o.classList.add('in')));
+    setTimeout(()=>o.querySelector('.thanks-s').focus({preventScroll:true}),60);
+    setTimeout(close,14000);
+    if(RM)return;
+    const cv=o.querySelector('canvas'), dpr=Math.min(window.devicePixelRatio||1,2), W=innerWidth, H=innerHeight; cv.width=W*dpr; cv.height=H*dpr; const g=cv.getContext('2d'); g.scale(dpr,dpr);
+    const E=Array.from({length:Math.round(Math.min(110,W/9))},()=>({x:Math.random()*W,y:H+Math.random()*H,v:.25+Math.random()*.7,r:.6+Math.random()*2.2,p:Math.random()*6.28,s:.004+Math.random()*.01,c:Math.random()<.78?'233,174,47':(Math.random()<.5?'90,150,255':'255,90,90')}));
+    (function f(){ if(!alive)return; g.clearRect(0,0,W,H);
+      for(const e of E){ e.y-=e.v; e.p+=e.s*6; const x=e.x+Math.sin(e.p)*10; if(e.y<-10){e.y=H+10;e.x=Math.random()*W;}
+        const a=Math.max(0,Math.min(1,e.y/H))*(0.55+0.45*Math.sin(e.p*2)); g.beginPath(); g.fillStyle='rgba('+e.c+','+a.toFixed(3)+')'; g.shadowColor='rgba('+e.c+',.9)'; g.shadowBlur=8; g.arc(x,e.y,e.r,0,6.283); g.fill(); }
+      raf=requestAnimationFrame(f); })();
+  }
+
+  // ---------- Jane Doe, the webmaster ----------
   const jd=document.getElementById('jane-doe'), jn=document.getElementById('jd-note');
   const JD=['Webmaster identity: unknown. Case still open. Last seen near the brisket.',
     'Jane Doe was last seen leaving the chili tent with a ladle. If found, do not approach.',
@@ -100,44 +235,57 @@ const DONATE_URL = "";
     'Jane Doe\'s alibi: "I was at the chili table." Seven witnesses confirm.'];
   let jdi=Math.floor(Math.random()*JD.length);
   if(jn) jn.textContent=JD[jdi];
-  if(jd&&jn) jd.addEventListener('click',()=>{ if(!jn.hidden){ jdi=(jdi+1+Math.floor(Math.random()*(JD.length-1)))%JD.length; jn.textContent=JD[jdi]; } jn.hidden=false; });
-  const fb=document.getElementById('foot-badge'); let taps=0, tt;
-  if(fb) fb.addEventListener('click',()=>{taps++;clearTimeout(tt);tt=setTimeout(()=>taps=0,1500);
-    if(taps>=5){taps=0;lights(4000);toast('Lights on. Backing the blue and the red since 2014.');}});
+  if(jd&&jn) jd.addEventListener('click',()=>{ if(!jn.hidden){ jdi=(jdi+1+Math.floor(Math.random()*(JD.length-1)))%JD.length; jn.textContent=JD[jdi]; } jn.hidden=false; found('jane'); });
+
+  // ---------- footer badge: 5 taps = lights, then the thank-you; press and hold = challenge coin ----------
+  const fb=document.getElementById('foot-badge'); let taps=0, tt, hold, held=false;
+  if(fb){
+    fb.addEventListener('pointerdown',()=>{ held=false; clearTimeout(hold); hold=setTimeout(()=>{held=true; taps=0; coin();},650); });
+    ['pointerup','pointerleave','pointercancel'].forEach(ev=>fb.addEventListener(ev,()=>clearTimeout(hold)));
+    fb.addEventListener('contextmenu',e=>e.preventDefault());
+    fb.addEventListener('click',()=>{ if(held||busy())return; taps++; clearTimeout(tt); tt=setTimeout(()=>taps=0,1500);
+      if(taps>=5){ taps=0; found('lights'); lights(3200); setTimeout(thanks,2900); } });
+  }
+  // Konami code = challenge coin
   const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a']; let k=0;
-  document.addEventListener('keydown',e=>{k=(e.key===seq[k]||e.key.toLowerCase()===seq[k])?k+1:(e.key===seq[0]?1:0); if(k===seq.length){k=0;toast('10-4, good buddy. All units report to the steak line.',4000);}});
+  document.addEventListener('keydown',e=>{ if(document.querySelector('.egg-ov'))return; k=(e.key===seq[k]||e.key.toLowerCase()===seq[k])?k+1:(e.key===seq[0]?1:0); if(k===seq.length){k=0;coin();} });
+  // typed words
   let typed='';
+  const R=(m,from)=>()=>toast(m,4600,{egg:'radio',from});
   const WORDS={
-    'brisket':()=>{rain(['🥩','🍖','🥩','🔥'],70,6000);toast('Brisket detected. Dispatching a judge to your location.');},
-    'steak':()=>{rain(['🥩','🥩','🔪','🍽️'],60,5500);toast('Steak Dinner: January 22, 2027. Bring your appetite.');},
-    'chili':()=>{rain(['🌶️','🌶️','🫕','🔥'],65,5500);toast('Chili Cookoff: January 23, 2027. Mild is not a category.');},
-    'bbq':()=>{rain(['🍖','🔥','🌭','🥩'],65,5500);toast('Smoke detected. This one is on purpose.');},
-    'code3':()=>{lights(4000);toast('Lights and sirens. Please pull to the right.');},
-    'tones':()=>toast('Tones dropped. Half the room is already walking to the truck.'),
-    'donut':()=>toast('The donut joke has been retired. Brisket is the new donut.'),
-    '10-8':()=>toast('10-8. Back in service. Coffee refilled.'),
-    'coffee':()=>toast('Coffee located. Morale restored to acceptable levels.'),
-    'overtime':()=>toast('Overtime approved. Just kidding. Talk to your sergeant.'),
-    'quiet':()=>toast('We do not say the Q word. Now look what you did.'),
-    'beans':()=>toast('Beans in chili? Take it up with the judges.'),
-    'dispatch':()=>toast('Dispatch has entered the chat. Dispatch was always here.'),
-    'gigem':()=>toast('Gig \'em. Now go buy a table.'),
-    'kurten':()=>toast('See you in Kurten, January 22.'),
-    'turnout':()=>toast('Turnout gear optional. Boots required.')
+    'brisket':()=>{rain(['🥩','🍖','🥩','🔥'],70,6500);toast('Brisket detected. Dispatching a judge to your location.',4600,{egg:'food',from:'Pit Boss'});},
+    'steak':()=>{rain(['🥩','🥩','🔪','🍽️'],60,6000);toast('Steak Dinner: January 22, 2027. Bring your appetite.',4600,{egg:'food',from:'Kitchen'});},
+    'chili':()=>{rain(['🌶️','🌶️','🫕','🔥'],65,6000);toast('Chili Cookoff: January 23, 2027. Mild is not a category.',4600,{egg:'food',from:'Chili Tent'});},
+    'bbq':()=>{rain(['🍖','🔥','🌭','🥩'],65,6000);toast('Smoke detected. This one is on purpose.',4600,{egg:'food',from:'Pit Boss'});},
+    'code3':()=>{lights(4000);toast('Lights and sirens. Please pull to the right.',4600,{egg:'lights',from:'Unit 1'});},
+    'coin':coin,
+    'dispatch':()=>cad(),
+    'tones':()=>cad(),
+    'thank you':thanks,
+    'thanks':thanks,
+    'donut':R('The donut joke has been retired. Brisket is the new donut.'),
+    '10-8':R('10-8. Back in service. Coffee refilled.'),
+    'coffee':R('Coffee located. Morale restored to acceptable levels.','Break Room'),
+    'overtime':R('Overtime approved. Just kidding. Talk to your sergeant.','Sergeant'),
+    'quiet':R('We do not say the Q word. Now look what you did.'),
+    'beans':R('Beans in chili? Take it up with the judges.','Chili Tent'),
+    'gigem':R('Gig \'em. Now go buy a table.','Kyle Field'),
+    'kurten':R('See you in Kurten, January 22.'),
+    'turnout':R('Turnout gear optional. Boots required.','Station 1')
   };
-  document.addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('input,textarea'))return; if(e.key.length!==1)return; typed=(typed+e.key.toLowerCase()).slice(-10); for(const w in WORDS){ if(typed.endsWith(w)){ WORDS[w](); typed=''; break; } }});
+  document.addEventListener('keydown',e=>{ if(e.target.closest&&e.target.closest('input,textarea,select'))return; if(e.metaKey||e.ctrlKey||e.altKey||e.key.length!==1)return; typed=(typed+e.key.toLowerCase()).slice(-12); for(const w in WORDS){ if(typed.endsWith(w)){ typed=''; WORDS[w](); break; } } });
   // countdown in shifts (24 on / 48 off)
   const cnt=document.querySelector('.ticket .count');
-  if(cnt){ let st=0; cnt.addEventListener('click',ev=>{ev.preventDefault(); const d=document.getElementById('days-left'); const n=parseInt(d.dataset.days||d.textContent,10); if(isNaN(n))return; d.dataset.days=n; st=(st+1)%3; if(st===1){d.textContent=Math.ceil(n/3); d.nextElementSibling.textContent='fire shifts to go';} else if(st===2){d.textContent=n*2; d.nextElementSibling.textContent='patrol shifts to go';} else {d.textContent=n; d.nextElementSibling.textContent='days to go';}}); }
+  if(cnt){ let st=0; cnt.addEventListener('click',ev=>{ev.preventDefault(); const d=document.getElementById('days-left'); const n=parseInt(d.dataset.days||d.textContent,10); if(isNaN(n))return; d.dataset.days=n; st=(st+1)%3; found('shifts'); if(st===1){d.textContent=Math.ceil(n/3); d.nextElementSibling.textContent='fire shifts to go';} else if(st===2){d.textContent=n*2; d.nextElementSibling.textContent='patrol shifts to go';} else {d.textContent=n; d.nextElementSibling.textContent='days to go';}}); }
   // mobile: tap the gold ticket date 3 times for steak rain
   const tdate=document.querySelector('.ticket .date'); let tdc=0, tdt;
-  if(tdate) tdate.addEventListener('click',ev=>{ev.preventDefault(); tdc++; clearTimeout(tdt); tdt=setTimeout(()=>tdc=0,1200); if(tdc>=3){tdc=0; rain(['🥩','🍖','🌶️','🔥'],70,6000); toast('Order up. See you January 22 and 23.');}});
+  if(tdate) tdate.addEventListener('click',ev=>{ev.preventDefault(); tdc++; clearTimeout(tdt); tdt=setTimeout(()=>tdc=0,1200); if(tdc>=3){tdc=0; rain(['🥩','🍖','🌶️','🔥'],70,6500); toast('Order up. See you January 22 and 23.',4600,{egg:'food',from:'Kitchen'});}});
   // report in triplicate
   const yr2=document.getElementById('yr'); let yc=0;
-  if(yr2) yr2.addEventListener('click',()=>{ if(++yc===3){yc=0;toast('Report filed in triplicate. Supervisor will review in 6 to 8 weeks.');} });
+  if(yr2) yr2.addEventListener('click',()=>{ if(++yc===3){yc=0;cad('yr');} });
   // night shift note (not on the nomination or memorial pages)
   const pg=location.pathname.split('/').pop();
-  if(!/nominate|about/.test(pg)){ const h=new Date().getHours(); if(h>=1&&h<5){ setTimeout(()=>toast('Working the night shift? Thank you. Go drink some water.',5000),2500); } }
+  if(!/nominate|about/.test(pg)){ const h=new Date().getHours(); if(h>=1&&h<5){ setTimeout(()=>toast('Working nights? The county sleeps because you don\'t. Thank you. Now go drink some water.',6500,{egg:'night',from:'Night Shift'}),2500); } }
   // photo viewer
   const gal=[...document.querySelectorAll('.gallery figure img')];
   if(gal.length){
