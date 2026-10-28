@@ -1,0 +1,1176 @@
+<title>Brazos County First Responders Association</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Since 2014, the Brazos County First Responders Association has supported local first responders facing line-of-duty injury, illness and other hardships, and funded scholarships for their children.">
+<meta property="og:title" content="Brazos County First Responders Association">
+<meta property="og:description" content="Supporting Brazos County first responders and their families since 2014.">
+<meta property="og:image" content="https://bcfra.com/img/stage.jpg">
+<meta property="og:url" content="https://bcfra.com/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://bcfra.com/">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: a navy "roll call" band carries the badge; the two event posters are the centerpiece; a thin End of Watch strip anchors the memorial. */
+:root{
+  --navy:#0d2141; --blue:#1d5ea8; --gold:#e9ae2f; --gold-deep:#b9821a; --red:#a3282c;
+  --bg:#f2f4f8; --surface:#ffffff; --ink:#15213a; --muted:#56627a; --line:#d7dce6;
+  --band:#0d2141; --band-ink:#eef2f8; --band-muted:#aebbd2;
+  --link:#1d5ea8;
+  --display:"Zilla Slab", Rockwell, "Roboto Slab", Georgia, serif;
+  --body:"Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  --max:1160px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0a1424; --surface:#111f37; --ink:#e7ecf5; --muted:#9fadc6; --line:#24365a;
+  --band:#071022; --band-ink:#eef2f8; --band-muted:#9fb0cd; --link:#7fb2ee; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0a1424; --surface:#111f37; --ink:#e7ecf5; --muted:#9fadc6; --line:#24365a;
+  --band:#071022; --band-ink:#eef2f8; --band-muted:#9fb0cd; --link:#7fb2ee; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--band)}
+img{max-width:100%;height:auto;display:block}
+[hidden]{display:none!important}
+a{color:var(--link)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);line-height:1.08;text-wrap:balance;margin:0;letter-spacing:-.005em}
+h2{font-size:clamp(2rem,4.2vw,3rem);font-weight:700}
+h3{font-size:1.45rem;font-weight:700}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+section{padding-block:clamp(64px,9vw,112px)}
+.lede{font-size:1.15rem;color:var(--muted);max-width:60ch}
+.sec-head{display:grid;gap:14px;margin-bottom:40px;max-width:720px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 1rem/1 var(--body);padding:15px 22px;border-radius:6px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s ease, background .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-gold{background:var(--gold);color:#1b1404}
+.btn-gold:hover{background:#f3bd45}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-navy{background:var(--navy);color:#fff}
+:root[data-theme="dark"] .btn-navy{background:var(--blue)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn-navy{background:var(--blue)}}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--band);color:var(--band-ink);border-bottom:1px solid rgba(255,255,255,.08)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none;min-width:0}
+.brand img{width:44px;height:auto}
+.brand b{font:700 1.05rem/1.1 var(--display);display:block}
+.brand small{display:block;font-size:.78rem;color:var(--band-muted);letter-spacing:.02em}
+.nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.nav a{color:var(--band-ink);text-decoration:none;font-weight:500;font-size:.95rem;padding:8px 12px;border-radius:5px}
+.nav a:hover{background:rgba(255,255,255,.08)}
+.nav .btn{padding:10px 16px;margin-left:8px}
+.menu-btn{display:none}
+@media (max-width:900px){
+  .top{position:relative;top:0}
+  .top .wrap{flex-wrap:wrap;gap:8px}
+  .brand{flex:1 1 0;min-width:0}
+  .brand b{font-size:.95rem}
+  .brand small{font-size:.72rem}
+  .menu-btn{flex:none;display:inline-flex;align-items:center;gap:8px;margin-left:auto;font:600 .95rem/1 var(--body);color:var(--band-ink);background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:10px 14px;cursor:pointer}
+  .menu-btn .bars{display:grid;gap:4px}
+  .menu-btn .bars i{display:block;width:18px;height:2px;background:currentColor;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+  .menu-btn[aria-expanded="true"] .bars i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .menu-btn[aria-expanded="true"] .bars i:nth-child(2){opacity:0}
+  .menu-btn[aria-expanded="true"] .bars i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  .nav{display:none;margin-left:0;width:100%;flex-direction:column;align-items:stretch;gap:2px;margin-top:6px;padding:8px 0 4px;border-top:1px solid rgba(255,255,255,.12)}
+  .nav.open{display:flex}
+  .nav a{padding:13px 10px;font-size:1.05rem;border-radius:6px}
+  .nav .btn{margin:8px 0 4px;justify-content:center}
+}
+
+/* hero */
+.hero{position:relative;background:var(--band);color:var(--band-ink);overflow:hidden;padding-block:0}
+.hero-photo{position:absolute;inset:0;background:url(img/stage.jpg) center 28%/cover no-repeat;opacity:.38;filter:saturate(.55)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg, var(--band) 30%, rgba(13,33,65,.55) 70%, rgba(13,33,65,.25))}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:48px;align-items:center;padding-block:clamp(56px,8vw,104px)}
+.hero h1{font-size:clamp(2.6rem,6.2vw,4.9rem);font-weight:700;color:#fff}
+.hero h1 span{display:block;color:var(--gold)}
+.hero .lede{color:#c9d4e6;margin-top:22px;font-size:1.2rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.eow-more{display:block;margin-top:6px;font-size:.9rem}
+.eow-link{color:inherit;text-decoration:underline;text-decoration-color:rgba(233,174,47,.6);text-underline-offset:3px}.eow-link:hover,.eow-link:focus-visible{text-decoration-color:currentColor}
+.hero-eow{margin-top:26px;padding-top:14px;border-top:1px solid rgba(233,174,47,.45);color:#d9c79a;font-size:.95rem;max-width:56ch}
+.hero-badge{justify-self:center;width:min(100%,360px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.45))}
+@media (max-width:820px){
+  .hero .wrap{grid-template-columns:1fr;gap:28px}
+  .hero-badge{order:-1;width:110px;justify-self:start}
+}
+
+/* next event ticket */
+.ticket-row{background:var(--band);padding-block:0 0}
+.ticket{position:relative;z-index:2;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:24px;background:var(--gold);color:#1b1404;border-radius:10px;padding:18px 24px;transform:translateY(50%);box-shadow:0 14px 30px rgba(8,18,36,.25)}
+.ticket .date{font:700 1rem/1 var(--display);text-align:center;border-right:2px dashed rgba(27,20,4,.35);padding-right:24px}
+.ticket .date b{display:block;font-size:2.4rem;line-height:.9}
+.ticket .what{min-width:0}
+.ticket .what strong{font:700 1.3rem/1.15 var(--display);display:block}
+.ticket .what span{font-size:.95rem}
+.ticket .count{text-align:right;font-variant-numeric:tabular-nums}
+.ticket .count b{font:700 2.2rem/1 var(--display);display:block}
+.ticket .count span{font-size:.85rem}
+@media (max-width:640px){
+  .ticket{grid-template-columns:auto minmax(0,1fr);gap:14px 18px;transform:translateY(40%)}
+  .ticket .count{grid-column:1/-1;text-align:left;display:flex;align-items:baseline;gap:8px;border-top:2px dashed rgba(27,20,4,.35);padding-top:10px}
+  .ticket .count b{font-size:1.6rem;display:inline}
+  .ticket .date{padding-right:16px}
+}
+
+/* story */
+#story,.ticket-row + .help{padding-top:clamp(110px,12vw,150px)}
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
+.story-text{display:grid;gap:20px}
+.story-text p{max-width:58ch}
+.eow{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;border-top:3px solid var(--red);border-bottom:1px solid var(--line);padding-block:18px;margin-top:8px}
+.eow img{width:64px}
+.eow strong{font:700 1.25rem/1.2 var(--display);display:block}
+.eow span{color:var(--muted);font-size:.95rem}
+.story-photo{position:relative;margin:0}
+.story-photo img{border-radius:8px;aspect-ratio:4/3;object-fit:cover;width:100%;height:auto}
+.story-photo figcaption{font-size:.85rem;color:var(--muted);margin-top:10px}
+@media (max-width:820px){.story{grid-template-columns:1fr;gap:36px}}
+
+/* what we do */
+.help{background:var(--surface);border-block:1px solid var(--line)}
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.pillar{padding:28px 28px 8px 0;display:grid;gap:12px;align-content:start}
+.pillar + .pillar{padding-left:28px;border-left:1px solid var(--line)}
+.pillar .ico{width:44px;height:44px;color:var(--blue)}
+.pillar p{color:var(--muted)}
+@media (max-width:820px){
+  .pillars{grid-template-columns:1fr}
+  .pillar,.pillar + .pillar{padding:24px 0;border-left:0;border-bottom:1px solid var(--line)}
+}
+/* where your money goes v2 */
+.money2{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:start}
+.money2-photo{margin:0}
+.money2-photo img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-radius:4px;display:block}
+.money2-photo figcaption{font-size:.88rem;color:var(--muted);margin-top:10px;line-height:1.5}
+.money2-text h2{font-size:clamp(2rem,4vw,2.8rem);margin:0 0 10px}
+.money2-lede{font-size:1.15rem;color:var(--muted);margin:0 0 28px}
+.money2-list{margin:0 0 24px;border-top:2px solid var(--ink)}
+.money2-list dt{font:700 1.25rem/1.3 var(--display);padding-top:18px}
+.money2-list dd{margin:6px 0 0;padding-bottom:18px;border-bottom:1px solid var(--line);color:var(--muted);line-height:1.6}
+.money2-fine{font-size:.92rem;color:var(--muted);margin:0 0 20px;line-height:1.6}
+@media (max-width:820px){.money2{grid-template-columns:1fr;gap:28px}.money2-photo img{aspect-ratio:4/3}}
+.agencies{margin-top:48px;display:grid;gap:14px}
+.agencies h3{font-size:1.1rem}
+.agencies ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.agencies li{border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.92rem;background:var(--bg)}
+
+/* events / posters */
+.posters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+@media (max-width:860px){.posters{grid-template-columns:1fr}}
+.poster{border-radius:12px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;background:var(--surface);border:1px solid var(--line)}
+.poster-art{position:relative;aspect-ratio:4/3.1;padding:28px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;overflow:hidden;isolation:isolate}
+.poster-art::before{content:"";position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center}
+.poster-art::after{content:"";position:absolute;inset:0;z-index:-1}
+.p-steak .poster-art::before{background-image:url(img/hall.jpg);filter:saturate(.6) brightness(.8)}
+.p-steak .poster-art::after{background:radial-gradient(120% 90% at 85% 115%, rgba(214,84,26,.85), rgba(120,30,18,.55) 40%, rgba(16,10,8,.92) 75%)}
+.p-bbq .poster-art::before{background-image:url(img/group.jpg);background-position:center 20%;filter:grayscale(1) contrast(1.1) brightness(.7)}
+.p-bbq .poster-art::after{background:linear-gradient(160deg, rgba(13,33,65,.94) 30%, rgba(29,94,168,.78))}
+.poster-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.poster-top img{width:62px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
+.kicker{font:600 .9rem/1.3 var(--body);letter-spacing:.06em;color:#f6d38a}
+.poster-title{font:700 clamp(2.4rem,5vw,3.6rem)/.92 var(--display);color:#fff;margin-top:auto}
+.poster-title small{display:block;font-size:.42em;font-weight:500;letter-spacing:.01em;color:#f1e6d4;margin-bottom:10px;line-height:1.2}
+.poster-date{display:flex;align-items:stretch;gap:0;margin-top:20px;font-variant-numeric:tabular-nums}
+.poster-date > div{padding:8px 14px;border:1.5px solid rgba(255,255,255,.55)}
+.poster-date > div + div{border-left:0}
+.poster-date b{display:block;font:700 1.5rem/1 var(--display)}
+.poster-date span{font-size:.78rem;opacity:.85}
+.p-bbq .tba b{color:var(--gold)}
+.poster-body{padding:24px 28px 28px;display:grid;gap:18px;align-content:start}
+.facts{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.facts li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+.facts svg{width:20px;height:20px;margin-top:3px;color:var(--blue)}
+.poster-body .note{font-size:.92rem;color:var(--muted);border-left:3px solid var(--gold);padding-left:12px}
+.poster-actions{display:flex;flex-wrap:wrap;gap:10px}
+.poster-actions .btn{padding:12px 16px;font-size:.95rem}
+.btn-line{border:1.5px solid var(--line);color:var(--ink);background:transparent}
+.btn-line:hover{border-color:var(--blue)}
+
+.history{margin-top:56px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;border-top:1px solid var(--line);padding-top:32px}
+.history h3{font-size:1.6rem}
+.history ol{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.history li{display:grid;grid-template-columns:90px minmax(0,1fr);gap:20px;padding-block:12px;border-bottom:1px solid var(--line)}
+.history li:first-child{padding-top:0}
+.history time{font:700 1.1rem/1.4 var(--display);color:var(--blue);font-variant-numeric:tabular-nums}
+:root[data-theme="dark"] .history time{color:var(--gold)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .history time{color:var(--gold)}}
+.history span{color:var(--muted)}
+@media (max-width:700px){.history{grid-template-columns:1fr;gap:16px}.history li{grid-template-columns:70px minmax(0,1fr);gap:12px}}
+
+/* feature poster + tiers + chili */
+.poster.feature{grid-column:1/-1;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:none}
+.poster.feature .poster-art{aspect-ratio:auto;min-height:440px}
+.poster.feature .poster-title{font-size:clamp(2.6rem,5.4vw,4.4rem)}
+@media (max-width:860px){.poster.feature{grid-template-columns:1fr}.poster.feature .poster-art{min-height:300px;aspect-ratio:auto}.poster-art{aspect-ratio:auto;min-height:300px}}
+.p-chili .poster-art::before{background-image:url(img/tables.jpg);filter:grayscale(1) brightness(.6)}
+.p-chili .poster-art::after{background:linear-gradient(200deg, rgba(163,40,44,.92) 25%, rgba(70,14,16,.95))}
+.tiers{display:grid;gap:8px}
+.tiers-head{font-weight:700;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.tiers-head span{font-weight:400;font-size:.85rem;color:var(--muted)}
+.tiers table{width:100%;border-collapse:collapse;font-size:.94rem;font-variant-numeric:tabular-nums}
+.tiers th{text-align:left;font-weight:600;padding:7px 0}
+.tiers td{padding:7px 0 7px 12px;color:var(--muted)}
+.tiers td:last-child{text-align:right;color:var(--ink);font-weight:600}
+.tiers tr{border-top:1px solid var(--line)}
+
+/* supporters */
+.supporters{background:var(--surface);border-top:1px solid var(--line)}
+.supporters ul{list-style:none;margin:0;padding:0;columns:3 240px;column-gap:40px}
+.supporters li{break-inside:avoid;padding:10px 0;border-bottom:1px solid var(--line);font-weight:500;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.supporters .sn{color:var(--ink);text-decoration:none}
+a.sn:hover{color:var(--link);text-decoration:underline}
+.supporters .sl{display:flex;gap:6px;flex:none}
+.supporters .sl a{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;color:var(--muted);border:1px solid var(--line)}
+.supporters .sl a:hover{color:#fff;background:var(--blue);border-color:var(--blue)}
+.supporters .sl svg{width:15px;height:15px}
+
+/* reminders */
+.remind{background:var(--band);color:var(--band-ink)}
+.remind-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:start}
+.remind h2{color:#fff}
+.remind .lede{color:var(--band-muted)}
+.remind ul.why{margin:24px 0 0;padding:0;list-style:none;display:grid;gap:10px;color:#d4ddeb}
+.remind ul.why li{display:flex;gap:10px}
+.remind ul.why li::before{content:"";flex:none;width:8px;height:8px;margin-top:10px;background:var(--gold);transform:rotate(45deg)}
+@media (max-width:860px){.remind-grid{grid-template-columns:1fr;gap:32px}}
+
+/* forms */
+.form{position:relative;display:grid;gap:16px;background:var(--surface);color:var(--ink);border-radius:12px;padding:28px;border:1px solid var(--line)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.row2{grid-template-columns:1fr}}
+.field{display:grid;gap:6px;min-width:0}
+.field label,.legend{font-weight:600;font-size:.92rem}
+.field .hint{font-size:.83rem;color:var(--muted);font-weight:400}
+input[type=text],input[type=email],input[type=tel],textarea,select{width:100%;font:inherit;font-size:1rem;padding:12px 14px;border:1.5px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+input:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(29,94,168,.2)}
+textarea{min-height:140px;resize:vertical}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.97rem}
+.check input{flex:none;width:18px;height:18px;margin-top:4px;accent-color:var(--blue)}
+.form .btn{justify-self:start}
+.form-msg{border-radius:8px;padding:14px 16px;background:rgba(29,94,168,.1);border:1px solid rgba(29,94,168,.35);font-size:.95rem}
+.fine{font-size:.82rem;color:var(--muted)}
+
+/* gallery */
+.gallery{grid-auto-flow:dense;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:200px;gap:10px}
+.gallery figure{margin:0;overflow:hidden;border-radius:6px;background:var(--line)}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.gallery figure:hover img{transform:scale(1.04)}
+.gallery .w2{grid-column:span 2}
+.gallery .h2{grid-row:span 2}
+@media (max-width:760px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:160px}}
+
+/* nominate */
+.nominate-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:56px;align-items:start}
+.steps{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:18px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:40px 1fr;gap:14px;counter-increment:s}
+.steps li::before{content:counter(s);width:36px;height:36px;border-radius:50%;background:var(--navy);color:var(--gold);font:700 1.05rem/36px var(--display);text-align:center}
+:root[data-theme="dark"] .steps li::before{background:var(--blue);color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .steps li::before{background:var(--blue);color:#fff}}
+.steps b{display:block}
+.steps span{color:var(--muted);font-size:.95rem}
+@media (max-width:860px){.nominate-grid{grid-template-columns:1fr;gap:32px}}
+
+/* give */
+.give{background:var(--surface);border-top:1px solid var(--line)}
+.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.way{display:grid;gap:12px;align-content:start;padding:26px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.way.primary{background:var(--navy);color:#fff;border-color:rgba(233,174,47,.5)}
+.way h2{font-size:1.45rem}
+.check input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.way.primary p{color:#c9d4e6}
+.way p{color:var(--muted)}
+.way .btn{justify-self:start;margin-top:6px}
+@media (max-width:860px){.ways{grid-template-columns:1fr}}
+
+/* easter eggs */
+.jd{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:help;text-decoration:underline dotted;text-underline-offset:3px}
+.jd-note{margin:10px 0 0;font-size:.85rem;color:var(--gold)}
+#foot-badge{cursor:pointer;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.lightbar{position:fixed;inset:0 0 auto;height:calc(16px + env(safe-area-inset-top,0px));z-index:101;pointer-events:none;background:linear-gradient(90deg,#ff1f1f 0 25%,#fff 25% 27%,#1f6bff 27% 50%,#ff1f1f 50% 75%,#fff 75% 77%,#1f6bff 77% 100%);background-size:200% 100%;animation:bar 1s steps(2) infinite;box-shadow:0 0 28px 10px rgba(255,31,31,.55),0 0 40px 18px rgba(31,107,255,.45)}
+.lightwash{position:fixed;inset:0;z-index:100;pointer-events:none;animation:wash 1s steps(1) infinite}
+@keyframes bar{to{background-position:100% 0}}
+@keyframes wash{0%{box-shadow:inset 90px 0 120px -40px rgba(255,31,31,.75),inset -90px 0 120px -40px rgba(31,107,255,0)}50%{box-shadow:inset 90px 0 120px -40px rgba(255,31,31,0),inset -90px 0 120px -40px rgba(31,107,255,.8)}}
+/* radio toast */
+.radio{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:103;width:min(430px,calc(100% - 32px));transform:translate(-50%,18px);opacity:0;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .35s;background:linear-gradient(180deg,#14305a,#0a1830);color:#eef2f8;border:1px solid rgba(233,174,47,.5);border-radius:14px;padding:12px 16px 13px 19px;box-shadow:0 20px 44px -14px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08)}
+.radio.in{transform:translate(-50%,0);opacity:1}
+.radio::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:0 3px 3px 0;background:linear-gradient(#f3c860,#b9821a)}
+.radio-h{display:flex;align-items:center;gap:8px;font:700 .66rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.16em;text-transform:uppercase;color:#e9ae2f;margin-bottom:7px}
+.radio-sig{display:inline-flex;gap:2px;align-items:flex-end;height:10px}
+.radio-sig i{width:3px;background:#e9ae2f;border-radius:1px;animation:sig 1.1s ease-in-out infinite}
+.radio-sig i:nth-child(1){height:30%}.radio-sig i:nth-child(2){height:55%;animation-delay:.15s}.radio-sig i:nth-child(3){height:80%;animation-delay:.3s}.radio-sig i:nth-child(4){height:100%;animation-delay:.45s}
+@keyframes sig{50%{opacity:.3}}
+.radio-m{margin:0;font:600 1.05rem/1.4 var(--display);color:#fff}
+.radio-f{margin-top:9px;padding-top:8px;border-top:1px dashed rgba(233,174,47,.3);font:700 .66rem/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:#aebbd2}
+/* overlays */
+.egg-ov{position:fixed;inset:0;z-index:104;display:grid;place-items:center;padding:28px var(--gutter-r) 28px var(--gutter-l);background:radial-gradient(ellipse at 50% 38%,rgba(22,48,92,.97),rgba(3,8,17,.99) 70%);opacity:0;transition:opacity .3s;overflow:auto;overscroll-behavior:contain}
+.egg-ov.in{opacity:1}
+/* challenge coin */
+.coin-wrap{text-align:center;color:#eef2f8;max-width:440px;transform:translateY(14px);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.egg-ov.in .coin-wrap{transform:none}
+.coin-stage{perspective:1100px;width:min(68vw,290px);aspect-ratio:1;margin:0 auto 34px;position:relative;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.coin-stage.grab{cursor:grabbing}
+.coin-stage::after{content:"";position:absolute;left:14%;right:14%;bottom:-26px;height:16px;border-radius:50%;background:radial-gradient(rgba(0,0,0,.6),transparent 70%)}
+.coin{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform;border-radius:50%;outline:none}
+.coin:focus-visible .coin-front,.coin:focus-visible .coin-back{outline:2px solid rgba(255,255,255,.35);outline-offset:6px}
+.coin-face{position:absolute;inset:0;border-radius:50%;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:radial-gradient(circle at 32% 26%,#fff6d2 0,#f3c862 20%,#d99a22 46%,#a46d12 72%,#6a4407 100%);box-shadow:inset 0 0 0 2px #6a4407,inset 0 0 0 5px #f6d27a,inset 0 0 0 7px #8b5e10,inset 0 0 22px 8px rgba(80,50,0,.35),0 0 0 1px rgba(0,0,0,.3)}
+.coin-face::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.7) 50%,transparent 62%) calc(var(--sx,50) * 1%) 0/300% 100% no-repeat;mix-blend-mode:soft-light;pointer-events:none}
+.coin-back{transform:rotateY(180deg)}
+.coin-face svg{position:absolute;inset:0;width:100%;height:100%}
+.coin-front img{position:absolute;left:50%;top:50%;width:50%;height:auto;transform:translate(-50%,-51%);filter:drop-shadow(0 2px 2px rgba(60,35,0,.55));pointer-events:none}
+.coin-ring{font:800 10.5px/1 "Public Sans",system-ui,sans-serif;letter-spacing:.9px;fill:#4f3305}
+.coin-enamel{position:absolute;inset:15%;border-radius:50%;background:radial-gradient(circle at 40% 28%,#22487f,#0d2141 58%,#071430);box-shadow:inset 0 3px 8px rgba(0,0,0,.6),0 0 0 2px #f6d27a,0 0 0 4px #7a520c}
+.coin-sm{font:800 8.5px/1 "Public Sans",system-ui,sans-serif;letter-spacing:2px;fill:#f3c862}
+.coin-lg{font:700 17px/1 "Zilla Slab",Georgia,serif;letter-spacing:.5px;fill:#fff3d0}
+.coin-k{font:700 .7rem/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.2em;text-transform:uppercase;color:#e9ae2f;margin:0 0 12px}
+.coin-t{font:700 clamp(1.9rem,6vw,2.5rem)/1.1 var(--display);margin:0 0 12px;color:#fff}
+.coin-c{color:#c9d3e4;margin:0 auto 14px;max-width:36ch;line-height:1.6}
+.coin-n{font:700 .68rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#8ea0bf;margin:0 0 20px}
+.coin-x{font:700 1rem var(--body);background:#e9ae2f;color:#0d2141;border:0;border-radius:999px;padding:13px 30px;cursor:pointer;box-shadow:0 8px 20px -8px rgba(233,174,47,.7)}
+.coin-x:hover{background:#f3c862}.coin-x:focus-visible{outline:3px solid #fff;outline-offset:3px}
+/* dispatch CAD */
+.cad{width:min(760px,100%);background:#040a07;border:1px solid #1f3b2c;border-radius:12px;box-shadow:0 30px 80px -20px rgba(0,0,0,.85),inset 0 0 90px rgba(40,255,140,.05);font:500 .86rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#7dffb2;overflow:hidden;position:relative;transform:scale(.97);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.egg-ov.in .cad{transform:none}
+.cad::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px)}
+.cad-h{display:flex;align-items:center;gap:10px;padding:10px 12px 10px 14px;background:#0a1810;border-bottom:1px solid #1f3b2c;color:#a8ffd0;letter-spacing:.14em;text-transform:uppercase;font-size:.7rem;font-weight:700}
+.cad-dot{width:8px;height:8px;border-radius:50%;background:#ff4d4d;box-shadow:0 0 8px #ff4d4d;animation:blink 1s steps(1) infinite;flex:none}
+@keyframes blink{50%{opacity:.2}}
+.cad-clock{margin-left:auto;color:#4fc483;font-variant-numeric:tabular-nums}
+.cad-x{font:700 .7rem ui-monospace,Menlo,Consolas,monospace;letter-spacing:.14em;background:transparent;color:#ffcf5a;border:1px solid #6b5a26;border-radius:6px;padding:7px 11px;cursor:pointer;position:relative;z-index:1}
+.cad-x:hover,.cad-x:focus-visible{background:#2a2410;outline:none;border-color:#ffcf5a}
+.cad-log{list-style:none;margin:0;padding:16px 16px 8px;min-height:250px}
+.cad-log li{display:grid;grid-template-columns:auto 1fr;gap:14px;margin:0 0 5px;text-shadow:0 0 6px rgba(80,255,150,.35)}
+.cad-log time{color:#2f9a5e;font-variant-numeric:tabular-nums}
+.cad-log .tone{color:#ffcf5a;text-shadow:0 0 8px rgba(255,200,80,.5)}
+.cad-log .ok{color:#e4fff0}
+.cad-log .sig{color:#ffcf5a;margin-top:8px}
+.cad-log .cur::after{content:"\258C";animation:blink .8s steps(1) infinite;margin-left:1px}
+.cad-units{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px 16px 16px}
+.cad-u{border:1px solid #1f3b2c;border-radius:6px;padding:7px 9px;background:#07130d;font-size:.66rem;letter-spacing:.1em;transition:background .4s,border-color .4s}
+.cad-u b{display:block;color:#a8ffd0;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cad-u span{color:#ffcf5a}
+.cad-u.av{border-color:#2f8f5a;background:#0b2618}.cad-u.av span{color:#7dffb2}
+.cad-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:560px){.cad{font-size:.74rem}.cad-log{min-height:330px;padding:12px 12px 6px}.cad-log li{gap:8px}.cad-units{grid-template-columns:repeat(3,1fr);padding:6px 12px 12px}.cad-h span:nth-child(2){display:none}}
+/* thank-you moment */
+.thanks{position:fixed;inset:0;z-index:104;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 62%,rgba(16,38,74,.97),rgba(2,6,13,.99) 72%);opacity:0;transition:opacity .9s;cursor:pointer;padding:24px var(--gutter-r) 24px var(--gutter-l)}
+.thanks.in{opacity:1}
+.thanks canvas{position:absolute;inset:0;width:100%;height:100%}
+.thanks-c{position:relative;text-align:center;color:#eef2f8;max-width:600px;transform:translateY(10px);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.thanks.in .thanks-c{transform:none}
+.thanks-k{font:700 .72rem/1 var(--body);letter-spacing:.32em;text-transform:uppercase;color:#e9ae2f;margin:0 0 20px}
+.thanks-t{font:600 clamp(1.8rem,6vw,3rem)/1.15 var(--display);margin:0;color:#fff;text-wrap:balance}
+.thanks-t em{font-style:normal;color:#f3c862}
+.thanks-line{display:flex;width:140px;height:3px;margin:26px auto;border-radius:3px;overflow:hidden;transform:scaleX(0);transition:transform 1.4s .5s cubic-bezier(.2,.8,.2,1)}
+.thanks-line::before,.thanks-line::after{content:"";flex:1}
+.thanks-line::before{background:#3d8bff}.thanks-line::after{background:#ff4747}
+.thanks.in .thanks-line{transform:scaleX(1)}
+.thanks-r{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 1.3em;font:600 .74rem/1.9 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#aebbd2;margin:0 auto;max-width:34em}
+.thanks-r span{white-space:nowrap}
+.thanks-r span::before{content:"★";font-size:.7em;margin-right:.55em;color:#e9ae2f;vertical-align:.1em}
+.thanks-s{margin-top:28px;font:600 .85rem var(--body);color:#c9d3e4;background:transparent;border:1px solid rgba(233,174,47,.45);border-radius:999px;padding:10px 22px;cursor:pointer}
+.thanks-s:hover,.thanks-s:focus-visible{border-color:#e9ae2f;color:#fff;outline:none}
+@media (prefers-reduced-motion: reduce){.lightbar,.lightwash{animation:none}.lightwash{box-shadow:inset 60px 0 80px -40px rgba(255,31,31,.5),inset -60px 0 80px -40px rgba(31,107,255,.5)}}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-bottom:36px;border-block:1px solid var(--line)}
+.stats>div{padding:22px 18px 22px 0;display:grid;gap:6px}
+.stats>div+div{padding-left:18px;border-left:1px solid var(--line)}
+.stats b{font:700 clamp(1.9rem,3.6vw,2.6rem)/1 var(--display);color:var(--blue);font-variant-numeric:tabular-nums}
+:root[data-theme="dark"] .stats b{color:var(--gold)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .stats b{color:var(--gold)}}
+.stats span{color:var(--muted);font-size:.92rem;line-height:1.35}
+@media (max-width:760px){.stats{grid-template-columns:1fr 1fr}.stats>div:nth-child(3){padding-left:0;border-left:0}.stats>div:nth-child(n+3){border-top:1px solid var(--line)}}
+.helped{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.helped article{display:grid;gap:10px;align-content:start;padding:24px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.helped h3{font-size:1.2rem}
+.helped p{color:var(--muted);font-size:.95rem}
+.helped .src{font-size:.85rem}
+@media (max-width:860px){.helped{grid-template-columns:1fr}}
+.news{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.news li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;padding-block:12px;border-bottom:1px solid var(--line)}
+.news span{color:var(--muted);font-size:.9rem}
+@media (max-width:640px){.news li{grid-template-columns:1fr;gap:2px}}
+.gallery figure{cursor:zoom-in;position:relative}
+.gallery figure:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.lb{position:fixed;inset:0;z-index:120;background:rgba(5,12,24,.94);display:grid;grid-template-rows:auto 1fr auto;padding:calc(12px + env(safe-area-inset-top,0px)) max(12px, env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(12px, env(safe-area-inset-left,0px));color:#fff}
+.lb-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.lb-count{font-size:.9rem;color:#aebbd2;font-variant-numeric:tabular-nums}
+.lb-btn{font:600 .95rem/1 var(--body);color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:10px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.lb-btn:hover{background:rgba(255,255,255,.2)}
+.lb-stage{position:relative;display:grid;place-items:center;min-height:0;touch-action:pan-y}
+.lb-stage img{max-width:100%;max-height:calc(100dvh - 150px);width:auto;height:auto;object-fit:contain;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(13,33,65,.7);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer;display:grid;place-items:center}
+.lb-nav:hover{background:var(--blue)}
+.lb-prev{left:4px}.lb-next{right:4px}
+.lb-cap{text-align:center;color:#d6deeb;font-size:.95rem;padding-top:10px;max-width:70ch;margin:0 auto}
+body.lb-open{overflow:hidden}
+.crumb{display:inline-flex;align-items:center;gap:8px}
+.crumb a{display:inline-flex;align-items:center;gap:6px;color:var(--band-ink);text-decoration:none;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 14px;font-weight:600}
+.crumb a:hover{background:rgba(255,255,255,.1)}
+.cal{position:relative}
+.cal summary{list-style:none;cursor:pointer}
+.cal summary::-webkit-details-marker{display:none}
+.cal summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);margin-left:4px}
+.cal[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
+.cal[open]{flex-basis:100%}
+.cal[open] summary{margin-bottom:8px}
+.cal-menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:6px;padding:8px;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.cal-menu a{padding:13px 14px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:1rem;font-weight:600;background:var(--surface);border:1px solid var(--line);text-align:center}
+.cal-menu a:hover,.cal-menu a:focus-visible{background:var(--bg);color:var(--link)}
+.eow-banner{background:#0a0f1a;color:#e9ddb8;text-align:center;font:600 .95rem/1.4 var(--body);padding:12px max(16px, env(safe-area-inset-right,0px)) 12px max(16px, env(safe-area-inset-left,0px));border-bottom:2px solid var(--gold)}
+.cf-turnstile{min-height:65px}
+/* footer */
+footer{border-top:4px solid var(--gold);background:var(--band);color:var(--band-ink);padding-block:56px 40px}
+.foot{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(2,minmax(0,1fr));gap:40px}
+.foot h4{font:700 1.05rem/1.2 var(--display);margin:0 0 12px;color:#fff}
+.foot p,.foot li{color:var(--band-muted);font-size:.95rem}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.foot a{color:#fff}
+.foot .who{display:flex;gap:16px;align-items:flex-start}
+.foot .who img{width:72px}
+.copy{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.copy button{font:inherit;font-size:.8rem;padding:3px 9px;border-radius:4px;border:1px solid rgba(255,255,255,.3);background:transparent;color:var(--band-ink);cursor:pointer}
+.legal{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font-size:.85rem;color:var(--band-muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:820px){.foot{grid-template-columns:1fr}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Brazos County First Responders Association, home">
+      <img src="img/badge.png" alt="" width="44" height="48">
+      <span><b>Brazos County First Responders</b><small>Association, est. 2014</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#story">Our story</a>
+      <a href="#events">Events</a>
+      <a href="#nominate">Nominate</a>
+      <a href="#give">Give</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-gold" href="#reminders">Remind me</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-photo" aria-hidden="true"></div>
+    <div class="wrap">
+      <div>
+        <h1 id="hero-title">They run toward the call. <span>We run toward them.</span></h1>
+        <p class="lede">When one of ours is hurt, sick or hit by hard times, we help with the bills. And we help their kids get to college. Brazos County takes care of its own.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#events">See what's cooking</a>
+          <a class="btn btn-ghost" href="#nominate">Nominate a first responder</a>
+        </div>
+        <p class="hero-eow">Founded in memory of <a class="eow-link" href="https://www.odmp.org/officer/21355-constable-brian-david-bachmann" target="_blank" rel="noopener">Constable Brian Bachmann</a>, Brazos County Pct. 1. End of Watch: August 13, 2012.</p>
+      </div>
+      <img class="hero-badge" src="img/badge.png" alt="Brazos County First Responders Association emblem: a Constable Precinct 1 star, established 2014, in memory of Brian Bachmann, End of Watch 8.13.12" width="643" height="700">
+    </div>
+  </section>
+
+  <div class="ticket-row">
+    <div class="wrap">
+      <a class="ticket" href="#steak-dinner" style="text-decoration:none">
+        <div class="date"><span>JAN</span><b>22</b><span>2027</span></div>
+        <div class="what"><strong>Steak Friday. Chili Saturday. Kurten.</strong><span>Jan 22 and 23 at the Kurten Community Center. Tickets and team entry open soon.</span></div>
+        <div class="count" aria-live="polite"><b id="days-left">86</b><span>days to go</span></div>
+      </a>
+    </div>
+  </div>
+
+  <section id="story" aria-labelledby="story-title">
+    <div class="wrap story">
+      <div class="story-text">
+        <h2 id="story-title">Founded after we lost one of our own</h2>
+        <p>In 2012, Constable Brian Bachmann was killed in the line of duty. His fellow first responders saw what his family faced. In 2014, they founded this association so the next family wouldn't stand alone.</p>
+        <p>Our board is drawn from Brazos County law enforcement agencies and the Bryan and College Station Fire Departments.</p>
+        <div class="eow">
+          <img src="img/badge.png" alt="" width="64" height="70">
+          <div><strong><a class="eow-link" href="https://www.odmp.org/officer/21355-constable-brian-david-bachmann" target="_blank" rel="noopener">Constable Brian Bachmann</a></strong><span>Brazos County Precinct 1. End of Watch: August 13, 2012.</span><span class="eow-more"><a class="eow-link" href="https://www.odmp.org/officer/21355-constable-brian-david-bachmann" target="_blank" rel="noopener">Read his memorial on the Officer Down Memorial Page <span aria-hidden="true">↗</span></a></span></div>
+        </div>
+      </div>
+      <figure class="story-photo">
+        <img style="object-position:50% 40%" src="img/hall.jpg" alt="A full house at the Kurten Community Center for the 3rd Annual Steak Dinner" loading="lazy" width="1400" height="895">
+        <figcaption>A full house at the Kurten Community Center, 3rd Annual Steak Dinner, January 2026.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="help" aria-labelledby="help-title">
+    <div class="wrap">
+      <div class="money2">
+        <figure class="money2-photo">
+          <img src="img/story-grayson.jpg" alt="Board member Jason Giles holds the iPad bought for firefighter Grayson Brock, standing with Grayson's father Steve" loading="lazy" width="1050" height="1400">
+          <figcaption>August 2026. The board bought an iPad for CSFD firefighter Grayson Brock to get him through ten-hour chemo days. <a href="stories.html">Read his story</a>.</figcaption>
+        </figure>
+        <div class="money2-text">
+          <h2 id="help-title">Where your money goes</h2>
+          <p class="money2-lede">To the people who answer when you call 911, and to their families.</p>
+          <dl class="money2-list">
+            <dt>When one of ours gets hurt</dt>
+            <dd>Injury, illness, a flood, a house fire. We help cover what insurance won't.</dd>
+            <dt>Their kids' education</dt>
+            <dd>$1,500 Brian Bachmann Scholarships for graduating seniors whose parents serve Brazos County.</dd>
+            <dt>When we lose one of our own</dt>
+            <dd>Support for the families of first responders killed in the line of duty. It's why we started in 2014.</dd>
+          </dl>
+          <p class="money2-fine">Run by local first responders. Every grant stays in Brazos County. BCFRA is a 501(c)(3), EIN 33-1511531, so your gift is tax-deductible.</p>
+          <a class="btn btn-navy" href="#give">Give</a>
+        </div>
+      </div>
+      <div class="agencies">
+        <h3>The badges we stand behind</h3>
+        <ul>
+          <li>Brazos County Sheriff's Office</li>
+          <li>Brazos County Constables</li>
+          <li>Bryan Police Department</li>
+          <li>College Station Police Department</li>
+          <li>Texas A&amp;M University Police</li>
+          <li>Texas Highway Patrol</li>
+          <li>Bryan Fire Department</li>
+          <li>College Station Fire Department</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="events" aria-labelledby="events-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="events-title">Upcoming events</h2>
+        <p class="lede">Our three annual fundraisers pay for everything we do. Come eat, bid, compete, and meet the people who keep this county safe.</p>
+      </div>
+
+      <div class="posters">
+        <article class="poster p-steak feature" id="steak-dinner" aria-labelledby="steak-title">
+          <div class="poster-art">
+            <div class="poster-top">
+              <span class="kicker">SAVE THE DATE</span>
+              <img src="img/badge.png" alt="" width="62" height="68">
+            </div>
+            <div>
+              <h3 class="poster-title" id="steak-title"><small>4th Annual</small>Steak Dinner Fundraiser</h3>
+              <div class="poster-date">
+                <div><b>Jan 22</b><span>Friday, 2027</span></div>
+                <div><b>Kurten</b><span>Community Center</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="poster-body">
+            <ul class="facts">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 10h16M4 10v9h16v-9M4 10l2-5h12l2 5"/></svg><span>Steak and drinks</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg><span>Live music. Dance floor's open.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m14 4 6 6M11 7l6 6M5 19l7-7M3 21h8"/></svg><span>Live and silent auction. Gun raffles.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Kurten Community Center, 13055 E State Hwy 21, Kurten, TX 77862</span></li>
+            </ul>
+            <p class="note">Last year: doors at 6 PM, with music from Texas Unlimited Band and Josh Ward. 2027 times and entertainment will be announced with tickets.</p>
+            <div class="tiers">
+              <p class="tiers-head">2027 tickets and tables <span>On sale soon</span></p>
+              <table>
+                <tbody>
+                  <tr><th scope="row">Three Alarm Table</th><td>8 guests</td><td>$1,400</td></tr>
+                  <tr><th scope="row">Two Alarm Table</th><td>8 guests</td><td>$1,000</td></tr>
+                  <tr><th scope="row">Steak dinner ticket</th><td>1 guest</td><td>$100</td></tr>
+                </tbody>
+              </table>
+              <p class="fine">Headliner and Event sponsorships are also available. <a href="contact.html?topic=sponsorship">Contact us</a> for details.</p>
+            </div>
+            <div class="poster-actions">
+              <a class="btn btn-navy" href="#reminders" data-pick="steak">Remind me</a>
+              <details class="cal">
+                <summary class="btn btn-line">Add to calendar</summary>
+                <div class="cal-menu">
+                  <a href="cal/steak-dinner-2027.ics">Apple Calendar</a>
+                  <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=BCFRA%204th%20Annual%20Steak%20Dinner%20Fundraiser&amp;dates=20270122/20270123&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;details=Dinner%2C%20drinks%2C%20live%20music%2C%20live%20and%20silent%20auction%2C%20and%20raffles.%20All%20proceeds%20benefit%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com/events" target="_blank" rel="noopener">Google Calendar</a>
+                  <a href="https://outlook.live.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent&amp;subject=BCFRA%204th%20Annual%20Steak%20Dinner%20Fundraiser&amp;startdt=2027-01-22&amp;enddt=2027-01-23&amp;allday=true&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;body=Dinner%2C%20drinks%2C%20live%20music%2C%20live%20and%20silent%20auction%2C%20and%20raffles.%20All%20proceeds%20benefit%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com/events" target="_blank" rel="noopener">Outlook.com</a>
+                  <a href="https://outlook.office.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent&amp;subject=BCFRA%204th%20Annual%20Steak%20Dinner%20Fundraiser&amp;startdt=2027-01-22&amp;enddt=2027-01-23&amp;allday=true&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;body=Dinner%2C%20drinks%2C%20live%20music%2C%20live%20and%20silent%20auction%2C%20and%20raffles.%20All%20proceeds%20benefit%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com/events" target="_blank" rel="noopener">Outlook (work or school)</a>
+                  <a href="cal/steak-dinner-2027.ics">Outlook desktop (.ics)</a>
+                </div>
+              </details>
+            </div>
+          </div>
+        </article>
+
+        <article class="poster p-chili" id="chili-cookoff" aria-labelledby="chili-title">
+          <div class="poster-art">
+            <div class="poster-top">
+              <span class="kicker">THE MORNING AFTER</span>
+              <img src="img/badge.png" alt="" width="62" height="68">
+            </div>
+            <div>
+              <h3 class="poster-title" id="chili-title"><small>3rd Annual</small>Chili Cookoff</h3>
+              <div class="poster-date">
+                <div><b>Jan 23</b><span>Saturday, 2027</span></div>
+                <div><b>Kurten</b><span>Community Center</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="poster-body">
+            <ul class="facts">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4ZM17 6h3a3 3 0 0 1-3 4M7 6H4a3 3 0 0 0 3 4"/></svg><span>Prizes for the top pots. Beans: judges' call.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h18v4a2 2 0 0 0 0 4v4H3v-4a2 2 0 0 0 0-4V7Z"/></svg><span>Last year's fees: team $30, adults $5, vendor booth $25</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Kurten Community Center, Kurten, TX</span></li>
+            </ul>
+            <p class="note">The day after the Steak Dinner. Team entry opens with Steak Dinner tickets.</p>
+            <div class="poster-actions">
+              <a class="btn btn-navy" href="#reminders" data-pick="chili">Remind me</a>
+              <a class="btn btn-line" href="contact.html?topic=team">Enter your agency's team</a>
+              <details class="cal">
+                <summary class="btn btn-line">Add to calendar</summary>
+                <div class="cal-menu">
+                  <a href="cal/chili-cookoff-2027.ics">Apple Calendar</a>
+                  <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=BCFRA%203rd%20Annual%20Chili%20Cookoff&amp;dates=20270123/20270124&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;details=First%20responder%20chili%20teams%20compete.%20Benefits%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com/events" target="_blank" rel="noopener">Google Calendar</a>
+                  <a href="https://outlook.live.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent&amp;subject=BCFRA%203rd%20Annual%20Chili%20Cookoff&amp;startdt=2027-01-23&amp;enddt=2027-01-24&amp;allday=true&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;body=First%20responder%20chili%20teams%20compete.%20Benefits%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com/events" target="_blank" rel="noopener">Outlook.com</a>
+                  <a href="https://outlook.office.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent&amp;subject=BCFRA%203rd%20Annual%20Chili%20Cookoff&amp;startdt=2027-01-23&amp;enddt=2027-01-24&amp;allday=true&amp;location=Kurten%20Community%20Center%2C%2013055%20E%20State%20Hwy%2021%2C%20Kurten%2C%20TX%2077862&amp;body=First%20responder%20chili%20teams%20compete.%20Benefits%20the%20Brazos%20County%20First%20Responders%20Association.%20bcfra.com/events" target="_blank" rel="noopener">Outlook (work or school)</a>
+                  <a href="cal/chili-cookoff-2027.ics">Outlook desktop (.ics)</a>
+                </div>
+              </details>
+            </div>
+          </div>
+        </article>
+
+        <article class="poster p-bbq" id="bbq-cookoff" aria-labelledby="bbq-title">
+          <div class="poster-art">
+            <div class="poster-top">
+              <span class="kicker">BADGE VS. BADGE</span>
+              <img src="img/badge.png" alt="" width="62" height="68">
+            </div>
+            <div>
+              <h3 class="poster-title" id="bbq-title"><small>Annual</small>BBQ Cookoff</h3>
+              <div class="poster-date">
+                <div class="tba"><b>2027</b><span>Date TBA</span></div>
+                <div><b>St. Nick's</b><span>Green</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="poster-body">
+            <ul class="facts">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 3c0 2 2 2 2 4s-2 2-2 4M12 3c0 2 2 2 2 4s-2 2-2 4M16 3c0 2 2 2 2 4s-2 2-2 4M4 14h16l-2 7H6l-2-7Z"/></svg><span>Up to 20 agency teams. One gets bragging rights.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 13s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg><span>BBQ sampling, kids' activities, 50/50 raffle, cornhole</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h18v4a2 2 0 0 0 0 4v4H3v-4a2 2 0 0 0 0-4V7Z"/></svg><span>Adults $10 at the gate. Kids 12 and under free.</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span><a href="https://www.stnicksgreen.com/" target="_blank" rel="noopener">St. Nick's Green RV Campground</a>, College Station</span></li>
+            </ul>
+            <p class="note">Our longest-running fundraiser, since 2014. Last held May 16, 2026; past cookoffs ran 10:30 AM to 3 PM. Team entry forms go out before each cookoff.</p>
+            <div class="poster-actions">
+              <a class="btn btn-navy" href="#reminders" data-pick="bbq">Remind me</a>
+              <a class="btn btn-line" href="contact.html?topic=team">Enter your agency's team</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="history">
+        <h3>Since 2014</h3>
+        <ol>
+          <li><time>2026</time><span>3rd Annual Steak Dinner, Kurten (Jan 23). BBQ Cookoff, St. Nick's Green (May 16). Chili Cookoff called off for ice. Texas weather.</span></li>
+          <li><time>2025</time><span>2nd Annual Steak Dinner (Jan 24) and 2nd Annual Chili Cookoff (Jan 25), Kurten. BBQ Cookoff, St. Nick's Green (Jun 28).</span></li>
+          <li><time>2024</time><span>1st Annual Chili Cookoff and Steak Dinner, Kurten (Jan 27).</span></li>
+          <li><time>2023</time><span>10th BBQ Cookoff, St. Nick's Green (Jun 3).</span></li>
+          <li><time>2015–22</time><span>Annual BBQ cookoffs in College Station, plus a Kreuz Market profit share night (2018).</span></li>
+          <li><time>2014</time><span>First Brazos County Law Enforcement Cookoff, hosted with Santa's Wonderland. Proceeds presented June 25.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="remind" id="reminders" aria-labelledby="remind-title">
+    <div class="wrap remind-grid">
+      <div>
+        <h2 id="remind-title">Don't miss the steak.</h2>
+        <p class="lede" style="margin-top:16px">Get a heads-up when Steak Dinner tickets go on sale, when cookoff teams can register, and a reminder the week of each event.</p>
+        <ul class="why">
+          <li>A few emails a year, only about events</li>
+          <li>We never share your information</li>
+        </ul>
+      </div>
+      <form class="form" id="remind-form" novalidate>
+        <input type="hidden" name="_subject" value="New event reminder signup (bcfra.com)"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <div class="row2">
+          <div class="field"><label for="r-name">Name</label><input id="r-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="r-email">Email</label><input id="r-email" name="email" type="email" autocomplete="email" required></div>
+        </div>
+        <fieldset>
+          <span class="legend">Remind me about</span>
+          <label class="check"><input type="checkbox" id="r-steak" name="events" value="Steak Dinner" checked> 4th Annual Steak Dinner, January 22, 2027</label>
+          <label class="check"><input type="checkbox" id="r-chili" name="events" value="Chili Cookoff" checked> 3rd Annual Chili Cookoff, January 23, 2027</label>
+          <label class="check"><input type="checkbox" id="r-bbq" name="events" value="BBQ Cookoff" checked> Annual BBQ Cookoff, 2027</label>
+          <label class="check"><input type="checkbox" id="r-sponsor" name="events" value="Sponsorship"> Sponsorship opportunities</label>
+        </fieldset>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAFqAYsAjF7eMCc8U" data-theme="auto" data-size="flexible"></div>
+        <button class="btn btn-navy" type="submit">Put me on the list</button>
+        <div class="form-msg" id="remind-msg" role="status" hidden></div>
+      </form>
+    </div>
+  </section>
+
+  <section aria-labelledby="photos-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="photos-title">Last January in Kurten</h2>
+        <p class="lede">Full house, full plates at the 3rd Annual Steak Dinner. Spot yourself? Tag yourself on <a href="https://www.facebook.com/BrazosCountyFirstResponders" target="_blank" rel="noopener">Facebook</a>.</p>
+      </div>
+      <div class="gallery">
+        <figure class="w2 h2"><img style="object-position:50% 28%" src="img/stage.jpg" alt="Live band on stage under a Brazos County First Responders Association banner" loading="lazy"></figure>
+        <figure class="h2"><img style="object-position:50% 14%" src="img/speaker.jpg" alt="Speaker addressing the crowd beside the 3rd Annual Steak Dinner banner" loading="lazy"></figure>
+        <figure><img style="object-position:50% 50%" src="img/auction-hat.jpg" alt="Custom felt hat donated for the auction" loading="lazy"></figure>
+        <figure><img style="object-position:55% 28%" src="img/family.jpg" alt="A mother and two young boys in cowboy hats at dinner" loading="lazy"></figure>
+        <figure><img style="object-position:45% 18%" src="img/deputy.jpg" alt="Two guests, one a uniformed deputy, smiling" loading="lazy"></figure>
+        <figure class="w2"><img style="object-position:52% 18%" src="img/group.jpg" alt="A group of guests posing together" loading="lazy"></figure>
+        <figure><img style="object-position:54% 32%" src="img/friends.jpg" alt="Four friends in western wear" loading="lazy"></figure>
+        <figure><img style="object-position:55% 18%" src="img/singer.jpg" alt="Singer with acoustic guitar on stage" loading="lazy"></figure>
+        <figure class="w2"><img style="object-position:42% 40%" src="img/tables.jpg" alt="Long tables full of guests at dinner" loading="lazy"></figure>
+        <figure><img style="object-position:45% 30%" src="img/couple.jpg" alt="A couple in western wear at the dinner" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="supporters" aria-labelledby="sup-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="sup-title">These folks showed up.</h2>
+        <p class="lede">These neighbors and businesses made the 3rd Annual Steak Dinner possible.</p>
+      </div>
+      <ul>
+        <li><span class="sn">A &amp; L Hot Oil Service</span></li>
+        <li><span class="sn">Bentley Nettles</span></li>
+        <li><a class="sn" href="https://brazoscountytx.gov/134/District-Attorney" target="_blank" rel="noopener">Brazos County District Attorney's Office</a><span class="sl"><a href="https://brazoscountytx.gov/134/District-Attorney" target="_blank" rel="noopener" aria-label="Brazos County District Attorney's Office website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.facebook.com/BrazosCountyDA/" target="_blank" rel="noopener" aria-label="Brazos County District Attorney's Office on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></span></li>
+        <li><a class="sn" href="https://www.facebook.com/65549082297" target="_blank" rel="noopener">Bubba Moore Foundation</a><span class="sl"><a href="https://www.facebook.com/65549082297" target="_blank" rel="noopener" aria-label="Bubba Moore Foundation on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></span></li>
+        <li><a class="sn" href="https://www.kurtentexas.com/" target="_blank" rel="noopener">City of Kurten</a><span class="sl"><a href="https://www.kurtentexas.com/" target="_blank" rel="noopener" aria-label="City of Kurten website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.facebook.com/kurtentexas/" target="_blank" rel="noopener" aria-label="City of Kurten on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></span></li>
+        <li><a class="sn" href="https://www.collegestationfirefighters.org/" target="_blank" rel="noopener">College Station Professional Firefighters Association</a><span class="sl"><a href="https://www.collegestationfirefighters.org/" target="_blank" rel="noopener" aria-label="College Station Professional Firefighters Association website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.facebook.com/CollegeStationFirefighters" target="_blank" rel="noopener" aria-label="College Station Professional Firefighters Association on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a><a href="https://www.instagram.com/collegestationfirefighters" target="_blank" rel="noopener" aria-label="College Station Professional Firefighters Association on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a></span></li>
+        <li><a class="sn" href="https://www.elreychorizo.com/" target="_blank" rel="noopener">El Rey Chorizo &amp; Sausage Co.</a><span class="sl"><a href="https://www.elreychorizo.com/" target="_blank" rel="noopener" aria-label="El Rey Chorizo and Sausage Co. website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.instagram.com/elreychorizo/" target="_blank" rel="noopener" aria-label="El Rey Chorizo and Sausage Co. on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a></span></li>
+        <li><a class="sn" href="https://www.grimescountytrueblue.org/" target="_blank" rel="noopener">Grimes County True Blue Foundation</a><span class="sl"><a href="https://www.grimescountytrueblue.org/" target="_blank" rel="noopener" aria-label="Grimes County True Blue Foundation website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.facebook.com/grimescountytrueblue/" target="_blank" rel="noopener" aria-label="Grimes County True Blue Foundation on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></span></li>
+        <li><span class="sn">James &amp; Cheryl Fickey, Twin F Ranch</span></li>
+        <li><span class="sn">Jason &amp; Mandie James</span></li>
+        <li><a class="sn" href="https://www.facebook.com/Joesplaceburgers/" target="_blank" rel="noopener">Joe's Place</a><span class="sl"><a href="https://www.facebook.com/Joesplaceburgers/" target="_blank" rel="noopener" aria-label="Joe's Place on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a><a href="https://www.instagram.com/joesplaceburgers/" target="_blank" rel="noopener" aria-label="Joe's Place on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a></span></li>
+        <li><span class="sn">Mary Jo Prince, in honor of Laura Dean Mooney</span></li>
+        <li><span class="sn">Paul Dyson</span></li>
+        <li><a class="sn" href="https://www.profitoutfitters.com/" target="_blank" rel="noopener">Pro-Fit Outfitters</a><span class="sl"><a href="https://www.profitoutfitters.com/" target="_blank" rel="noopener" aria-label="Pro-Fit Outfitters website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.facebook.com/profile.php?id=61560089109706" target="_blank" rel="noopener" aria-label="Pro-Fit Outfitters on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></span></li>
+        <li><span class="sn">Ronald Arnold</span></li>
+        <li><a class="sn" href="https://toolguysbcs.com/" target="_blank" rel="noopener">The Tool Guys</a><span class="sl"><a href="https://toolguysbcs.com/" target="_blank" rel="noopener" aria-label="The Tool Guys website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a><a href="https://www.facebook.com/toolguysbcs/" target="_blank" rel="noopener" aria-label="The Tool Guys on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a></span></li>
+        <li><span class="sn">Trey Oldham &amp; Kail Fickey</span></li>
+        <li><a class="sn" href="https://www.willowandwatch.com/" target="_blank" rel="noopener">Willow &amp; Watch</a><span class="sl"><a href="https://www.willowandwatch.com/" target="_blank" rel="noopener" aria-label="Willow and Watch website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></a></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="nominate" aria-labelledby="nom-title">
+    <div class="wrap nominate-grid">
+      <div>
+        <h2 id="nom-title">Nominate a first responder</h2>
+        <p class="lede" style="margin-top:16px">Know a local first responder facing hardship, illness, injury or crisis? Tell us. Self-nominations are welcome.</p>
+        <ol class="steps">
+          <li><div><b>Submit the form</b><span>Share who they are, where they serve, and what's going on.</span></div></li>
+          <li><div><b>We verify</b><span>We confirm the nominee's connection to a first responder agency.</span></div></li>
+          <li><div><b>The board reviews</b><span>The board decides how we can help.</span></div></li>
+        </ol>
+        <p class="fine" style="margin-top:22px">We can't fund every request, but we read every one and follow up. If someone is in immediate danger, call 911.</p>
+      </div>
+      <form class="form" id="nom-form" novalidate>
+        <input type="hidden" name="_subject" value="New first responder nomination (bcfra.com)"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <div class="row2">
+          <div class="field"><label for="n-requestor">Your name</label><input id="n-requestor" name="requestor" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="n-nominee">Nominee's name</label><input id="n-nominee" name="nominee" type="text" required></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="n-email">Your email</label><input id="n-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="n-phone">Your phone</label><input id="n-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="n-agency">Nominee's agency or department</label><input id="n-agency" name="agency" type="text" required></div>
+          <div class="field"><label for="n-role">Nominee's position or role</label><input id="n-role" name="role" type="text" required></div>
+        </div>
+        <div class="field"><label for="n-details">What's going on? <span class="hint">Share as much as you're comfortable with.</span></label><textarea id="n-details" name="details" required></textarea></div>
+        <label class="check"><input type="checkbox" id="n-self" name="self"> This is a self-nomination</label>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAFqAYsAjF7eMCc8U" data-theme="auto" data-size="flexible"></div>
+        <button class="btn btn-navy" type="submit">Send to the board</button>
+        <div class="form-msg" id="nom-msg" role="status" hidden></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="give" id="give" aria-labelledby="give-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="give-title">Ways to give</h2>
+        <p class="lede">Donations are tax-deductible.</p>
+      </div>
+      <div class="ways">
+        <div class="way primary">
+          <h3>Give directly</h3>
+          <p>When a call for help comes in, we move fast. Your gift is what we move with. BCFRA is a 501(c)(3) (EIN 33-1511531), so it's tax-deductible.</p>
+          <p class="fine" style="color:#c9d4e6">Mailing a check? Make it payable to Brazos County First Responders Association, 4773 Holm Oak Rd, College Station, TX 77845.</p>
+          <a class="btn btn-gold" href="contact.html?topic=donation" id="donate-btn">Contact us to donate</a>
+        </div>
+        <div class="way">
+          <h3>Put your name on the night</h3>
+          <p>Put your business behind local first responders. Steak Dinner tables start at $1,000, and Headliner and Event sponsorships are open now.</p>
+          <a class="btn btn-line" href="contact.html?topic=sponsorship">Request the sponsor packet</a>
+        </div>
+        <div class="way">
+          <h3>Give something to bid on</h3>
+          <p>Hats, hunts, getaways, gift cards. If it'd start a bidding war in Kurten, we want it. Auction and raffle items raise a big share of every Steak Dinner.</p>
+          <a class="btn btn-line" href="contact.html?topic=auction">Offer an item</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot">
+      <div class="who">
+        <img src="img/badge.png" alt="" width="72" height="78" id="foot-badge">
+        <div>
+          <h4>Brazos County First Responders Association</h4>
+          <p>Brazos County takes care of its own. Since 2014, in memory of <a class="eow-link" href="https://www.odmp.org/officer/21355-constable-brian-david-bachmann" target="_blank" rel="noopener">Constable Brian Bachmann</a>, EOW 8.13.12.</p>
+        </div>
+      </div>
+      <div>
+        <h4>Contact us</h4>
+        <ul>
+          <li class="copy"><a id="c-email" href="mailto:brazoscountyfirstresponders@gmail.com">brazoscountyfirstresponders@gmail.com</a><button type="button" data-copy="c-email" aria-label="Copy email">Copy</button></li>
+          <li class="copy"><a id="c-phone" href="tel:+19792290100">(979) 229-0100</a><button type="button" data-copy="c-phone" aria-label="Copy phone">Copy</button></li>
+          <li>4773 Holm Oak Rd<br>College Station, TX 77845</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="https://www.facebook.com/BrazosCountyFirstResponders" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="#events">Upcoming events</a></li>
+          <li><a href="#nominate">Nominate a first responder</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal"><span>© <span id="yr" style="cursor:default">2026</span> Brazos County First Responders Association. A 501(c)(3) nonprofit, EIN 33-1511531.</span><span>Webmaster: <button type="button" class="jd" id="jane-doe">Jane Doe</button></span></div>
+    <p class="jd-note" id="jd-note" role="status" hidden>Webmaster identity: unknown. Case still open. Last seen near the brisket.</p>
+  </div>
+</footer>
+
+<script>
+// Formspree endpoints (deliver to brazoscountyfirstresponders@gmail.com)
+const FORMS = { remind: "https://formspree.io/f/mwllbzak", nominate: "https://formspree.io/f/mppprnog", contact: "https://formspree.io/f/xeaakwop" };
+const DONATE_URL = "";
+
+(function(){
+  // refuse to be framed by other sites (GitHub Pages can't send X-Frame-Options)
+  try{ if(/(^|\.)bcfra\.com$/.test(location.hostname) && window.top!==window.self){ document.documentElement.style.display='none'; window.top.location=window.self.location; } }catch(e){ document.documentElement.style.display='none'; }
+  const yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear();
+  // countdown to the Steak Dinner (Jan 22, 2027, local time)
+  const d=document.getElementById('days-left');
+  if(d){
+    const target=new Date(2027,0,22); const now=new Date(); now.setHours(0,0,0,0);
+    const n=Math.round((target-now)/86400000);
+    if(n>1){d.textContent=n;}
+    else if(n===1){d.textContent=1;d.nextElementSibling.textContent='day to go';}
+    else if(n===0){d.textContent='Tonight';d.nextElementSibling.textContent='';}
+    else {d.closest('.count').hidden=true;}
+  }
+  if(DONATE_URL){const b=document.getElementById('donate-btn');b.href=DONATE_URL;b.target='_blank';b.rel='noopener';}
+
+  try{const pk=new URLSearchParams(location.search).get('pick'); const mp={steak:'r-steak',chili:'r-chili',bbq:'r-bbq',sponsor:'r-sponsor'}; if(pk&&mp[pk]){document.querySelectorAll('#remind-form input[name=events]').forEach(c=>c.checked=false); document.getElementById(mp[pk]).checked=true;}}catch(e){}
+  // "Remind me" buttons preselect the right checkbox
+  document.querySelectorAll('[data-pick]').forEach(a=>a.addEventListener('click',()=>{
+    const map={steak:'r-steak',chili:'r-chili',bbq:'r-bbq',sponsor:'r-sponsor'};
+    const el=document.getElementById(map[a.dataset.pick]); if(el){document.querySelectorAll('#remind-form input[name=events]').forEach(c=>c.checked=false); el.checked=true;}
+    setTimeout(()=>document.getElementById('r-name').focus({preventScroll:true}),450);
+  }));
+
+  // copy buttons
+  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
+    const t=document.getElementById(b.dataset.copy).textContent;
+    const done=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1600);};
+    try{navigator.clipboard.writeText(t).then(done,()=>sel(b))}catch(e){sel(b)}
+  }));
+  function sel(b){const r=document.createRange();r.selectNodeContents(document.getElementById(b.dataset.copy));const s=getSelection();s.removeAllRanges();s.addRange(r);}
+
+  function wire(formId,msgId,okText,FORM_ENDPOINT){
+    const f=document.getElementById(formId), m=document.getElementById(msgId);
+    f.addEventListener('submit',async e=>{
+      e.preventDefault();
+      const missing=[...f.querySelectorAll('[required]')].filter(i=>!i.value.trim());
+      const badEmail=[...f.querySelectorAll('input[type=email]')].filter(i=>i.value && !/^\S+@\S+\.\S+$/.test(i.value));
+      const evs=f.querySelectorAll('input[name=events]'); if(evs.length && ![...evs].some(c=>c.checked)){m.hidden=false;m.textContent='Pick at least one event.';evs[0].focus();return;}
+      if(missing.length||badEmail.length){
+        m.hidden=false;
+        m.textContent=missing.length?'Missing a few things: '+missing.map(i=>f.querySelector('label[for="'+i.id+'"]').firstChild.textContent.trim().replace(/[?.]$/,'')).join(', ')+'.':'Please check the email address.';
+        (missing[0]||badEmail[0]).focus(); return;
+      }
+      const ts=f.querySelector('[name="cf-turnstile-response"]'); if(f.querySelector('.cf-turnstile') && /(^|\.)bcfra\.com$/.test(location.hostname) && (!ts||!ts.value)){m.hidden=false;m.textContent='One sec. Finish the quick security check above the button, then try again.';return;}
+      if(!FORM_ENDPOINT){m.hidden=false;m.textContent=okText+' (Preview: once the site is live, this goes straight to the association\'s inbox.)';f.reset();return;}
+      try{
+        const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)});
+        if(!r.ok) throw 0;
+        m.hidden=false;m.textContent=okText;f.reset(); try{ if(window.turnstile) turnstile.reset(f.querySelector('.cf-turnstile')); }catch(_){}
+      }catch(_){m.hidden=false;m.textContent='That didn\'t go through. Please email brazoscountyfirstresponders@gmail.com instead.';}
+    });
+  }
+  document.addEventListener('click',e=>{document.querySelectorAll('details.cal[open]').forEach(d=>{if(!d.contains(e.target))d.removeAttribute('open');});});
+  // mobile menu
+  const mb=document.getElementById('menu-btn'), nv=document.getElementById('main-nav');
+  if(mb&&nv){ mb.addEventListener('click',()=>{const o=nv.classList.toggle('open'); mb.setAttribute('aria-expanded',o); mb.querySelector('.ml').textContent=o?'Close':'Menu';});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nv.classList.contains('open')){nv.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.querySelector('.ml').textContent='Menu';mb.focus();}}); }
+  // --- easter eggs ---
+  try{console.log('%c★ BCFRA ★%c\n%cCode 4. All clear.','font:800 22px Georgia;color:#0d2141;background:#e9ae2f;padding:8px 14px;border-radius:6px','','font:700 15px Georgia;color:#e9ae2f;background:#0d2141;padding:6px 10px','\nSite built and maintained by Jane Doe, webmaster. Identity still unknown.\nYou opened the dev tools, so you are clearly the curious type. Nine things are hidden on this site. Field notes are kept in your browser.\nHint: the old cheat codes still work. So does holding down the badge.');}catch(e){}
+  const now=new Date(), EOW=(now.getMonth()===7&&now.getDate()===13);
+  const QUIET=/nominate|about/.test(location.pathname)||EOW;
+  if(EOW){ const b=document.createElement('div'); b.className='eow-banner'; b.setAttribute('role','note'); b.textContent='Today we remember Constable Brian Bachmann, Brazos County Pct. 1. End of Watch: August 13, 2012.'; const h=document.querySelector('.top'); if(h) h.after(b); }
+  // ---------- eggs: shared helpers ----------
+  const RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const EGGS=['coin','dispatch','lights','thanks','food','radio','jane','shifts','night'];
+  function found(id){ let s=[]; try{s=JSON.parse(localStorage.getItem('bcfra-field-notes')||'[]');}catch(e){} if(!Array.isArray(s))s=[]; if(!s.includes(id)){s.push(id); try{localStorage.setItem('bcfra-field-notes',JSON.stringify(s));}catch(e){}} return s.filter(x=>EGGS.includes(x)).length; }
+  const hhmm=()=>{const d=new Date();return String(d.getHours()).padStart(2,'0')+String(d.getMinutes()).padStart(2,'0');};
+  const hms=()=>{const d=new Date();return [d.getHours(),d.getMinutes(),d.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');};
+  let lastToast=null;
+  function toast(msg,ms,opt){ if(QUIET)return; opt=opt||{}; if(lastToast)lastToast.remove();
+    const t=document.createElement('div'); t.className='radio'; t.setAttribute('role','status');
+    const h=document.createElement('div'); h.className='radio-h'; h.innerHTML='<span class="radio-sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+    const lab=document.createElement('span'); lab.textContent=(opt.from||'BCFRA Dispatch')+' · '+hhmm()+' hrs'; h.appendChild(lab);
+    const m=document.createElement('p'); m.className='radio-m'; m.textContent=msg; t.append(h,m);
+    if(opt.egg){ const n=found(opt.egg); const f=document.createElement('div'); f.className='radio-f'; f.textContent=n>=EGGS.length?'Field notes: all '+EGGS.length+' found. Jane Doe is impressed.':'Field notes: '+n+' of '+EGGS.length+' found'; t.appendChild(f); }
+    document.body.appendChild(t); lastToast=t; requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('in')));
+    setTimeout(()=>{t.classList.remove('in'); setTimeout(()=>{t.remove(); if(lastToast===t)lastToast=null;},400);},ms||4600);
+  }
+  function overlay(cls,label){
+    const o=document.createElement('div'); o.className='egg-ov '+cls; o.setAttribute('role','dialog'); o.setAttribute('aria-modal','true'); o.setAttribute('aria-label',label);
+    const prev=document.activeElement; let done=false;
+    const esc=e=>{ if(e.key==='Escape')close(); else if(e.key==='Tab'){ const f=[...o.querySelectorAll('button,[tabindex="0"]')]; if(!f.length)return; const a=f[0], z=f[f.length-1]; if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();} else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();} } };
+    function close(){ if(done)return; done=true; o.classList.remove('in'); document.removeEventListener('keydown',esc); document.body.classList.remove('lb-open'); o.dispatchEvent(new Event('egg-close')); setTimeout(()=>o.remove(),320); if(prev&&prev.focus)try{prev.focus({preventScroll:true});}catch(e){} }
+    document.addEventListener('keydown',esc);
+    o.addEventListener('click',e=>{ if(e.target===o)close(); });
+    document.body.appendChild(o); document.body.classList.add('lb-open'); requestAnimationFrame(()=>requestAnimationFrame(()=>o.classList.add('in')));
+    return {o,close};
+  }
+  const busy=()=>QUIET||!!document.querySelector('.egg-ov,.thanks');
+
+  // ---------- lights ----------
+  function lights(ms){if(QUIET)return;const b=document.createElement('div');b.className='lightbar';const w=document.createElement('div');w.className='lightwash';document.body.append(w,b);setTimeout(()=>{b.remove();w.remove();},ms||4000);}
+
+  // ---------- food rain: falls, bounces, piles up, clears ----------
+  let raining=false;
+  function rain(items,n,ms){
+    if(RM||raining||QUIET) return; raining=true;
+    const c=document.createElement('canvas'); c.style.cssText='position:fixed;inset:0;z-index:102;pointer-events:none';
+    const dpr=Math.min(window.devicePixelRatio||1,2), W=innerWidth, H=innerHeight; c.width=W*dpr; c.height=H*dpr; c.style.width=W+'px'; c.style.height=H+'px';
+    document.body.appendChild(c); const g=c.getContext('2d'); g.scale(dpr,dpr); g.textAlign='center'; g.textBaseline='middle';
+    const P=Array.from({length:n},()=>{const s=26+Math.random()*24; return {x:s+Math.random()*(W-2*s),y:-s-Math.random()*H*1.5,v:1.5+Math.random()*2.5,vx:(Math.random()-.5)*1.2,r:Math.random()*6.28,vr:(Math.random()-.5)*0.16,s,e:items[Math.floor(Math.random()*items.length)],floor:H-s*0.42-Math.random()*s*0.9,rest:false};});
+    const t0=performance.now();
+    (function f(t){const el=t-t0; g.clearRect(0,0,W,H); const a=el>ms-900?Math.max(0,(ms-el)/900):1;
+      for(const q of P){
+        if(!q.rest){ q.v+=0.12; q.y+=q.v; q.x+=q.vx; q.r+=q.vr;
+          if(q.y>=q.floor){ q.y=q.floor; if(q.v>2.2){ q.v=-q.v*0.38; q.vr*=0.6; q.vx*=0.7; } else { q.rest=true; q.vr=0; q.r=Math.round(q.r/1.5708)*1.5708*0.08+q.r*0.92; } } }
+        if(q.y<-q.s)continue;
+        g.save(); g.globalAlpha=a; g.translate(q.x,q.y); g.rotate(q.r); g.font=q.s+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; g.fillText(q.e,0,0); g.restore(); }
+      if(el<ms) requestAnimationFrame(f); else {c.remove(); raining=false;} })(t0);
+  }
+
+  // ---------- challenge coin ----------
+  const TOP='M23,100 a77,77 0 0,1 154,0', BOT='M15,100 a85,85 0 0,0 170,0';
+  const ring=(id,top,bot)=>'<defs><path id="'+id+'t" d="'+TOP+'"/><path id="'+id+'b" d="'+BOT+'"/></defs><text class="coin-ring"><textPath href="#'+id+'t" startOffset="50%" text-anchor="middle">'+top+'</textPath></text><text class="coin-ring"><textPath href="#'+id+'b" startOffset="50%" text-anchor="middle">'+bot+'</textPath></text><text class="coin-ring" x="15" y="103.5" text-anchor="middle">★</text><text class="coin-ring" x="185" y="103.5" text-anchor="middle">★</text>';
+  function coin(){
+    if(busy())return; const n=found('coin');
+    const {o,close}=overlay('coin-ov','Challenge coin');
+    o.innerHTML='<div class="coin-wrap">'+
+      '<div class="coin-stage"><div class="coin" tabindex="0" role="button" aria-label="Flip the coin">'+
+        '<div class="coin-face coin-front"><svg viewBox="0 0 200 200" aria-hidden="true">'+ring('cf','BRAZOS COUNTY FIRST RESPONDERS','ASSOCIATION · EST. 2014')+'<circle cx="100" cy="100" r="66" fill="none" stroke="#7a520c" stroke-width="1.2" opacity=".7"/></svg><img src="img/badge.png" alt=""></div>'+
+        '<div class="coin-face coin-back"><div class="coin-enamel"></div><svg viewBox="0 0 200 200" aria-hidden="true">'+ring('cb','DEPUTIES · OFFICERS · TROOPERS','FIRE · EMS · DISPATCH')+''+
+          '<text x="100" y="74" class="coin-sm" text-anchor="middle">BRAZOS COUNTY</text><text x="100" y="98" class="coin-lg" text-anchor="middle">TAKES CARE</text><text x="100" y="120" class="coin-lg" text-anchor="middle">OF ITS OWN</text>'+
+          '<rect x="68" y="130" width="32" height="3" rx="1.5" fill="#3d8bff"/><rect x="100" y="130" width="32" height="3" rx="1.5" fill="#ff4747"/><text x="100" y="152" class="coin-sm" text-anchor="middle">★ ★ ★</text></svg></div>'+
+      '</div></div>'+
+      '<p class="coin-k">Challenge coin · Drag or tap to flip</p>'+
+      '<h2 class="coin-t">You’ve been coined.</h2>'+
+      '<p class="coin-c">Challenge coins pass palm to palm in a handshake, a quiet thank-you for a job done right. This one is for backing the people who back Brazos County.</p>'+
+      '<p class="coin-n"></p><button class="coin-x" type="button">Pocket it</button></div>';
+    o.querySelector('.coin-n').textContent=n>=EGGS.length?'Field notes: all '+EGGS.length+' found':'Field notes: '+n+' of '+EGGS.length+' found';
+    const stage=o.querySelector('.coin-stage'), c=o.querySelector('.coin');
+    let ry=RM?0:-1080, rx=RM?0:18, target=0, drag=null, raf=0;
+    const render=()=>{ c.style.transform='rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg)'; const a=((ry%360)+360)%360; c.style.setProperty('--sx',(a/3.6).toFixed(1)); c.setAttribute('aria-label',(a>90&&a<270)?'Coin, back side. Flip the coin':'Coin, front side. Flip the coin'); };
+    const loop=()=>{ if(!drag){ ry+=(target-ry)*0.065; rx+=(Math.sin(performance.now()/900)*4-rx)*0.05; } render(); raf=requestAnimationFrame(loop); };
+    const flip=()=>{ target=Math.round(ry/180)*180+180; if(RM){ry=target;render();} };
+    if(RM)render(); else raf=requestAnimationFrame(loop);
+    stage.addEventListener('pointerdown',e=>{ if(RM)return; drag={x:e.clientX,y:e.clientY,ry,t:performance.now(),last:e.clientX,v:0,moved:0}; stage.setPointerCapture(e.pointerId); stage.classList.add('grab'); });
+    stage.addEventListener('pointermove',e=>{ if(!drag)return; const dx=e.clientX-drag.x; drag.moved=Math.max(drag.moved,Math.abs(dx)); drag.v=e.clientX-drag.last; drag.last=e.clientX; ry=drag.ry+dx*0.7; rx=Math.max(-25,Math.min(25,-(e.clientY-drag.y)*0.2)); });
+    const up=()=>{ if(!drag)return; const d=drag; drag=null; stage.classList.remove('grab'); if(d.moved<6){flip();return;} target=Math.round((ry+d.v*14)/180)*180; };
+    stage.addEventListener('pointerup',up); stage.addEventListener('pointercancel',up);
+    if(RM) stage.addEventListener('click',flip);
+    c.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '||e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault(); if(e.key==='ArrowLeft'){target=Math.round(ry/180)*180-180; if(RM){ry=target;render();}} else flip();} });
+    o.querySelector('.coin-x').addEventListener('click',close);
+    o.addEventListener('egg-close',()=>cancelAnimationFrame(raf));
+    setTimeout(()=>c.focus({preventScroll:true}),60);
+  }
+
+  // ---------- dispatch / CAD log ----------
+  let actx=null;
+  function tones(){ try{ actx=actx||new (window.AudioContext||window.webkitAudioContext)(); const t=actx.currentTime, gn=actx.createGain(); gn.connect(actx.destination); gn.gain.setValueAtTime(0,t); gn.gain.linearRampToValueAtTime(0.045,t+0.03);
+      [[853,0,.45],[960,.45,.9]].forEach(([fr,a,b])=>{ const os=actx.createOscillator(); os.type='sine'; os.frequency.value=fr; os.connect(gn); os.start(t+a); os.stop(t+b); });
+      gn.gain.setValueAtTime(0.045,t+0.86); gn.gain.linearRampToValueAtTime(0,t+0.9); }catch(e){} }
+  function cad(from){
+    if(busy())return; found('dispatch');
+    const {o,close}=overlay('cad-ov','Dispatch log');
+    o.innerHTML='<div class="cad"><div class="cad-h"><span class="cad-dot" aria-hidden="true"></span><span>Brazos Co. CAD · Ch 1</span><span class="cad-clock"></span><button class="cad-x" type="button" aria-label="Close dispatch log">CLR</button></div><ol class="cad-log"></ol><div class="cad-units" aria-hidden="true"></div><p class="cad-sr" aria-live="polite"></p></div>';
+    const log=o.querySelector('.cad-log'), units=o.querySelector('.cad-units'), clock=o.querySelector('.cad-clock'), sr=o.querySelector('.cad-sr');
+    const U=['Sheriff','Police','Detention','Fire','EMS','Dispatch','Constable','Troopers','Vol. Fire'];
+    const tiles=U.map(u=>{const d=document.createElement('div'); d.className='cad-u'; d.innerHTML='<b></b><span>DISP</span>'; d.firstChild.textContent=u.toUpperCase(); units.appendChild(d); return d;});
+    const L=[
+      ['tone','TONE ALERT · ALL STATIONS, ALL AGENCIES'],
+      ['','CALL TYPE: COMMUNITY APPRECIATION · PRIORITY 1'],
+      ['','LOCATION: BRAZOS COUNTY, TX · EVERY BEAT, EVERY DISTRICT'],
+      ['','RP: YOUR NEIGHBORS. ALL OF THEM.'],
+      ['','NARRATIVE: RP ADVISES THE COUNTY SEES YOU. THE NIGHTS, THE HOLIDAYS, THE CALLS YOU CARRY HOME.'],
+      ['','RP REQUESTS ALL UNITS EAT SOMETHING, SLEEP WHEN YOU CAN, AND GO HOME SAFE.'],
+      ['ok','DISPO: THANKED. NO FURTHER ACTION REQUIRED.'],
+      ['ok',from==='yr'?'REPORT FILED IN TRIPLICATE. SUPERVISOR REVIEW IN 6 TO 8 WEEKS.':'ALL UNITS 10-8. CODE 4.'],
+      ['sig','DISPATCH: THE FIRST FIRST RESPONDERS. THANK YOU, TOO.']];
+    let alive=true, timers=[]; const later=(fn,ms)=>timers.push(setTimeout(()=>{if(alive)fn();},ms));
+    const tick=()=>{ if(!alive)return; clock.textContent=hms(); timers.push(setTimeout(tick,1000)); }; tick();
+    const status=(i,s)=>{ const tl=tiles[i]; if(!tl)return; tl.lastChild.textContent=s; tl.classList.toggle('av',s==='AVAIL'); };
+    let li=0;
+    function next(){
+      if(li>=L.length){ sr.textContent='All units available. Code 4.'; return; }
+      const [cls,txt]=L[li]; const row=document.createElement('li'); if(cls)row.className=cls;
+      const tm=document.createElement('time'); tm.textContent=hms(); const sp=document.createElement('span'); row.append(tm,sp); log.appendChild(row);
+      const step=li; li++;
+      if(step===1) tiles.forEach((_,i)=>later(()=>status(i,'ENRT'),i*90));
+      if(step===4) tiles.forEach((_,i)=>later(()=>status(i,'ON SCN'),i*110));
+      if(step===7) tiles.forEach((_,i)=>later(()=>status(i,'AVAIL'),i*140));
+      if(RM){ sp.textContent=txt; next(); return; }
+      sp.classList.add('cur'); let k=0;
+      (function type(){ if(!alive)return; k=Math.min(txt.length,k+2); sp.textContent=txt.slice(0,k); if(k<txt.length) later(type,22); else { sp.classList.remove('cur'); later(next,step===0?900:340); } })();
+    }
+    if(!RM) tones();
+    later(next,RM?0:250);
+    o.querySelector('.cad-x').addEventListener('click',close);
+    o.addEventListener('egg-close',()=>{alive=false; timers.forEach(clearTimeout);});
+    setTimeout(()=>o.querySelector('.cad-x').focus({preventScroll:true}),60);
+  }
+
+  // ---------- thank-you moment (thin blue + thin red line, rising embers) ----------
+  function thanks(){
+    if(busy())return; found('thanks');
+    const o=document.createElement('div'); o.className='thanks'; o.setAttribute('role','dialog'); o.setAttribute('aria-modal','true'); o.setAttribute('aria-label','Thank you');
+    o.innerHTML='<canvas aria-hidden="true"></canvas><div class="thanks-c"><p class="thanks-k">From Brazos County</p><p class="thanks-t">To the ones who run toward&nbsp;it.<br><em>Thank you.</em></p><div class="thanks-line" aria-hidden="true"></div><p class="thanks-r"><span>Deputies</span><span>Officers</span><span>Detention Officers</span><span>Firefighters</span><span>Medics</span><span>Dispatchers</span><span>Troopers</span><span>Constables</span><span>Volunteers</span></p><button type="button" class="thanks-s">Return to duty</button></div>';
+    document.body.appendChild(o); document.body.classList.add('lb-open');
+    let alive=true, raf=0; const prev=document.activeElement;
+    const close=()=>{ if(!alive)return; alive=false; cancelAnimationFrame(raf); o.classList.remove('in'); document.body.classList.remove('lb-open'); document.removeEventListener('keydown',key); setTimeout(()=>o.remove(),800); if(prev&&prev.focus)try{prev.focus({preventScroll:true});}catch(e){} };
+    const key=e=>{ if(e.key==='Escape'||e.key==='Tab'){ if(e.key==='Escape')close(); else e.preventDefault(); } };
+    document.addEventListener('keydown',key); o.addEventListener('click',close);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>o.classList.add('in')));
+    setTimeout(()=>o.querySelector('.thanks-s').focus({preventScroll:true}),60);
+    setTimeout(close,14000);
+    if(RM)return;
+    const cv=o.querySelector('canvas'), dpr=Math.min(window.devicePixelRatio||1,2), W=innerWidth, H=innerHeight; cv.width=W*dpr; cv.height=H*dpr; const g=cv.getContext('2d'); g.scale(dpr,dpr);
+    const E=Array.from({length:Math.round(Math.min(110,W/9))},()=>({x:Math.random()*W,y:H+Math.random()*H,v:.25+Math.random()*.7,r:.6+Math.random()*2.2,p:Math.random()*6.28,s:.004+Math.random()*.01,c:Math.random()<.78?'233,174,47':(Math.random()<.5?'90,150,255':'255,90,90')}));
+    (function f(){ if(!alive)return; g.clearRect(0,0,W,H);
+      for(const e of E){ e.y-=e.v; e.p+=e.s*6; const x=e.x+Math.sin(e.p)*10; if(e.y<-10){e.y=H+10;e.x=Math.random()*W;}
+        const a=Math.max(0,Math.min(1,e.y/H))*(0.55+0.45*Math.sin(e.p*2)); g.beginPath(); g.fillStyle='rgba('+e.c+','+a.toFixed(3)+')'; g.shadowColor='rgba('+e.c+',.9)'; g.shadowBlur=8; g.arc(x,e.y,e.r,0,6.283); g.fill(); }
+      raf=requestAnimationFrame(f); })();
+  }
+
+  // ---------- Jane Doe, the webmaster ----------
+  const jd=document.getElementById('jane-doe'), jn=document.getElementById('jd-note');
+  const JD=['Webmaster identity: unknown. Case still open. Last seen near the brisket.',
+    'Jane Doe was last seen leaving the chili tent with a ladle. If found, do not approach.',
+    'Witnesses describe the webmaster as "average height, suspiciously good at CSS."',
+    'Jane Doe has been placed on administrative leave for excessive use of the color gold.',
+    'BOLO: one webmaster, answers to Jane, may be carrying a smoked sausage.',
+    'Jane Doe declined to comment, citing an ongoing cookoff.',
+    'Fingerprints lifted from this page belong to Jane Doe. Prints also found on the dessert table.',
+    'Jane Doe is not available. Please leave a message after the siren.',
+    'Last known location: the auction table, bidding on her own donation.',
+    'Jane Doe responded to this call in 4 minutes. Average response time for a website is 3 seconds.',
+    'Jane Doe has requested backup. Backup is at the steak line.',
+    'Case file 10-4-JD: still no leads. The steak was excellent, though.',
+    'Jane Doe was spotted at St. Nick\'s Green asking for "just a taste" at every pit.',
+    'Jane Doe has been written up for parking in the fire lane. Again.',
+    'Jane Doe\'s alibi: "I was at the chili table." Seven witnesses confirm.'];
+  let jdi=Math.floor(Math.random()*JD.length);
+  if(jn) jn.textContent=JD[jdi];
+  if(jd&&jn) jd.addEventListener('click',()=>{ if(!jn.hidden){ jdi=(jdi+1+Math.floor(Math.random()*(JD.length-1)))%JD.length; jn.textContent=JD[jdi]; } jn.hidden=false; found('jane'); });
+
+  // ---------- footer badge: 5 taps = lights, then the thank-you; press and hold = challenge coin ----------
+  const fb=document.getElementById('foot-badge'); let taps=0, tt, hold, held=false;
+  if(fb){
+    fb.addEventListener('pointerdown',()=>{ held=false; clearTimeout(hold); hold=setTimeout(()=>{held=true; taps=0; coin();},650); });
+    ['pointerup','pointerleave','pointercancel'].forEach(ev=>fb.addEventListener(ev,()=>clearTimeout(hold)));
+    fb.addEventListener('contextmenu',e=>e.preventDefault());
+    fb.addEventListener('click',()=>{ if(held||busy())return; taps++; clearTimeout(tt); tt=setTimeout(()=>taps=0,1500);
+      if(taps>=5){ taps=0; found('lights'); lights(3200); setTimeout(thanks,2900); } });
+  }
+  // Konami code = challenge coin
+  const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a']; let k=0;
+  document.addEventListener('keydown',e=>{ if(document.querySelector('.egg-ov'))return; k=(e.key===seq[k]||e.key.toLowerCase()===seq[k])?k+1:(e.key===seq[0]?1:0); if(k===seq.length){k=0;coin();} });
+  // typed words
+  let typed='';
+  const R=(m,from)=>()=>toast(m,4600,{egg:'radio',from});
+  const WORDS={
+    'brisket':()=>{rain(['🥩','🍖','🥩','🔥'],70,6500);toast('Brisket detected. Dispatching a judge to your location.',4600,{egg:'food',from:'Pit Boss'});},
+    'steak':()=>{rain(['🥩','🥩','🔪','🍽️'],60,6000);toast('Steak Dinner: January 22, 2027. Bring your appetite.',4600,{egg:'food',from:'Kitchen'});},
+    'chili':()=>{rain(['🌶️','🌶️','🫕','🔥'],65,6000);toast('Chili Cookoff: January 23, 2027. Mild is not a category.',4600,{egg:'food',from:'Chili Tent'});},
+    'bbq':()=>{rain(['🍖','🔥','🌭','🥩'],65,6000);toast('Smoke detected. This one is on purpose.',4600,{egg:'food',from:'Pit Boss'});},
+    'code3':()=>{lights(4000);toast('Lights and sirens. Please pull to the right.',4600,{egg:'lights',from:'Unit 1'});},
+    'coin':coin,
+    'dispatch':()=>cad(),
+    'tones':()=>cad(),
+    'thank you':thanks,
+    'thanks':thanks,
+    'donut':R('The donut joke has been retired. Brisket is the new donut.'),
+    '10-8':R('10-8. Back in service. Coffee refilled.'),
+    'coffee':R('Coffee located. Morale restored to acceptable levels.','Break Room'),
+    'overtime':R('Overtime approved. Just kidding. Talk to your sergeant.','Sergeant'),
+    'quiet':R('We do not say the Q word. Now look what you did.'),
+    'beans':R('Beans in chili? Take it up with the judges.','Chili Tent'),
+    'gigem':R('Gig \'em. Now go buy a table.','Kyle Field'),
+    'kurten':R('See you in Kurten, January 22.'),
+    'turnout':R('Turnout gear optional. Boots required.','Station 1')
+  };
+  document.addEventListener('keydown',e=>{ if(e.target.closest&&e.target.closest('input,textarea,select'))return; if(e.metaKey||e.ctrlKey||e.altKey||e.key.length!==1)return; typed=(typed+e.key.toLowerCase()).slice(-12); for(const w in WORDS){ if(typed.endsWith(w)){ typed=''; WORDS[w](); break; } } });
+  // countdown in shifts (24 on / 48 off)
+  const cnt=document.querySelector('.ticket .count');
+  if(cnt){ let st=0; cnt.addEventListener('click',ev=>{ev.preventDefault(); const d=document.getElementById('days-left'); const n=parseInt(d.dataset.days||d.textContent,10); if(isNaN(n))return; d.dataset.days=n; st=(st+1)%3; found('shifts'); if(st===1){d.textContent=Math.ceil(n/3); d.nextElementSibling.textContent='fire shifts to go';} else if(st===2){d.textContent=n*2; d.nextElementSibling.textContent='patrol shifts to go';} else {d.textContent=n; d.nextElementSibling.textContent='days to go';}}); }
+  // mobile: tap the gold ticket date 3 times for steak rain
+  const tdate=document.querySelector('.ticket .date'); let tdc=0, tdt;
+  if(tdate) tdate.addEventListener('click',ev=>{ev.preventDefault(); tdc++; clearTimeout(tdt); tdt=setTimeout(()=>tdc=0,1200); if(tdc>=3){tdc=0; rain(['🥩','🍖','🌶️','🔥'],70,6500); toast('Order up. See you January 22 and 23.',4600,{egg:'food',from:'Kitchen'});}});
+  // report in triplicate
+  const yr2=document.getElementById('yr'); let yc=0;
+  if(yr2) yr2.addEventListener('click',()=>{ if(++yc===3){yc=0;cad('yr');} });
+  // night shift note (not on the nomination or memorial pages)
+  const pg=location.pathname.split('/').pop();
+  if(!/nominate|about/.test(pg)){ const h=new Date().getHours(); if(h>=1&&h<5){ setTimeout(()=>toast('Working nights? The county sleeps because you don\'t. Thank you. Now go drink some water.',6500,{egg:'night',from:'Night Shift'}),2500); } }
+  // photo viewer
+  const gal=[...document.querySelectorAll('.gallery figure img')];
+  if(gal.length){
+    let lb=null, cur=0, sx=null;
+    const show=i=>{cur=(i+gal.length)%gal.length; const im=lb.querySelector('.lb-stage img'); im.src=gal[cur].currentSrc||gal[cur].src; im.alt=gal[cur].alt; lb.querySelector('.lb-cap').textContent=gal[cur].alt; lb.querySelector('.lb-count').textContent=(cur+1)+' of '+gal.length;};
+    const close=()=>{if(!lb)return; lb.remove(); lb=null; document.body.classList.remove('lb-open'); document.removeEventListener('keydown',key); gal[cur].parentElement.focus();};
+    const key=e=>{if(e.key==='Escape')close(); else if(e.key==='ArrowRight')show(cur+1); else if(e.key==='ArrowLeft')show(cur-1);};
+    const open=i=>{
+      lb=document.createElement('div'); lb.className='lb'; lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true'); lb.setAttribute('aria-label','Photo viewer');
+      lb.innerHTML='<div class="lb-top"><span class="lb-count"></span><button type="button" class="lb-btn lb-close" aria-label="Close photo viewer">✕ Close</button></div><div class="lb-stage"><button type="button" class="lb-nav lb-prev" aria-label="Previous photo">‹</button><img alt=""><button type="button" class="lb-nav lb-next" aria-label="Next photo">›</button></div><p class="lb-cap"></p>';
+      document.body.appendChild(lb); document.body.classList.add('lb-open');
+      lb.querySelector('.lb-close').onclick=close; lb.querySelector('.lb-prev').onclick=()=>show(cur-1); lb.querySelector('.lb-next').onclick=()=>show(cur+1);
+      lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('lb-stage'))close();});
+      const st=lb.querySelector('.lb-stage'); st.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true}); st.addEventListener('touchend',e=>{if(sx===null)return; const dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>45) show(cur+(dx<0?1:-1)); sx=null;});
+      document.addEventListener('keydown',key); show(i); lb.querySelector('.lb-close').focus();
+    };
+    gal.forEach((im,i)=>{const f=im.parentElement; f.tabIndex=0; f.setAttribute('role','button'); f.setAttribute('aria-label','Expand photo: '+im.alt); f.addEventListener('click',()=>open(i)); f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(i);}});});
+  }
+  wire('remind-form','remind-msg','You\'re on the list. We\'ll holler when tickets and team entry open.',FORMS.remind);
+  try{const tp=new URLSearchParams(location.search).get('topic'); const sel=document.getElementById('c-topic'); if(tp&&sel&&sel.querySelector('option[value="'+tp+'"]')) sel.value=tp;}catch(e){}
+  wire('contact-form','contact-msg','Copy that. A board member will reply by email.',FORMS.contact);
+  wire('nom-form','nom-msg','Received. A board member will reach out to you directly. Thank you for looking out for them.',FORMS.nominate);
+})();
+</script>

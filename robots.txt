@@ -1,3 +1,4 @@
 User-agent: *
+Disallow: /_source/
 Allow: /
 Sitemap: https://bcfra.com/sitemap.xml
