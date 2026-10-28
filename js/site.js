@@ -159,7 +159,7 @@ const DONATE_URL = "";
     const {o,close}=overlay('cad-ov','Dispatch log');
     o.innerHTML='<div class="cad"><div class="cad-h"><span class="cad-dot" aria-hidden="true"></span><span>Brazos Co. CAD · Ch 1</span><span class="cad-clock"></span><button class="cad-x" type="button" aria-label="Close dispatch log">CLR</button></div><ol class="cad-log"></ol><div class="cad-units" aria-hidden="true"></div><p class="cad-sr" aria-live="polite"></p></div>';
     const log=o.querySelector('.cad-log'), units=o.querySelector('.cad-units'), clock=o.querySelector('.cad-clock'), sr=o.querySelector('.cad-sr');
-    const U=['Sheriff','Police','Fire','EMS','Dispatch','Constable','Troopers','Volunteer FD'];
+    const U=['Sheriff','Police','Detention','Fire','EMS','Dispatch','Constable','Troopers','Vol. Fire'];
     const tiles=U.map(u=>{const d=document.createElement('div'); d.className='cad-u'; d.innerHTML='<b></b><span>DISP</span>'; d.firstChild.textContent=u.toUpperCase(); units.appendChild(d); return d;});
     const L=[
       ['tone','TONE ALERT · ALL STATIONS, ALL AGENCIES'],
@@ -198,7 +198,7 @@ const DONATE_URL = "";
   function thanks(){
     if(busy())return; found('thanks');
     const o=document.createElement('div'); o.className='thanks'; o.setAttribute('role','dialog'); o.setAttribute('aria-modal','true'); o.setAttribute('aria-label','Thank you');
-    o.innerHTML='<canvas aria-hidden="true"></canvas><div class="thanks-c"><p class="thanks-k">From Brazos County</p><p class="thanks-t">To the ones who run toward&nbsp;it.<br><em>Thank you.</em></p><div class="thanks-line" aria-hidden="true"></div><p class="thanks-r"><span>Deputies</span><span>Officers</span><span>Firefighters</span><span>Medics</span><span>Dispatchers</span><span>Troopers</span><span>Constables</span><span>Volunteers</span></p><button type="button" class="thanks-s">Return to duty</button></div>';
+    o.innerHTML='<canvas aria-hidden="true"></canvas><div class="thanks-c"><p class="thanks-k">From Brazos County</p><p class="thanks-t">To the ones who run toward&nbsp;it.<br><em>Thank you.</em></p><div class="thanks-line" aria-hidden="true"></div><p class="thanks-r"><span>Deputies</span><span>Officers</span><span>Detention Officers</span><span>Firefighters</span><span>Medics</span><span>Dispatchers</span><span>Troopers</span><span>Constables</span><span>Volunteers</span></p><button type="button" class="thanks-s">Return to duty</button></div>';
     document.body.appendChild(o); document.body.classList.add('lb-open');
     let alive=true, raf=0; const prev=document.activeElement;
     const close=()=>{ if(!alive)return; alive=false; cancelAnimationFrame(raf); o.classList.remove('in'); document.body.classList.remove('lb-open'); document.removeEventListener('keydown',key); setTimeout(()=>o.remove(),800); if(prev&&prev.focus)try{prev.focus({preventScroll:true});}catch(e){} };

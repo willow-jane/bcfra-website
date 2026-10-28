@@ -331,13 +331,13 @@ fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
 .cad-log .ok{color:#e4fff0}
 .cad-log .sig{color:#ffcf5a;margin-top:8px}
 .cad-log .cur::after{content:"\258C";animation:blink .8s steps(1) infinite;margin-left:1px}
-.cad-units{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:6px 16px 16px}
+.cad-units{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px 16px 16px}
 .cad-u{border:1px solid #1f3b2c;border-radius:6px;padding:7px 9px;background:#07130d;font-size:.66rem;letter-spacing:.1em;transition:background .4s,border-color .4s}
 .cad-u b{display:block;color:#a8ffd0;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cad-u span{color:#ffcf5a}
 .cad-u.av{border-color:#2f8f5a;background:#0b2618}.cad-u.av span{color:#7dffb2}
 .cad-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-@media (max-width:560px){.cad{font-size:.74rem}.cad-log{min-height:330px;padding:12px 12px 6px}.cad-log li{gap:8px}.cad-units{grid-template-columns:repeat(2,1fr);padding:6px 12px 12px}.cad-h span:nth-child(2){display:none}}
+@media (max-width:560px){.cad{font-size:.74rem}.cad-log{min-height:330px;padding:12px 12px 6px}.cad-log li{gap:8px}.cad-units{grid-template-columns:repeat(3,1fr);padding:6px 12px 12px}.cad-h span:nth-child(2){display:none}}
 /* thank-you moment */
 .thanks{position:fixed;inset:0;z-index:104;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 62%,rgba(16,38,74,.97),rgba(2,6,13,.99) 72%);opacity:0;transition:opacity .9s;cursor:pointer;padding:24px var(--gutter-r) 24px var(--gutter-l)}
 .thanks.in{opacity:1}
