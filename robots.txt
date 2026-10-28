@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bcfra.com/sitemap.xml
