@@ -285,7 +285,8 @@ fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
 
 /* easter eggs */
 .jd{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:help;text-decoration:underline dotted;text-underline-offset:3px}
-.jd-note{margin:10px 0 0;font-size:.85rem;color:var(--gold)}
+.jd-note{margin:10px 0 0;font-size:.85rem;color:var(--gold);transition:opacity .22s}
+.jd-note.jd-swap{opacity:0}
 #foot-badge{cursor:pointer;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none;touch-action:manipulation}
 .lightbar{position:fixed;inset:0 0 auto;height:calc(16px + env(safe-area-inset-top,0px));z-index:101;pointer-events:none;background:linear-gradient(90deg,#ff1f1f 0 25%,#fff 25% 27%,#1f6bff 27% 50%,#ff1f1f 50% 75%,#fff 75% 77%,#1f6bff 77% 100%);background-size:200% 100%;animation:bar 1s steps(2) infinite;box-shadow:0 0 28px 10px rgba(255,31,31,.55),0 0 40px 18px rgba(31,107,255,.45)}
 .lightwash{position:fixed;inset:0;z-index:100;pointer-events:none;animation:wash 1s steps(1) infinite}
