@@ -209,7 +209,7 @@ section{padding-block:clamp(64px,9vw,112px)}
 .tiers-head span{font-weight:400;font-size:.85rem;color:var(--muted)}
 .tiers table{width:100%;border-collapse:collapse;font-size:.94rem;font-variant-numeric:tabular-nums}
 .tiers th{text-align:left;font-weight:600;padding:7px 0}
-.tiers td{padding:7px 0 7px 12px;color:var(--muted)}
+.tiers td{padding:7px 0 7px 12px;color:var(--muted);white-space:nowrap}
 .tiers td:last-child{text-align:right;color:var(--ink);font-weight:600}
 .tiers tr{border-top:1px solid var(--line)}
 
