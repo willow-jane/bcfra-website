@@ -37,19 +37,13 @@ extra_css='''
 .page-head .wrap{position:relative;z-index:1;display:grid;gap:14px}
 .page-head h1{font-size:clamp(2.4rem,5.4vw,4rem);color:#fff}
 .page-head p{color:#c9d4e6;font-size:1.15rem;max-width:58ch}
-.crumb{font-size:.9rem;color:var(--band-muted)}
-.crumb a{color:var(--band-muted)}
-.teasers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.teaser{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start;padding:22px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);text-decoration:none;transition:border-color .15s ease, transform .15s ease}
-.teaser:hover{border-color:var(--blue);transform:translateY(-2px)}
-.teaser .d{width:64px;text-align:center;border-radius:8px;padding:8px 4px;color:#fff;font:700 .8rem/1.1 var(--display)}
-.teaser .d b{display:block;font-size:1.5rem;line-height:1}
-.t-steak .d{background:#7a2416}.t-chili .d{background:var(--red)}.t-bbq .d{background:var(--blue)}
-.teaser h3{font-size:1.2rem}
-.teaser p{color:var(--muted);font-size:.93rem;margin-top:4px}
-.teaser .go{color:var(--link);font-weight:600;font-size:.9rem;margin-top:10px;display:block}
+.up-list{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.up-list li{display:grid;grid-template-columns:190px minmax(0,1fr);gap:6px 24px;padding:16px 0;border-bottom:1px solid var(--line)}
+.up-list time{font:700 1.05rem/1.4 var(--display);color:var(--blue)}
+.up-list a{font-weight:700}
+.up-list span{color:var(--muted)}
+@media (max-width:640px){.up-list li{grid-template-columns:1fr}}
 .more{margin-top:28px}
-@media (max-width:900px){.teasers{grid-template-columns:1fr}}
 .cta-band{background:var(--surface);border-top:1px solid var(--line)}
 .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .cta{display:grid;gap:12px;align-content:start;padding:30px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
@@ -64,7 +58,7 @@ extra_css='''
 '''+open(os.path.join(BASE,'stories.css')).read()
 head=head.replace('</style>', extra_css+'</style>')
 
-NAV=[('about.html','About'),('stories.html','Stories'),('events.html','Events'),('nominate-someone.html','Nominate'),('get-involved.html','Get involved'),('contact.html','Contact')]
+NAV=[('about.html','About'),('stories.html','Stories'),('news.html','News'),('events.html','Events'),('nominate-someone.html','Nominate'),('get-involved.html','Get involved'),('contact.html','Contact')]
 def header(cur):
     links='\n'.join(f'      <a href="{h}"'+(' aria-current="page"' if h==cur else '')+f'>{t}</a>' for h,t in NAV)
     return f'''<header class="top">
@@ -88,9 +82,8 @@ def relink(html, page):
     for a,b in R.items(): html=html.replace(a,b)
     return html
 def page_head(title,lede,photo):
-    return f'''  <section class="page-head" style="--ph:url(img/{photo})">
+    return f'''  <section class="page-head" style="--ph:url(/img/{photo})">
     <div class="wrap">
-      <span class="crumb"><a href="index.html"><span aria-hidden="true">←</span> Back to home</a></span>
       <h1>{title}</h1>
       <p>{lede}</p>
     </div>
@@ -98,6 +91,8 @@ def page_head(title,lede,photo):
 '''
 def strip_head(sec):  # remove the section's own sec-head block (title now in page-head)
     return re.sub(r'\n      <div class="sec-head">.*?\n      </div>\n','\n',sec,count=1,flags=re.S)
+import datetime as _dt
+DAYS=max(0,(_dt.date(2027,1,22)-_dt.date.today()).days)
 def doc(fname,title,desc,body):
     h=head
     full=f'{title} | Brazos County First Responders Association' if fname!='index.html' else 'Brazos County First Responders Association | Bryan-College Station, TX'
@@ -107,14 +102,15 @@ def doc(fname,title,desc,body):
     h=h.replace('<link rel="canonical" href="https://bcfra.com/">',f'<link rel="canonical" href="{url}">').replace('<meta property="og:url" content="https://bcfra.com/">',f'<meta property="og:url" content="{url}">')
     h=h.replace('<meta property="og:title" content="Brazos County First Responders Association">',f'<meta property="og:title" content="{full}">')
     h=h.replace('<meta name="claude:viewport-fit-sides" content="cover">\n','')
-    h=re.sub(r'<meta property="og:description" content="[^"]*">',f'<meta property="og:description" content="Brazos County takes care of its own. {desc}">\n<meta property="og:site_name" content="Brazos County First Responders Association">\n<meta name="twitter:card" content="summary_large_image">',h)
+    h=re.sub(r'<meta property="og:description" content="[^"]*">',f'<meta property="og:description" content="{desc}">\n<meta property="og:site_name" content="Brazos County First Responders Association">\n<meta name="twitter:card" content="summary_large_image">',h)
     h='<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'+h+'\n</head>\n<body>'
     if fname in ('events.html','get-involved.html'):
         body=body.replace('<h3 class="poster-title"','<h2 class="poster-title"').replace('</small>Steak Dinner Fundraiser</h3>','</small>Steak Dinner Fundraiser</h2>').replace('</small>Chili Cookoff</h3>','</small>Chili Cookoff</h2>').replace('</small>BBQ Cookoff</h3>','</small>BBQ Cookoff</h2>')
-        for t in ('Donate','Sponsor an event','Donate an auction item'): body=body.replace(f'<h3>{t}</h3>',f'<h2>{t}</h2>')
+        for t in ('Give directly','Sponsor the Steak Dinner','Donate an auction item'): body=body.replace(f'<h3>{t}</h3>',f'<h2>{t}</h2>')
     out=h+'\n\n'+header(fname)+'\n<main id="top">\n'+relink(body,fname)+'</main>\n\n'+relink(footer,fname)+'\n\n'+script+'\n</body>\n</html>\n'
     out=out.replace("const f=document.getElementById(formId), m=document.getElementById(msgId);","const f=document.getElementById(formId), m=document.getElementById(msgId); if(!f) return;")
     out=out.replace("setTimeout(()=>document.getElementById('r-name').focus({preventScroll:true}),450);","const rn=document.getElementById('r-name'); if(rn) setTimeout(()=>rn.focus({preventScroll:true}),450);")
+    out=out.replace('<b id="days-left">86</b>',f'<b id="days-left">{DAYS}</b>')
     out=out.replace('img/badge.png" alt="" width="44"','img/badge-sm.png" alt="" width="44"').replace('img/badge.png" alt="" width="62"','img/badge-sm.png" alt="" width="62"').replace('img/badge.png" alt="" width="64"','img/badge-sm.png" alt="" width="64"').replace('img/badge.png" alt="" width="72"','img/badge-sm.png" alt="" width="72"')
     # --- security hardening: move inline CSS/JS to files, add CSP ---
     st=re.search(r'<style>(.*?)</style>',out,re.S); sc=re.search(r'<script>(.*?)</script>',out,re.S)
@@ -138,13 +134,12 @@ teasers='''  <section aria-labelledby="up-title">
     <div class="wrap">
       <div class="sec-head">
         <h2 id="up-title">Upcoming events</h2>
-        <p class="lede">Steak in January, chili the morning after, brisket in the spring.</p>
       </div>
-      <div class="teasers">
-        <a class="teaser t-steak" href="events.html#steak-dinner"><div class="d">JAN<b>22</b>2027</div><div><h3>4th Annual Steak Dinner</h3><p>Steak, live music, auctions, gun raffles. Boots encouraged.</p><span class="go">Details</span></div></a>
-        <a class="teaser t-chili" href="events.html#chili-cookoff"><div class="d">JAN<b>23</b>2027</div><div><h3>3rd Annual Chili Cookoff</h3><p>Agency teams, one pot each. Mild is not a category.</p><span class="go">Details</span></div></a>
-        <a class="teaser t-bbq" href="events.html#bbq-cookoff"><div class="d">2027<b>TBA</b></div><div><h3>Annual BBQ Cookoff</h3><p>Badge vs. badge at St. Nick's Green. Brisket decides.</p><span class="go">Details</span></div></a>
-      </div>
+      <ul class="up-list">
+        <li><time>Fri, Jan 22, 2027</time><div><a href="events.html#steak-dinner">4th Annual Steak Dinner</a><br><span>Kurten Community Center. Tickets on sale.</span></div></li>
+        <li><time>Sat, Jan 23, 2027</time><div><a href="events.html#chili-cookoff">3rd Annual Chili Cookoff</a><br><span>Kurten Community Center. Team entry details coming soon.</span></div></li>
+        <li><time>2027, date TBA</time><div><a href="events.html#bbq-cookoff">Annual BBQ Cookoff</a><br><span>St. Nick's Green, College Station.</span></div></li>
+      </ul>
       <div class="more"><a class="btn btn-navy" href="events.html#reminders">Remind me</a></div>
     </div>
   </section>
@@ -153,14 +148,14 @@ teasers='''  <section aria-labelledby="up-title">
 cta='''  <section class="cta-band" aria-label="Get involved">
     <div class="wrap cta-grid">
       <div class="cta dark">
-        <h2 style="font-size:2rem">Know someone who needs help?</h2>
+        <h2 style="font-size:2rem">Nominate someone for help</h2>
         <p>If a Brazos County first responder is hurt, sick or struggling, tell us. Confidential. Self-nominations welcome.</p>
         <a class="btn btn-gold" href="nominate-someone.html">Nominate a first responder</a>
       </div>
       <div class="cta">
-        <h2 style="font-size:2rem">Be their backup</h2>
+        <h2 style="font-size:2rem">Donate or sponsor</h2>
         <p>Donate, sponsor a table, or give an auction item.</p>
-        <a class="btn btn-navy" href="get-involved.html">Pick how to help</a>
+        <a class="btn btn-navy" href="get-involved.html">Ways to give</a>
       </div>
     </div>
   </section>
@@ -183,37 +178,58 @@ helped_sec='''  <section class="about-extra" aria-labelledby="helped-title">
 
   <section aria-labelledby="news-title">
     <div class="wrap">
-      <div class="sec-head"><h2 id="news-title">In the news</h2></div>
-      <ul class="news">
-        <li><span>KBTX, Jan 2024</span><a href="https://www.kbtx.com/2024/01/27/inaugural-chili-cook-off-raises-money-brazos-county-first-responders/" target="_blank" rel="noopener">Inaugural chili cook-off raises money for Brazos County first responders</a></li>
-        <li><span>KBTX, Jun 2023</span><a href="https://www.kbtx.com/2023/06/04/brazos-county-first-responders-association-raises-money-families-first-responders-need/" target="_blank" rel="noopener">BCFRA raises money for families of first responders in need</a></li>
-        <li><span>25 News, May 2022</span><a href="https://www.kxxv.com/brazos/brazos-county-first-responder-association-bbq-fundraiser-helps-first-responders-in-need" target="_blank" rel="noopener">BBQ fundraiser helps first responders in need</a></li>
-        <li><span>25 News, May 2021</span><a href="https://kxxv.com/brazos/bcfra-hosts-7th-annual-bbq-cookoff-fundraiser-raising-thousands" target="_blank" rel="noopener">BCFRA hosts annual BBQ cookoff fundraiser, raising thousands</a></li>
-        <li><span>25 News, Apr 2021</span><a href="https://www.kxxv.com/brazos/brazos-county-nonprofit-pledges-to-help-families-of-fallen-officers-including-the-walker-family" target="_blank" rel="noopener">Brazos County nonprofit pledges to help families of fallen officers</a></li>
-      </ul>
+      <div class="sec-head"><h2 id="news-title">In the news</h2><p class="lede">Local TV and news coverage of our fundraisers and the first responders we've helped.</p></div>
+      <p><a class="btn btn-navy" href="news.html">See all news coverage</a></p>
     </div>
   </section>
 '''
 # About
-about_body=page_head('Why we exist','Run by the first responders of Brazos County, for the first responders of Brazos County.','hall.jpg')+story.replace('<section id="story"','<section id="story" style="padding-top:clamp(56px,7vw,88px)"')+'\n\n'+ \
+about_body=page_head('About BCFRA','A 501(c)(3) started in 2014 by Brazos County first responders, in memory of Constable Brian Bachmann.','hall.jpg')+story.replace('<section id="story"','<section id="story" style="padding-top:clamp(56px,7vw,88px)"')+'\n\n'+ \
   f'  <section class="about-extra" aria-label="Agencies">\n    <div class="wrap">\n{agencies}    </div>\n  </section>\n\n'+ \
   f'  <section class="history-sec" aria-label="History">\n    <div class="wrap">\n{history}    </div>\n  </section>\n'+helped_sec
 doc('about.html','About us: In memory of Constable Brian Bachmann','How the Brazos County First Responders Association began in memory of Constable Brian Bachmann, and the agencies it supports.',about_body)
+news_body=page_head('In the news','Local news coverage of BCFRA and the first responders we’ve helped, newest first.','friends.jpg')+'''  <section aria-labelledby="n1-title">
+    <div class="wrap" style="max-width:900px">
+      <h2 id="n1-title" style="font-size:1.8rem;margin-bottom:18px">About BCFRA and our events</h2>
+      <ul class="news">
+        <li><span>KBTX, Jan 27, 2024</span><a href="https://www.kbtx.com/2024/01/27/inaugural-chili-cook-off-raises-money-brazos-county-first-responders/" target="_blank" rel="noopener">Inaugural chili cook-off raises money for Brazos County first responders</a></li>
+        <li><span>KBTX, Jan 20, 2024</span><a href="https://www.kbtx.com/2024/01/20/chili-cookoff-steak-dinner-benefit-brazos-county-first-responders/" target="_blank" rel="noopener">Chili Cookoff and Steak Dinner to benefit Brazos County first responders</a></li>
+        <li><span>KAGS, Jan 2024</span><a href="https://www.kagstv.com/article/entertainment/events/brazos-county-first-responders-association-first-annual-chili-cook-off-jan-27-2024/499-559268ee-484b-4a52-9851-0aa70216ffa9" target="_blank" rel="noopener">Brazos County First Responders Association to host first annual chili cook off on Jan. 27</a></li>
+        <li><span>KBTX, Jan 14, 2024</span><a href="https://www.kbtx.com/2024/01/14/chili-cookoff-steak-dinner-benefit-brazos-county-first-responders-association/" target="_blank" rel="noopener">Chili cookoff and steak dinner to benefit Brazos County First Responders Association</a></li>
+        <li><span>KBTX, Jun 4, 2023</span><a href="https://www.kbtx.com/2023/06/04/brazos-county-first-responders-association-raises-money-families-first-responders-need/" target="_blank" rel="noopener">Brazos County First Responders Association raises money for families of first responders in need</a></li>
+        <li><span>KBTX, Jun 3, 2023</span><a href="https://www.kbtx.com/2023/06/03/annual-brazos-county-first-responders-association-cookoff-returns-saturday/" target="_blank" rel="noopener">Annual Brazos County First Responders Association cookoff returns Saturday</a></li>
+        <li><span>25 News, May 2022</span><a href="https://www.kxxv.com/brazos/brazos-county-first-responder-association-bbq-fundraiser-helps-first-responders-in-need" target="_blank" rel="noopener">BBQ fundraiser helps first responders in need</a></li>
+        <li><span>25 News, May 2021</span><a href="https://kxxv.com/brazos/bcfra-hosts-7th-annual-bbq-cookoff-fundraiser-raising-thousands" target="_blank" rel="noopener">BCFRA hosts 7th annual BBQ cookoff fundraiser, raising thousands</a></li>
+        <li><span>KBTX, May 16, 2021</span><a href="https://www.kbtx.com/2021/05/16/brazos-county-first-responders-bbq-cookoff-returns-after-missing-2020/" target="_blank" rel="noopener">Brazos County First Responders BBQ Cookoff returns after missing 2020</a></li>
+        <li><span>25 News, Apr 2021</span><a href="https://www.kxxv.com/brazos/brazos-county-nonprofit-pledges-to-help-families-of-fallen-officers-including-the-walker-family" target="_blank" rel="noopener">Brazos County nonprofit pledges to help families of fallen officers, including the Walker family</a></li>
+      </ul>
+      <h2 style="font-size:1.8rem;margin:48px 0 18px">About first responders we’ve helped</h2>
+      <p style="color:var(--muted);margin-bottom:12px">Grayson Brock, College Station Fire Department. <a href="stories.html">Read his story</a>.</p>
+      <ul class="news">
+        <li><span>KBTX, Aug 31, 2026</span><a href="https://www.kbtx.com/2026/08/31/college-station-firefighters-organize-5k-benefit-firefighter-battling-cancer/" target="_blank" rel="noopener">College Station firefighters organize 5k to benefit firefighter battling cancer</a></li>
+        <li><span>KBTX, Aug 30, 2026</span><a href="https://www.kbtx.com/2026/08/30/hundreds-gather-help-raise-money-college-station-firefighter-battling-cancer/" target="_blank" rel="noopener">Hundreds gather to help raise money for College Station firefighter battling cancer</a></li>
+        <li><span>KBTX, Aug 6, 2026</span><a href="https://www.kbtx.com/2026/08/06/first-responders-community-rally-behind-college-station-firefighter-battling-cancer/" target="_blank" rel="noopener">First responders, community rally behind College Station firefighter battling cancer</a></li>
+      </ul>
+      <p class="fine" style="margin-top:28px;font-size:.95rem">Know of a story we missed? <a href="contact.html?topic=media">Send us the link</a>.</p>
+    </div>
+  </section>
+'''
+doc('news.html','In the news','Local news coverage of the Brazos County First Responders Association, its fundraisers and the first responders it has helped.',news_body)
 # Events
 doc('events.html','Steak Dinner Jan 22, Chili Cookoff Jan 23, Kurten','Steak Dinner, Chili Cookoff and BBQ Cookoff: upcoming Brazos County First Responders Association fundraisers, tickets and reminders.',
-    page_head('Come hungry.','Three fundraisers a year. Every plate funds help for first responders and scholarships for their kids.','stage.jpg')+strip_head(events)+'\n\n'+remind+'\n')
+    page_head('Events','The Steak Dinner and Chili Cookoff are in January and the BBQ Cookoff later in the year. The money pays for help for first responders and scholarships for their kids.','stage.jpg')+strip_head(events)+'\n\n'+remind+'\n')
 # Nominate
 doc('nominate-someone.html','Nominate a first responder','Nominate a Brazos County first responder facing illness, injury or hardship for assistance from the BCFRA.',
     page_head('Nominate a first responder','Tell us who needs help. The board reviews every request in confidence.','speaker.jpg')+nominate.replace('<h2 id="nom-title">Nominate a first responder</h2>','<h2 id="nom-title">How it works</h2>')+'\n')
 # Get involved
 doc('get-involved.html','Donate or sponsor','Donate, sponsor an event, or give an auction item to support Brazos County first responders.',
-    page_head('Back them up.','Give, sponsor, or donate something worth bidding on.','tables.jpg')+strip_head(give)+'\n\n'+supporters.replace('<section class="supporters"','<section class="supporters" id="supporters"')+'\n')
+    page_head('Donate or sponsor','Give money, sponsor the Steak Dinner, or donate an auction item.','tables.jpg')+strip_head(give)+'\n\n'+supporters.replace('<section class="supporters"','<section class="supporters" id="supporters"')+'\n')
 
-contact_body=page_head('Call it in.','Tickets, teams, sponsors, auction items or a plain question. A board member will reply.','group.jpg')+'''  <section aria-labelledby="ct-title">
+contact_body=page_head('Contact','Questions about tickets, cookoff teams, sponsorships or auction items. A board member will reply.','group.jpg')+'''  <section aria-labelledby="ct-title">
     <div class="wrap nominate-grid">
       <div>
-        <h2 id="ct-title">Straight to the board</h2>
-        <p class="lede" style="margin-top:16px">Fastest way to reach us. Goes right to the board's inbox.</p>
+        <h2 id="ct-title">Email, call or use the form</h2>
+        <p class="lede" style="margin-top:16px">The form and the email both go to the board's inbox.</p>
         <ul class="facts" style="margin-top:28px">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg><span><a href="mailto:brazoscountyfirstresponders@gmail.com">brazoscountyfirstresponders@gmail.com</a></span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span><a href="tel:+19792290100">(979) 229-0100</a></span></li>

@@ -1,2 +1,2 @@
-var m={"/about.html":"/about","/events.html":"/events","/get-involved.html":"/get-involved","/nominate-someone.html":"/nominate-someone","/contact.html":"/contact","/sponsors":"/get-involved#supporters","/home":"/","/index.html":"/"};
+var m={"/about.html":"/about","/events.html":"/events","/get-involved.html":"/get-involved","/nominate-someone.html":"/nominate-someone","/contact.html":"/contact","/news.html":"/news","/stories.html":"/stories","/sponsors":"/get-involved#supporters","/home":"/","/index.html":"/"};
 var p=location.pathname.replace(/\/$/,"");if(m[p])location.replace(m[p]+location.search+location.hash);else if(p&&location.pathname!==p)location.replace(p+location.search+location.hash);

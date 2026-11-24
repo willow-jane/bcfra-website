@@ -1,0 +1,5 @@
+# GitHub Pages: publish the static files as-is; keep the build source private to the repo.
+include:
+  - .well-known
+exclude:
+  - _source

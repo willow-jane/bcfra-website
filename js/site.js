@@ -1,6 +1,5 @@
 // Formspree endpoints (deliver to brazoscountyfirstresponders@gmail.com)
 const FORMS = { remind: "https://formspree.io/f/mwllbzak", nominate: "https://formspree.io/f/mppprnog", contact: "https://formspree.io/f/xeaakwop" };
-const DONATE_URL = "";
 
 (function(){
   // refuse to be framed by other sites (GitHub Pages can't send X-Frame-Options)
@@ -16,7 +15,6 @@ const DONATE_URL = "";
     else if(n===0){d.textContent='Tonight';d.nextElementSibling.textContent='';}
     else {d.closest('.count').hidden=true;}
   }
-  if(DONATE_URL){const b=document.getElementById('donate-btn');b.href=DONATE_URL;b.target='_blank';b.rel='noopener';}
 
   try{const pk=new URLSearchParams(location.search).get('pick'); const mp={steak:'r-steak',chili:'r-chili',bbq:'r-bbq',sponsor:'r-sponsor'}; if(pk&&mp[pk]){document.querySelectorAll('#remind-form input[name=events]').forEach(c=>c.checked=false); document.getElementById(mp[pk]).checked=true;}}catch(e){}
   // "Remind me" buttons preselect the right checkbox
@@ -47,7 +45,6 @@ const DONATE_URL = "";
         (missing[0]||badEmail[0]).focus(); return;
       }
       const ts=f.querySelector('[name="cf-turnstile-response"]'); if(f.querySelector('.cf-turnstile') && /(^|\.)bcfra\.com$/.test(location.hostname) && (!ts||!ts.value)){m.hidden=false;m.textContent='One sec. Finish the quick security check above the button, then try again.';return;}
-      if(!FORM_ENDPOINT){m.hidden=false;m.textContent=okText+' (Preview: once the site is live, this goes straight to the association\'s inbox.)';f.reset();return;}
       try{
         const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)});
         if(!r.ok) throw 0;
@@ -229,7 +226,8 @@ const DONATE_URL = "";
   if(jn) jn.textContent=jdNext();
   let jdTimer=null;
   const jdShow=()=>{ if(RM){ jn.textContent=jdNext(); return; } jn.classList.add('jd-swap'); setTimeout(()=>{ jn.textContent=jdNext(); jn.classList.remove('jd-swap'); },220); };
-  if(jd&&jn&&!EOW) jd.addEventListener('click',()=>{ if(!jn.hidden) jdShow(); jn.hidden=false; found('jane'); clearInterval(jdTimer); jdTimer=setInterval(()=>{ if(!document.hidden) jdShow(); },9000); });
+  if(jd&&QUIET) jd.disabled=true;
+  if(jd&&jn&&!QUIET) jd.addEventListener('click',()=>{ if(!jn.hidden) jdShow(); jn.hidden=false; found('jane'); clearInterval(jdTimer); jdTimer=setInterval(()=>{ if(!document.hidden) jdShow(); },9000); });
 
   // ---------- footer badge: 5 taps = lights, then the thank-you; press and hold = challenge coin ----------
   const fb=document.getElementById('foot-badge'); let taps=0, tt, hold, held=false;
