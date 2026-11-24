@@ -106,7 +106,7 @@ def doc(fname,title,desc,body):
     h='<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'+h+'\n</head>\n<body>'
     if fname in ('events.html','get-involved.html'):
         body=body.replace('<h3 class="poster-title"','<h2 class="poster-title"').replace('</small>Steak Dinner Fundraiser</h3>','</small>Steak Dinner Fundraiser</h2>').replace('</small>Chili Cookoff</h3>','</small>Chili Cookoff</h2>').replace('</small>BBQ Cookoff</h3>','</small>BBQ Cookoff</h2>')
-        for t in ('Give directly','Sponsor the Steak Dinner','Donate an auction item'): body=body.replace(f'<h3>{t}</h3>',f'<h2>{t}</h2>')
+        for t in ('Give directly','Put your name on the night','Give something to bid on'): body=body.replace(f'<h3>{t}</h3>',f'<h2>{t}</h2>')
     out=h+'\n\n'+header(fname)+'\n<main id="top">\n'+relink(body,fname)+'</main>\n\n'+relink(footer,fname)+'\n\n'+script+'\n</body>\n</html>\n'
     out=out.replace("const f=document.getElementById(formId), m=document.getElementById(msgId);","const f=document.getElementById(formId), m=document.getElementById(msgId); if(!f) return;")
     out=out.replace("setTimeout(()=>document.getElementById('r-name').focus({preventScroll:true}),450);","const rn=document.getElementById('r-name'); if(rn) setTimeout(()=>rn.focus({preventScroll:true}),450);")
@@ -117,7 +117,8 @@ def doc(fname,title,desc,body):
     os.makedirs(os.path.join(OUT,'css'),exist_ok=True); os.makedirs(os.path.join(OUT,'js'),exist_ok=True)
     open(os.path.join(OUT,'css','site.css'),'w').write(st.group(1).strip()+'\n')
     open(os.path.join(OUT,'js','site.js'),'w').write(sc.group(1).strip()+'\n')
-    out=out.replace(st.group(0),'<link rel="stylesheet" href="css/site.css">').replace(sc.group(0),'<script src="js/site.js"></script>')
+    import hashlib as _h; _v=_h.md5((st.group(1)+sc.group(1)).encode()).hexdigest()[:8]
+    out=out.replace(st.group(0),f'<link rel="stylesheet" href="css/site.css?v={_v}">').replace(sc.group(0),f'<script src="js/site.js?v={_v}"></script>')
     CSP=("default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
          "font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formspree.io https://challenges.cloudflare.com; "
          "form-action https://formspree.io; base-uri 'self'; object-src 'none'; frame-src https://challenges.cloudflare.com; manifest-src 'self'; upgrade-insecure-requests")
@@ -136,9 +137,9 @@ teasers='''  <section aria-labelledby="up-title">
         <h2 id="up-title">Upcoming events</h2>
       </div>
       <ul class="up-list">
-        <li><time>Fri, Jan 22, 2027</time><div><a href="events.html#steak-dinner">4th Annual Steak Dinner</a><br><span>Kurten Community Center. Tickets on sale.</span></div></li>
-        <li><time>Sat, Jan 23, 2027</time><div><a href="events.html#chili-cookoff">3rd Annual Chili Cookoff</a><br><span>Kurten Community Center. Team entry details coming soon.</span></div></li>
-        <li><time>2027, date TBA</time><div><a href="events.html#bbq-cookoff">Annual BBQ Cookoff</a><br><span>St. Nick's Green, College Station.</span></div></li>
+        <li><time>Fri, Jan 22, 2027</time><div><a href="events.html#steak-dinner">4th Annual Steak Dinner</a><br><span>Kurten Community Center. Tickets on sale. Boots encouraged.</span></div></li>
+        <li><time>Sat, Jan 23, 2027</time><div><a href="events.html#chili-cookoff">3rd Annual Chili Cookoff</a><br><span>Kurten Community Center. Agency teams, one pot each. Mild is not a category.</span></div></li>
+        <li><time>2027, date TBA</time><div><a href="events.html#bbq-cookoff">Annual BBQ Cookoff</a><br><span>St. Nick's Green, College Station. Badge vs. badge. Brisket decides.</span></div></li>
       </ul>
       <div class="more"><a class="btn btn-navy" href="events.html#reminders">Remind me</a></div>
     </div>
@@ -148,12 +149,12 @@ teasers='''  <section aria-labelledby="up-title">
 cta='''  <section class="cta-band" aria-label="Get involved">
     <div class="wrap cta-grid">
       <div class="cta dark">
-        <h2 style="font-size:2rem">Nominate someone for help</h2>
+        <h2 style="font-size:2rem">Know someone who needs help?</h2>
         <p>If a Brazos County first responder is hurt, sick or struggling, tell us. Confidential. Self-nominations welcome.</p>
         <a class="btn btn-gold" href="nominate-someone.html">Nominate a first responder</a>
       </div>
       <div class="cta">
-        <h2 style="font-size:2rem">Donate or sponsor</h2>
+        <h2 style="font-size:2rem">Be their backup</h2>
         <p>Donate, sponsor a table, or give an auction item.</p>
         <a class="btn btn-navy" href="get-involved.html">Ways to give</a>
       </div>
@@ -217,15 +218,15 @@ news_body=page_head('In the news','Local news coverage of BCFRA and the first re
 doc('news.html','In the news','Local news coverage of the Brazos County First Responders Association, its fundraisers and the first responders it has helped.',news_body)
 # Events
 doc('events.html','Steak Dinner Jan 22, Chili Cookoff Jan 23, Kurten','Steak Dinner, Chili Cookoff and BBQ Cookoff: upcoming Brazos County First Responders Association fundraisers, tickets and reminders.',
-    page_head('Events','The Steak Dinner and Chili Cookoff are in January and the BBQ Cookoff later in the year. The money pays for help for first responders and scholarships for their kids.','stage.jpg')+strip_head(events)+'\n\n'+remind+'\n')
+    page_head('Come hungry.','The Steak Dinner and Chili Cookoff are in January and the BBQ Cookoff later in the year. The money pays for help for first responders and scholarships for their kids.','stage.jpg')+strip_head(events)+'\n\n'+remind+'\n')
 # Nominate
 doc('nominate-someone.html','Nominate a first responder','Nominate a Brazos County first responder facing illness, injury or hardship for assistance from the BCFRA.',
     page_head('Nominate a first responder','Tell us who needs help. The board reviews every request in confidence.','speaker.jpg')+nominate.replace('<h2 id="nom-title">Nominate a first responder</h2>','<h2 id="nom-title">How it works</h2>')+'\n')
 # Get involved
 doc('get-involved.html','Donate or sponsor','Donate, sponsor an event, or give an auction item to support Brazos County first responders.',
-    page_head('Donate or sponsor','Give money, sponsor the Steak Dinner, or donate an auction item.','tables.jpg')+strip_head(give)+'\n\n'+supporters.replace('<section class="supporters"','<section class="supporters" id="supporters"')+'\n')
+    page_head('Back them up.','Give money, sponsor the Steak Dinner, or donate an auction item.','tables.jpg')+strip_head(give)+'\n\n'+supporters.replace('<section class="supporters"','<section class="supporters" id="supporters"')+'\n')
 
-contact_body=page_head('Contact','Questions about tickets, cookoff teams, sponsorships or auction items. A board member will reply.','group.jpg')+'''  <section aria-labelledby="ct-title">
+contact_body=page_head('Call it in.','Questions about tickets, cookoff teams, sponsorships or auction items. A board member will reply.','group.jpg')+'''  <section aria-labelledby="ct-title">
     <div class="wrap nominate-grid">
       <div>
         <h2 id="ct-title">Email, call or use the form</h2>

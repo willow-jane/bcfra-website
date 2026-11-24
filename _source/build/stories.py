@@ -78,7 +78,7 @@ cards=f"""  <section class="about-extra" aria-labelledby="more-title">
 
   <section aria-label="Nominate">
     <div class="wrap st-wrap st-close">
-      <p>To ask for help for someone, use the nomination form.</p>
+      <p>Every story here started with someone speaking up.</p>
       <a class="btn btn-gold" href="nominate-someone.html">Nominate a first responder</a>
     </div>
   </section>

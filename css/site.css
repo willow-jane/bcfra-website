@@ -99,9 +99,9 @@ section{padding-block:clamp(64px,9vw,112px)}
 .ticket .date b{display:block;font-size:2.4rem;line-height:.9}
 .ticket .what{min-width:0}
 .ticket .what strong{font:700 1.3rem/1.15 var(--display);display:block}
-.ticket .what span{display:block;font-size:.95rem}
+.ticket .what span{display:block;font-size:.95rem;margin-top:2px}
 .ticket a{color:inherit}
-.ticket .go{display:block;width:fit-content;margin-top:6px;font-weight:700;font-size:.95rem;text-decoration:underline;text-underline-offset:3px}
+.ticket .go{display:block;width:fit-content;margin-top:8px;color:inherit;font-weight:700;font-size:.95rem;text-decoration:underline;text-underline-offset:3px}
 .ticket .what strong a{text-decoration:none}
 .ticket .count{text-align:right;font-variant-numeric:tabular-nums}
 .ticket .count b{font:700 2.2rem/1 var(--display);display:block}
