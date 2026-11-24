@@ -37,13 +37,17 @@ extra_css='''
 .page-head .wrap{position:relative;z-index:1;display:grid;gap:14px}
 .page-head h1{font-size:clamp(2.4rem,5.4vw,4rem);color:#fff}
 .page-head p{color:#c9d4e6;font-size:1.15rem;max-width:58ch}
-.up-list{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
-.up-list li{display:grid;grid-template-columns:190px minmax(0,1fr);gap:6px 24px;padding:16px 0;border-bottom:1px solid var(--line)}
-.up-list time{font:700 1.05rem/1.4 var(--display);color:var(--blue)}
-.up-list a{font-weight:700}
-.up-list span{color:var(--muted)}
-@media (max-width:640px){.up-list li{grid-template-columns:1fr}}
+.teasers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.teaser{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start;padding:22px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);text-decoration:none;transition:border-color .15s ease, transform .15s ease}
+.teaser:hover{border-color:var(--blue);transform:translateY(-2px)}
+.teaser .d{width:64px;text-align:center;border-radius:8px;padding:8px 4px;color:#fff;font:700 .8rem/1.1 var(--display)}
+.teaser .d b{display:block;font-size:1.5rem;line-height:1}
+.t-steak .d{background:#7a2416}.t-chili .d{background:var(--red)}.t-bbq .d{background:var(--blue)}
+.teaser h3{font-size:1.2rem}
+.teaser p{color:var(--muted);font-size:.93rem;margin-top:4px}
+.teaser .go{color:var(--link);font-weight:600;font-size:.9rem;margin-top:10px;display:block}
 .more{margin-top:28px}
+@media (max-width:900px){.teasers{grid-template-columns:1fr}}
 .cta-band{background:var(--surface);border-top:1px solid var(--line)}
 .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .cta{display:grid;gap:12px;align-content:start;padding:30px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
@@ -135,12 +139,13 @@ teasers='''  <section aria-labelledby="up-title">
     <div class="wrap">
       <div class="sec-head">
         <h2 id="up-title">Upcoming events</h2>
+        <p class="lede">Steak in January, chili the morning after, brisket in the spring.</p>
       </div>
-      <ul class="up-list">
-        <li><time>Fri, Jan 22, 2027</time><div><a href="events.html#steak-dinner">4th Annual Steak Dinner</a><br><span>Kurten Community Center. Tickets on sale. Boots encouraged.</span></div></li>
-        <li><time>Sat, Jan 23, 2027</time><div><a href="events.html#chili-cookoff">3rd Annual Chili Cookoff</a><br><span>Kurten Community Center. Agency teams, one pot each. Mild is not a category.</span></div></li>
-        <li><time>2027, date TBA</time><div><a href="events.html#bbq-cookoff">Annual BBQ Cookoff</a><br><span>St. Nick's Green, College Station. Badge vs. badge. Brisket decides.</span></div></li>
-      </ul>
+      <div class="teasers">
+        <a class="teaser t-steak" href="events.html#steak-dinner"><div class="d">JAN<b>22</b>2027</div><div><h3>4th Annual Steak Dinner</h3><p>Steak, live music, auctions, gun raffles. Boots encouraged.</p><span class="go">Details</span></div></a>
+        <a class="teaser t-chili" href="events.html#chili-cookoff"><div class="d">JAN<b>23</b>2027</div><div><h3>3rd Annual Chili Cookoff</h3><p>Agency teams, one pot each. Mild is not a category.</p><span class="go">Details</span></div></a>
+        <a class="teaser t-bbq" href="events.html#bbq-cookoff"><div class="d">2027<b>TBA</b></div><div><h3>Annual BBQ Cookoff</h3><p>Badge vs. badge at St. Nick's Green. Brisket decides.</p><span class="go">Details</span></div></a>
+      </div>
       <div class="more"><a class="btn btn-navy" href="events.html#reminders">Remind me</a></div>
     </div>
   </section>
@@ -185,7 +190,7 @@ helped_sec='''  <section class="about-extra" aria-labelledby="helped-title">
   </section>
 '''
 # About
-about_body=page_head('About BCFRA','A 501(c)(3) started in 2014 by Brazos County first responders, in memory of Constable Brian Bachmann.','hall.jpg')+story.replace('<section id="story"','<section id="story" style="padding-top:clamp(56px,7vw,88px)"')+'\n\n'+ \
+about_body=page_head('Why we exist','Run by the first responders of Brazos County, for the first responders of Brazos County.','hall.jpg')+story.replace('<section id="story"','<section id="story" style="padding-top:clamp(56px,7vw,88px)"')+'\n\n'+ \
   f'  <section class="about-extra" aria-label="Agencies">\n    <div class="wrap">\n{agencies}    </div>\n  </section>\n\n'+ \
   f'  <section class="history-sec" aria-label="History">\n    <div class="wrap">\n{history}    </div>\n  </section>\n'+helped_sec
 doc('about.html','About us: In memory of Constable Brian Bachmann','How the Brazos County First Responders Association began in memory of Constable Brian Bachmann, and the agencies it supports.',about_body)
@@ -218,18 +223,18 @@ news_body=page_head('In the news','Local news coverage of BCFRA and the first re
 doc('news.html','In the news','Local news coverage of the Brazos County First Responders Association, its fundraisers and the first responders it has helped.',news_body)
 # Events
 doc('events.html','Steak Dinner Jan 22, Chili Cookoff Jan 23, Kurten','Steak Dinner, Chili Cookoff and BBQ Cookoff: upcoming Brazos County First Responders Association fundraisers, tickets and reminders.',
-    page_head('Come hungry.','The Steak Dinner and Chili Cookoff are in January and the BBQ Cookoff later in the year. The money pays for help for first responders and scholarships for their kids.','stage.jpg')+strip_head(events)+'\n\n'+remind+'\n')
+    page_head('Come hungry.','Three fundraisers a year. Every plate funds help for first responders and scholarships for their kids.','stage.jpg')+strip_head(events)+'\n\n'+remind+'\n')
 # Nominate
 doc('nominate-someone.html','Nominate a first responder','Nominate a Brazos County first responder facing illness, injury or hardship for assistance from the BCFRA.',
     page_head('Nominate a first responder','Tell us who needs help. The board reviews every request in confidence.','speaker.jpg')+nominate.replace('<h2 id="nom-title">Nominate a first responder</h2>','<h2 id="nom-title">How it works</h2>')+'\n')
 # Get involved
 doc('get-involved.html','Donate or sponsor','Donate, sponsor an event, or give an auction item to support Brazos County first responders.',
-    page_head('Back them up.','Give money, sponsor the Steak Dinner, or donate an auction item.','tables.jpg')+strip_head(give)+'\n\n'+supporters.replace('<section class="supporters"','<section class="supporters" id="supporters"')+'\n')
+    page_head('Back them up.','Give, sponsor, or donate something worth bidding on.','tables.jpg')+strip_head(give)+'\n\n'+supporters.replace('<section class="supporters"','<section class="supporters" id="supporters"')+'\n')
 
-contact_body=page_head('Call it in.','Questions about tickets, cookoff teams, sponsorships or auction items. A board member will reply.','group.jpg')+'''  <section aria-labelledby="ct-title">
+contact_body=page_head('Call it in.','Tickets, teams, sponsors, auction items or a plain question. A board member will reply.','group.jpg')+'''  <section aria-labelledby="ct-title">
     <div class="wrap nominate-grid">
       <div>
-        <h2 id="ct-title">Email, call or use the form</h2>
+        <h2 id="ct-title">Straight to the board</h2>
         <p class="lede" style="margin-top:16px">The form and the email both go to the board's inbox.</p>
         <ul class="facts" style="margin-top:28px">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg><span><a href="mailto:brazoscountyfirstresponders@gmail.com">brazoscountyfirstresponders@gmail.com</a></span></li>

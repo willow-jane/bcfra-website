@@ -68,15 +68,20 @@ const FORMS = { remind: "https://formspree.io/f/mwllbzak", nominate: "https://fo
   function found(id){ let s=[]; try{s=JSON.parse(localStorage.getItem('bcfra-field-notes')||'[]');}catch(e){} if(!Array.isArray(s))s=[]; if(!s.includes(id)){s.push(id); try{localStorage.setItem('bcfra-field-notes',JSON.stringify(s));}catch(e){}} return s.filter(x=>EGGS.includes(x)).length; }
   const hhmm=()=>{const d=new Date();return String(d.getHours()).padStart(2,'0')+String(d.getMinutes()).padStart(2,'0');};
   const hms=()=>{const d=new Date();return [d.getHours(),d.getMinutes(),d.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');};
-  let lastToast=null;
+  let lastToast=null, gestured=false;
+  ['pointerdown','keydown'].forEach(ev=>addEventListener(ev,()=>{gestured=true;},{once:true,capture:true}));
+  function chirp(){ if(!gestured)return; try{ const A=window.__bcfraA=window.__bcfraA||new (window.AudioContext||window.webkitAudioContext)(); const t0=A.currentTime, g=A.createGain(); g.connect(A.destination); g.gain.setValueAtTime(0,t0); g.gain.linearRampToValueAtTime(0.035,t0+0.01); g.gain.setValueAtTime(0.035,t0+0.16); g.gain.linearRampToValueAtTime(0,t0+0.18);
+      const o=A.createOscillator(); o.type='square'; o.frequency.setValueAtTime(1450,t0); o.frequency.setValueAtTime(1050,t0+0.08); o.connect(g); o.start(t0); o.stop(t0+0.19); }catch(e){} }
   function toast(msg,ms,opt){ if(QUIET)return; opt=opt||{}; if(lastToast)lastToast.remove();
     const t=document.createElement('div'); t.className='radio'; t.setAttribute('role','status');
-    const h=document.createElement('div'); h.className='radio-h'; h.innerHTML='<span class="radio-sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
-    const lab=document.createElement('span'); lab.textContent=(opt.from||'BCFRA Dispatch')+' · '+hhmm()+' hrs'; h.appendChild(lab);
+    const h=document.createElement('div'); h.className='radio-h'; h.innerHTML='<span class="radio-led" aria-hidden="true"></span><span class="radio-sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+    const lab=document.createElement('span'); lab.textContent=(opt.from||'BCFRA Dispatch')+' · '+hhmm()+' hrs'; h.appendChild(lab); const x=document.createElement('span'); x.className='radio-x'; x.setAttribute('aria-hidden','true'); x.textContent='TAP TO CLEAR'; h.appendChild(x);
     const m=document.createElement('p'); m.className='radio-m'; m.textContent=msg; t.append(h,m);
     if(opt.egg){ const n=found(opt.egg); const f=document.createElement('div'); f.className='radio-f'; f.textContent=n>=EGGS.length?'Field notes: all '+EGGS.length+' found. Jane Doe is impressed.':'Field notes: '+n+' of '+EGGS.length+' found'; t.appendChild(f); }
     document.body.appendChild(t); lastToast=t; requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('in')));
-    setTimeout(()=>{t.classList.remove('in'); setTimeout(()=>{t.remove(); if(lastToast===t)lastToast=null;},400);},ms||4600);
+    if(opt.sound!==false && !RM) chirp();
+    const bye=()=>{t.classList.remove('in'); setTimeout(()=>{t.remove(); if(lastToast===t)lastToast=null;},450);};
+    t.addEventListener('click',bye); setTimeout(bye,ms||6000);
   }
   function overlay(cls,label){
     const o=document.createElement('div'); o.className='egg-ov '+cls; o.setAttribute('role','dialog'); o.setAttribute('aria-modal','true'); o.setAttribute('aria-label',label);
@@ -277,7 +282,15 @@ const FORMS = { remind: "https://formspree.io/f/mwllbzak", nominate: "https://fo
   if(yr2) yr2.addEventListener('click',()=>{ if(++yc===3){yc=0;cad('yr');} });
   // night shift note (not on the nomination or memorial pages)
   const pg=location.pathname.split('/').pop();
-  if(!/nominate|about/.test(pg)){ let h=new Date().getHours(); try{h=parseInt(new Intl.DateTimeFormat('en-US',{hour:'numeric',hourCycle:'h23',timeZone:'America/Chicago'}).format(new Date()),10)%24;}catch(e){} const night=(h>=18||h<6); let seen=false; try{seen=sessionStorage.getItem('bcfra-night')==='1'; if(night) sessionStorage.setItem('bcfra-night','1');}catch(e){} if(night&&!seen){ setTimeout(()=>toast('Working nights? The county sleeps because you don\'t. Thank you. Now go drink some water.',6500,{egg:'night',from:'Night Shift'}),2500); } }
+  if(!/nominate|about/.test(pg)){ let h=new Date().getHours(); try{h=parseInt(new Intl.DateTimeFormat('en-US',{hour:'numeric',hourCycle:'h23',timeZone:'America/Chicago'}).format(new Date()),10)%24;}catch(e){} const night=(h>=18||h<6); let seen=false; try{seen=sessionStorage.getItem('bcfra-night')==='1'; if(night) sessionStorage.setItem('bcfra-night','1');}catch(e){} if(night&&!seen){ setTimeout(()=>toast('Working nights? The county sleeps because you don\'t. Thank you. Now go drink some water.',7000,{egg:'night',from:'Night Shift',sound:false}),2500); } }
+  // one-time radio hint, then a wiggle on the footer badge when it scrolls into view
+  if(!QUIET){
+    let hinted=false; try{hinted=localStorage.getItem('bcfra-hint')==='1';}catch(e){}
+    let notes=0; try{notes=(JSON.parse(localStorage.getItem('bcfra-field-notes')||'[]')||[]).length;}catch(e){}
+    if(!hinted&&!notes){ setTimeout(()=>{ if(document.hidden||busy()||lastToast)return; try{localStorage.setItem('bcfra-hint','1');}catch(e){} toast('Psst. Nine things are hidden on this site. Start by typing “brisket.”',7500,{from:'Dispatch',sound:false}); },20000); }
+    const fbw=document.getElementById('foot-badge');
+    if(fbw&&'IntersectionObserver' in window&&!RM){ fbw.title='Press and hold'; const io=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ io.disconnect(); setTimeout(()=>fbw.classList.add('wiggle'),600); } },{threshold:.8}); io.observe(fbw); }
+  }
   // photo viewer
   const gal=[...document.querySelectorAll('.gallery figure img')];
   if(gal.length){
